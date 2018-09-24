@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+   <link rel="stylesheet" href="{% static 'css/base.css' %}">
+   <div id="logo_container"> 
+   <img id="logo" src="{% static 'logo.jpg' %}">
+ </div>
+  </head>
+  <body>
+    {% block body %}
+    BASE
+    {% endblock %}
+  </body>
+</html>
