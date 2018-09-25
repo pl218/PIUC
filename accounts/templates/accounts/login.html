@@ -9,6 +9,10 @@ function placeholders() {
 
   document.getElementById("id_username").setAttribute("placeholder", "Username");
   document.getElementById("id_password").setAttribute("placeholder", "Password");
+  document.querySelector("#login_para > form > p > label").innerHTML = "";
+  document.querySelector("#login_para > form > p:nth-child(3) > label").innerHTML = "";
+
+
 }
 
 </script>
@@ -19,7 +23,7 @@ function placeholders() {
           {% csrf_token %}
           {{ form.as_p }}
           <button id="login_sub_button" type="submit">Login</button>
-
+          <a href="{% url 'register' %}" id="register_login_link">Create account?</a>
       </form>
     </div>
   </div>

@@ -1,6 +1,6 @@
 input::-webkit-input-placeholder::before {
-    color:#666;
-    content:"bababababababababa";
+  color:#666;
+  content:"bababababababababa";
 }
 
 body {
@@ -15,59 +15,112 @@ label {
   display: none;
 }
 
-#id_username, #id_password{
-  padding: 5px;
-  align: center;
-    border: 5px solid #3E929C;
-    border-radius: 10px;
-    left: 0;
-    font-size: 14pt;
-    background-color: white;
-    width: 20% ;
-    min-width: 250px;
-    height: 18pt;
-    display: block;
-    position: relative;
-    color: grey;
-}
-
 #login_form {
   display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 20%;
-    min-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+  min-width: 270px;
+}
+
+#id_username, #id_password, .input_textbox{
+  padding: 5px;
+  border: 5px solid #3E929C;
+  border-radius: 10px;
+  left: 0;
+  font-size: 14pt;
+  background-color: white;
+  width: 15% ;
+  min-width: 250px;
+  height: 18pt;
+  display: block;
+  position: relative;
+  color: grey;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #logo {
   align: center;
   display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px;
-    margin-top: 150px;
-    margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  margin-top: 150px;
+  margin-bottom: 20px;
 }
 
-#login_sub_button {
+#login_sub_button, #register_sub_button {
   font-family: Verdana, Geneva, sans-serif;
-  width: calc(20% + 10px) ;
-  min-width: 260px;
-    height: calc(18pt + 10px);
-    background-color: #3E929C;
-    border: 5px solid #3E929C;
-    border-radius: 10px;
-    font-size: 15pt;
-    color: white;
-    margin-left: auto;
-    margin-right: auto;
-      cursor: pointer;
+  width: cal(15% + 20px);
+  min-width: 270px;
+  height: calc(18pt + 10px);
+  background-color: #3E929C;
+  border: 5px solid #3E929C;
+  border-radius: 10px;
+  font-size: 15pt;
+  color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
 }
 
-#login_sub_button:hover {
+#login_sub_button:hover, #register_sub_button:hover {
   background-color: white;
   border-color: white;
   color: #3E929C;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+#password_helptext {
+  position: absolute;
+  display: none;
+}
+
+.helptext {
+  position: absolute;
+  float: left;
+  display: none;
+}
+
+.container > h1 {
+  text-align: center;
+  display: block;
+  color: #3E929C;
+  font-style: normal;
+}
+
+#show_help {
+  background-color: #3E929C;
+  width: 25px;
+  height: 25px;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+  border-radius: 25px;
+  display: inline-block;
+  position: absolute;
+}
+
+#show_help:hover {
+  background-color: white;
+  font-weight: bold;
+  color: #3E929C;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+#register_login_link, #login_register_link {
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin: 15px;
+  color: black;
+}
+
+#register_login_link:hover, #login_register_link:hover {
+  color: #3E929C;
   transition: 0.5s;
 }

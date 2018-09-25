@@ -1,15 +1,65 @@
 {% extends 'base.html' %}
 {% block head %}
-  <title>Register</title>
+<title>Register</title>
 {% endblock %}
 
+
 {% block body %}
-  <div class="container">
-      <h1>Register</h1>
-      <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit">Register</button>
-      </form>
-    </div>
+
+
+<script type="text/javascript">
+
+window.onload = addClass;
+
+function addClass() {
+
+  document.getElementById("id_username").className = "input_textbox";
+  document.getElementById("id_first_name").className = "input_textbox";
+  document.getElementById("id_last_name").className = "input_textbox";
+  document.getElementById("id_email").className = "input_textbox";
+  document.getElementById("id_ORCID").className = "input_textbox";
+  document.getElementById("id_scientific_area").className = "input_textbox";
+  document.getElementById("id_password1").className = "input_textbox";
+  document.getElementById("id_password2").className = "input_textbox";
+
+  document.getElementById("id_username").setAttribute("placeholder", "Username");
+  document.getElementById("id_first_name").setAttribute("placeholder", "First Name");
+  document.getElementById("id_last_name").setAttribute("placeholder", "Last Name");
+  document.getElementById("id_email").setAttribute("placeholder", "E-mail");
+  document.getElementById("id_ORCID").setAttribute("placeholder", "ORCID");
+  document.getElementById("id_scientific_area").setAttribute("placeholder", "Scientific Area");
+  document.getElementById("id_password1").setAttribute("placeholder", "Password");
+  document.getElementById("id_password2").setAttribute("placeholder", "Repeat Password");
+
+  document.querySelector(".container > form > ul").id = "password_helptext"
+
+}
+
+</script>
+
+<div class="container">
+  <h1>Register</h1>
+  <div id="show_help"> ? </div>
+
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button id="register_sub_button" type="submit">Register</button>
+
+    <a href="{% url 'login' %}" id="login_register_link">Already registered?</a>
+  </form>
+</div>
+
+<script>
+document.getElementById("show_help").addEventListener("mouseover", function hover_helptext_on() {
+document.getElementById("password_helptext").style.display = "inline-block";
+});
+
+document.getElementById("show_help").addEventListener("mouseout", function hover_helptext_off() {
+document.getElementById("password_helptext").style.display = "none";
+});
+</script>
+
 {% endblock %}
