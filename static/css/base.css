@@ -1,0 +1,73 @@
+input::-webkit-input-placeholder::before {
+    color:#666;
+    content:"bababababababababa";
+}
+
+body {
+  background-color: white;
+}
+
+textarea, select, input, button { outline: none; }
+
+label {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  display: none;
+}
+
+#id_username, #id_password{
+  padding: 5px;
+  align: center;
+    border: 5px solid #3E929C;
+    border-radius: 10px;
+    left: 0;
+    font-size: 14pt;
+    background-color: white;
+    width: 20% ;
+    min-width: 250px;
+    height: 18pt;
+    display: block;
+    position: relative;
+    color: grey;
+}
+
+#login_form {
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    min-width: 260px;
+}
+
+#logo {
+  align: center;
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    margin-top: 150px;
+    margin-bottom: 20px;
+}
+
+#login_sub_button {
+  font-family: Verdana, Geneva, sans-serif;
+  width: calc(20% + 10px) ;
+  min-width: 260px;
+    height: calc(18pt + 10px);
+    background-color: #3E929C;
+    border: 5px solid #3E929C;
+    border-radius: 10px;
+    font-size: 15pt;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+      cursor: pointer;
+}
+
+#login_sub_button:hover {
+  background-color: white;
+  border-color: white;
+  color: #3E929C;
+  cursor: pointer;
+  transition: 0.5s;
+}
