@@ -1,0 +1,11 @@
+Esta semana:
+- Conversações entre Testes e Implementação
+- Testes no login
+- Elaboração de um excel que contem as informações dos testes efectuados, tais como a semana, etapa, número de testes, os que passaram na verificação e os que falharam.
+
+Próxima semana:
+- Finalizar testes no login e no registo
+- Iniciar testes no feed e no perfil
+- Preencher os dados no excel da respetiva semana.
+
+Número de horas: 4h
