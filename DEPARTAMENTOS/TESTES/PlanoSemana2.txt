@@ -1,8 +1,0 @@
-Semana passada:
-- Conversações entre Testes e Implementação
-- Inicio de testes no login
-
-Esta semana:
-- Garantir a qualidade e o bom funcionamento do código implementado
-- Continuar testes no login e registo
-- Elaborar um excel que contenha as informações dos testes efectuados sobre o produto, tais como a versao, a data, os que passaram na verificação e os que falharam
