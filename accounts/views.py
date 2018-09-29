@@ -12,12 +12,12 @@ def register(request):
     if request.method == 'POST': #POST -> cliente envia info para o server
         form=RegistrationForm(request.POST)
         if form.is_valid(): #caso todos os dados recebidos sejam válidos
+            print("xupamos")
             user=form.save() #guarda os dados basicos do utilizador (username pass...)
             user.refresh_from_db()
             user.userprofile.ORCID= form.cleaned_data.get('ORCID') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
             user.userprofile.scientific_area=form.cleaned_data.get('scientific_area')
-            if 'image' in request.FILES:
-                user.image = request.FILES['image']
+            user.userprofile.image = request.FILES['image']
             user.save() #guarda os dados adicionar do perfil na bd
 
             #Entrar na conta após os registo

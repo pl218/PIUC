@@ -6,6 +6,7 @@ class RegistrationForm(UserCreationForm):
     email= forms.EmailField(required=True)
     ORCID= forms.CharField(max_length=30, required=True)
     scientific_area=forms.CharField(max_length=30,required=True)
+    image = forms.ImageField(required = True)
 
     class Meta:
         model = User

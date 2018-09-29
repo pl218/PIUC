@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     ORCID=models.CharField(max_length=30, default='')
     scientific_area=models.CharField(max_length=50, default='')
     confirmed_email=models.BooleanField(default=False)
-    image=models.ImageField(upload_to='profile_picture', blank=True)
+    image=models.ImageField(verbose_name = "profile_picture", upload_to = "media", null = True, blank = True, blank=True)
 
 @receiver(post_save, sender=User) #Tratamento de Sinais
 def update_UserProfile(sender, instance, created, **kwargs):
