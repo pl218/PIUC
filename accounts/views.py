@@ -16,6 +16,8 @@ def register(request):
             user.refresh_from_db()
             user.userprofile.ORCID= form.cleaned_data.get('ORCID') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
             user.userprofile.scientific_area=form.cleaned_data.get('scientific_area')
+            if 'image' in request.FILES:
+                user.image = request.FILES['image']
             user.save() #guarda os dados adicionar do perfil na bd
 
             #Entrar na conta após os registo

@@ -18,4 +18,5 @@ class RegistrationForm(UserCreationForm):
             'scientific_area',
             'password1',
             'password2',
+            'image'
         )
