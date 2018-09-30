@@ -6,13 +6,18 @@ from django.dispatch import receiver
 # Create your models here.
 class UserProfile(models.Model):
     user= models.OneToOneField(User,on_delete=models.CASCADE)
+    email = models.EmailField(default = '')
+    first_name = models.CharField(max_length=500, default='')
+    last_name = models.CharField(max_length=500, default='')
     description=models.CharField(max_length=500, default='')
     city=models.CharField(max_length=30, default='')
     website=models.URLField(default='')
     ORCID=models.CharField(max_length=30, default='')
     scientific_area=models.CharField(max_length=50, default='')
     confirmed_email=models.BooleanField(default=False)
-    image=models.ImageField(verbose_name = "profile_picture", upload_to = "media", null = True, blank = True, blank=True)
+    image=models.ImageField(verbose_name = "profile_picture", null = True, blank=True)
+    def __unicode__(self):
+        return self.user.username
 
 @receiver(post_save, sender=User) #Tratamento de Sinais
 def update_UserProfile(sender, instance, created, **kwargs):
