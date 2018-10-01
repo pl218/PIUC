@@ -1,5 +1,8 @@
-{% extends 'base.html' %}
 
+
+{% extends 'base.html' %}
+{% load static %} 
+<title>Login</title>
 {% block body %}
 <script type="text/javascript">
 
@@ -11,21 +14,30 @@ function placeholders() {
 //  document.getElementById("id_password").setAttribute("placeholder", "Password");
   document.querySelector("#login_para > form > p > label").innerHTML = "username";
   document.querySelector("#login_para > form > p:nth-child(2) > label").innerHTML = "password";
-
-
 }
 
 </script>
-  <div class="container" id="login_form">
-      <div id="login_para">
+<div class="container" id="login_form">
+  <div id="login_para">
 
-      <form method="post">
-          {{ form.as_p }}
+    <form method="post">
+      {{ form.as_p }}
 
-          <button id="login_sub_button" type="submit">LOGIN</button>
+      <button id="login_sub_button" type="submit">LOGIN</button>
 
-          <a href="{% url 'register' %}" id="register_login_link">Create account?</a>
-      </form>
-    </div>
+      <a href="{% url 'register' %}" id="register_login_link">Create account?</a>
+    </form>
   </div>
+</div>
+
+<div id="login_about_us">
+  <h1>About Us</h1>
+  <p>
+    PIUC, criado em 2018.
+    Consiste numa plataforma de investigação da Universidade de Coimbra.
+    Surgiu no âmbito de um projecto de uma cadeira do curso Design e Multimédia e de Engenharia Informática, denominada de Engenharia de Software.
+    O nosso objectivo consiste em auxiliar na investigação, aprofundar os conhecimentos nas mais variadas áreas, dar o devido apoio nas mesmas e criar um maior elo de comunicação entre todos os investigadores da universidade de coimbra.
+  </p>
+  <img src="{% static 'logo_white.png' %}">
+</div>
 {% endblock %}
