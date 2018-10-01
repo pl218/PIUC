@@ -2,6 +2,7 @@
 
 {% load static %}
 <html lang="en" dir="ltr">
+<<<<<<< HEAD
 <head>
   <meta charset="utf-8">
   <title></title>
@@ -20,4 +21,22 @@
   {% endblock %}
 </body>
 
+=======
+  <head>
+    <meta charset="utf-8">
+   <link rel="stylesheet" href="{% static 'css/base.css' %}">
+   {% block head %}
+   <title>PIUC</title>
+   {% endblock %}
+   <div id="logo_container">
+       <img id="logo" src="{% static 'logo.jpg' %}">
+  </div>
+
+  </head>
+  <body>
+    {% block body %}
+    BASE
+    {% endblock %}
+  </body>
+>>>>>>> feed
 </html>
