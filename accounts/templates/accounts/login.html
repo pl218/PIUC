@@ -20,6 +20,7 @@ function placeholders() {
       <div id="login_para">
 
       <form method="post">
+          {% csrf_token %}
           {{ form.as_p }}
 
           <button id="login_sub_button" type="submit">LOGIN</button>
