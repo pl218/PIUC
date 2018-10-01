@@ -30,3 +30,19 @@ def register(request):
 
 def profile(request):
     return render(request,'accounts/profile.html',{'user': request.user})
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect(reverse('accounts:view_profile'))
+        else:
+            return redirect(reverse('accounts:change_password'))
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+        args = {'form': form}
+        return render(request, 'accounts/change_password.html', args)
