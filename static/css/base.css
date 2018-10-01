@@ -5,42 +5,51 @@ input::-webkit-input-placeholder::before {
 
 body {
   background-color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  padding:0;
+  border: none;
 }
 
 textarea, select, input, button { outline: none; }
 
 label {
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16pt;
   font-weight: bold;
-  display: none;
 }
 
-#login_form {
+#login_form, #register_form {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 15%;
+  width: 30%;
   min-width: 270px;
+  max-width: 500px;
 }
 
 #id_username, #id_password, .input_textbox{
   padding: 5px;
-  border: 5px solid #3E929C;
-  border-radius: 10px;
+  border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 5px;
   left: 0;
-  font-size: 14pt;
+  font-size: 16pt;
   background-color: white;
-  width: 15% ;
+  width: calc(100% - 20px) ;
   min-width: 250px;
-  height: 18pt;
+  height: 25pt;
   display: block;
   position: relative;
   color: grey;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 5px;
 }
 
-#logo {
+#logo_on, #logo_off, #logo_change {
   align: center;
   display: block;
   margin-left: auto;
@@ -50,39 +59,38 @@ label {
   margin-bottom: 20px;
 }
 
+#logo_off, #logo_change:hover #logo_on{
+   display:none;
+}
+#logo_on, #logo_change:hover #logo_off{
+   display:block;
+}
+
 #login_sub_button, #register_sub_button {
-  font-family: Verdana, Geneva, sans-serif;
-  width: cal(15% + 20px);
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  letter-spacing: 3pt;
+  width: 100%;
   min-width: 270px;
-  height: calc(18pt + 10px);
-  background-color: #3E929C;
-  border: 5px solid #3E929C;
-  border-radius: 10px;
-  font-size: 15pt;
+  height: calc(20pt + 20px);
+  background: linear-gradient(to left, #29ABE2, #0000FF);
+  font-size: 12pt;
   color: white;
   display: block;
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
+  margin-top: 20px;
+  transition: 1.5s;
 }
+
 
 #login_sub_button:hover, #register_sub_button:hover {
-  background-color: white;
-  border-color: white;
-  color: #3E929C;
+  background: linear-gradient(to left, #0000FF, #29ABE2);
   cursor: pointer;
-  transition: 0.5s;
-}
+  letter-spacing: 10pt;
+  transition: 1.5s;
 
-#password_helptext {
-  position: absolute;
-  display: none;
-}
-
-.helptext {
-  position: absolute;
-  float: left;
-  display: none;
 }
 
 .container > h1 {
@@ -92,27 +100,8 @@ label {
   font-style: normal;
 }
 
-#show_help {
-  background-color: #3E929C;
-  width: 25px;
-  height: 25px;
-  color: white;
-  text-align: center;
-  line-height: 25px;
-  border-radius: 25px;
-  display: inline-block;
-  position: absolute;
-}
-
-#show_help:hover {
-  background-color: white;
-  font-weight: bold;
-  color: #3E929C;
-  transition: 0.5s;
-  cursor: pointer;
-}
-
 #register_login_link, #login_register_link {
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   text-decoration: none;
   display: block;
@@ -121,6 +110,53 @@ label {
 }
 
 #register_login_link:hover, #login_register_link:hover {
-  color: #3E929C;
+background: linear-gradient(to left, #29ABE2, #0000FF);
+  -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
   transition: 0.5s;
+}
+
+#user_description, #password1_description, #password2_description {
+  position: relative;
+  height: 0;
+  overflow: visible;
+  float: left;
+  display: block;
+  top: calc(-20pt - 20px);
+  left: calc(100% + 20px);
+  color: grey;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+#password1_description {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+#id_username:focus + #user_description{
+  display: block;
+  opacity: 1;
+  float: left;
+  width: 100%;
+  transition: 1s;
+}
+
+#id_password1:focus + #password1_description{
+  display: block;
+  opacity: 1;
+  float: left;
+  width: 100%;
+  transition: 1s;
+}
+
+#id_password2:focus + #password2_description{
+  display: block;
+  opacity: 1;
+  float: left;
+  width: 100%;
+  transition: 1s;
 }

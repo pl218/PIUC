@@ -22,44 +22,44 @@ function addClass() {
   document.getElementById("id_password1").className = "input_textbox";
   document.getElementById("id_password2").className = "input_textbox";
 
-  document.getElementById("id_username").setAttribute("placeholder", "Username");
-  document.getElementById("id_first_name").setAttribute("placeholder", "First Name");
-  document.getElementById("id_last_name").setAttribute("placeholder", "Last Name");
-  document.getElementById("id_email").setAttribute("placeholder", "E-mail");
-  document.getElementById("id_ORCID").setAttribute("placeholder", "ORCID");
-  document.getElementById("id_scientific_area").setAttribute("placeholder", "Scientific Area");
-  document.getElementById("id_password1").setAttribute("placeholder", "Password");
-  document.getElementById("id_password2").setAttribute("placeholder", "Repeat Password");
+  //REMOVES EMPTY SPAN
+  document.querySelector("p:nth-child(8) > span").remove();
+  //REMOVE EMPY <p>
+  document.querySelector("form > p:nth-child(10)").remove();
 
-  document.querySelector(".container > form > ul").id = "password_helptext"
+  //PLACES UL INSIDE CORRECT <p> ELEMENT
+  var password_info = document.querySelector(".container > #register_form > form > ul");
+  document.querySelector("p:nth-child(8)").appendChild(password_info); 
 
+  //ADDS IDs TO THE INPUT DESCRIPTONS SO YOU CAN HIDE THEM WITH CSS
+  document.querySelector("p:nth-child(2) > span").id = "user_description";
+  document.querySelector("p:nth-child(8) > ul").id = "password1_description";
+  document.querySelector("p:nth-child(9) > span").id = "password2_description";
+
+  //CHANGES THE LABELS OF THE INPUT BOXES
+  document.querySelector("label").innerHTML = "username";
+  document.querySelector("p:nth-child(3) > label").innerHTML = "first name";
+  document.querySelector("p:nth-child(4) > label").innerHTML = "last name";
+  document.querySelector("p:nth-child(5) > label").innerHTML = "email";
+  document.querySelector("p:nth-child(6) > label").innerHTML = "ORCID";
+  document.querySelector("p:nth-child(7) > label").innerHTML = "research interests";
+  document.querySelector("p:nth-child(8) > label").innerHTML = "password";
+  document.querySelector("p:nth-child(9) > label").innerHTML = "repeat password";
 }
 
 </script>
 
 <div class="container">
-  <h1>Register</h1>
-  <div id="show_help"> ? </div>
+  <div id="register_form">
+    <form method="post">
 
+      {% csrf_token %}
+      {{ form.as_p }}
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button id="register_sub_button" type="submit">Register</button>
-
-    <a href="{% url 'login' %}" id="login_register_link">Already registered?</a>
-  </form>
+      <button id="register_sub_button" type="submit">REGISTER</button>
+      <a href="{% url 'login' %}" id="login_register_link">Already registered?</a>
+    </form>
+  </div>
 </div>
-
-<script>
-document.getElementById("show_help").addEventListener("mouseover", function hover_helptext_on() {
-document.getElementById("password_helptext").style.display = "inline-block";
-});
-
-document.getElementById("show_help").addEventListener("mouseout", function hover_helptext_off() {
-document.getElementById("password_helptext").style.display = "none";
-});
-</script>
 
 {% endblock %}

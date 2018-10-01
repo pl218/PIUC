@@ -2,17 +2,22 @@
 
 {% load static %}
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-   <link rel="stylesheet" href="{% static 'css/base.css' %}">
-   <div id="logo_container">
-   <img id="logo" src="{% static 'logo.jpg' %}">
- </div>
-  </head>
-  <body>
-    {% block body %}
-    BASE
-    {% endblock %}
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Nunito|Roboto" rel="stylesheet">
+  <div id="logo_container">
+    <a id="logo_change">
+    <img id="logo_on" src="{% static 'logo.png' %}">
+    <img id="logo_off" src="{% static 'logo_horizontal.png' %}">
+    </a>
+  </div>
+</head>
+<body>
+  {% block body %}
+  BASE
+  {% endblock %}
+</body>
+
 </html>
