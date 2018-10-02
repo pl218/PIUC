@@ -15,6 +15,11 @@ button {
   border: none;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 textarea, select, input, button { outline: none; }
 
 label {
@@ -282,19 +287,37 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
   margin: 0px 20px;
 }
 
-#nav_bar > ul > li:hover{
+#nav_bar > ul > li:not(#nav_bar_link_selected):hover{
   cursor: pointer;
   padding-bottom: 20px;
   border-bottom: solid red;
   border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
        border-image-slice: 1;
        border-width: 5px;
+
+}
+
+#nav_bar_link_selected {
+  cursor: pointer;
+  padding-bottom: 0px;
+  border-bottom: solid red;
+  border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 5px;
+}
+
+#nav_bar_profile, #nav_bar_search {
+display: inline-block;
+float: right;
 }
 
 #nav_bar_profile {
+  margin-right: 50px;
+}
+
+#nav_bar_profile > img, #nav_bar_search > img {
   display: inline-block;
   float: right;
-  background-color: red;
   height: 18pt;
   width: 18pt;
   margin: 0px 30px;
@@ -306,8 +329,63 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
 #nv_profile_card {
   position: absolute;
   right: -1000px;
-  top: 150px;
+  top: 154px;
   background-color: white;
   opacity: 0;
   transition: right 1s, opacity 3s;
+}
+
+#nv_profile_card > img {
+  border-radius: 50%;
+  height: 150px;
+  margin: 25px 75px;
+  margin-bottom: 0px;
+
+}
+
+#nv_profile_card > p {
+  font-size: 16pt;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+#nv_profile_card > p:nth-child(3) {
+  font-size: 12pt;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+#nv_profile_card > ul > li {
+  font-family: 'nunito', sans-serif;
+  color: grey;
+  font-size: 12pt;
+  margin: 2pt 25px;
+  text-align: center;
+}
+
+#nv_profile_card > ul {
+  list-style: none;
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+#nv_search_input {
+  margin: 0px 30px;
+  margin-top: calc(125px - 18pt);
+  margin-bottom: 25px;
+  font-family: 'nunito', sans-serif;
+  font-size: 12pt;
+  height: calc(18pt - 6px);
+  width: -0px;
+  opacity: 0;
+    border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
+    border-image-slice: 1;
+    border-width: 3px;
+  float: right;
+  transition: 1s;
 }

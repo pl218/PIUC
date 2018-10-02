@@ -14,26 +14,32 @@
         <img id="nav_bar_logo" src="{% static 'logo2.png' %}">
 
         <div id="nav_bar_profile">
+            <img src="{% static 'profile_icon.png' %}">
           <div id="nv_profile_card">
+            <img id="nv_profile_pic" src="{% static 'profile_pic_placeholder.jpg' %}">
+            <p>{{ user.first_name }}  {{ user.last_name }} Place Holder </p>
+            <p> {{ user }} </p>
             <ul>
-                <img id="proflie_pic" src="{% static 'profile_pic_placeholder.jpg' %}">
-
-                <p>{{ user.first_name }}  {{ user.last_name }} Place Holder </p>
-                <li>Edit Profile</li>
-                <li>Need Help?</li>
-                <li>Logout</li>
+              <li>Edit Profile</li>
+              <li>Need Help?</li>
+              <li>Logout</li>
             </ul>
-
           </div>
         </div>
 
+        <div id="nav_bar_search">
+          <img src="{% static 'search_icon.png' %}">
+        </div>
+
+        <input id="nv_search_input" type="text" placeholder="Search..">
+
         <ul id="nav_bar_links">
-            <li>feed</li>
-            <li>favourites</li>
-            <li>inbox</li>
+          <li><a href="{% url 'register' %}">feed</a></li>
+          <li>favorites</li>
+          <li>inbox</li>
         </ul>
 
-    </div>
+      </div>
   </header>
   {% block body %}
   BASE
@@ -42,8 +48,10 @@
 <script type="text/javascript">
 
   document.getElementById("nav_bar_profile").addEventListener("click", RevealProfile);
+  document.getElementById("nav_bar_search").addEventListener("click", RevealSearchBar);
 
   var checker = true;
+  var checker_s = true;
 
   function RevealProfile() {
     if(checker){
@@ -56,6 +64,20 @@
       checker = true;
     }
   }
+
+  function RevealSearchBar() {
+    if(checker_s){
+      document.getElementById("nv_search_input").style.width = "150px";
+      document.getElementById("nv_search_input").style.opacity = "1";
+      checker_s = false;
+    } else {
+      document.getElementById("nv_search_input").style.width = "0px";
+      document.getElementById("nv_search_input").style.opacity = "0";
+      checker_s = true;
+    }
+  }
+
+
 
 </script>
 

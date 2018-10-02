@@ -14,11 +14,11 @@
       <p>{{ user.first_name }}  {{ user.last_name }} Place Holder </p>
       <ul>
         <li class="user_desc"> Username</li>
-        <li class="user_fill">{{ user }} </li>
+        <li class="user_fill">{{ user }}</li>
         <li class="user_desc"> Research Interests</li>
         <li class="user_fill">{{ user.userprofile.scientific_area }} Antropology, Biology, Chemistry </li>
         <li class="user_desc"> ORCID</li>
-        <li class="user_fill">{{ user.ORCID }} 219i42240 </li>
+        <li class="user_fill">{{ user.userprofile.ORCID }} 219i42240 </li>
       </ul>
     </div>
   </div>
