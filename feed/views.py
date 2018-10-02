@@ -18,6 +18,6 @@ class FeedView(TemplateView):
             post=form.save(commit=False)
             post.user= request.user
             post.save();
-            return redirect('/feed')
+            return redirect('/feed/mainpage')
 
         return render(request,self.template_name,{'form':form})
