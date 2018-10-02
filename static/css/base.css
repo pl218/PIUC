@@ -61,10 +61,11 @@ label {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+  width: 400px;
   margin-top: 150px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
+
 
 #logo_off, #logo_change:hover #logo_on{
    display:none;
@@ -141,7 +142,12 @@ label {
   font-style: normal;
 }
 
-#register_login_link, #login_register_link {
+#login_link{
+  margin: 25px 0;
+  width: 100%;
+}
+
+#register_login_link, #login_register_link, #forgot_password_login_link {
   font-family: 'Roboto', sans-serif;
   text-align: center;
   text-decoration: none;
@@ -151,7 +157,22 @@ label {
   margin-bottom: 200px;
 }
 
-#register_login_link:hover, #login_register_link:hover {
+#register_login_link, #forgot_password_login_link{
+  display: inline-block;
+  text-align: center;
+  width: 40%;
+  margin: 0 10px;
+  margin-bottom: 20px;
+}
+
+#forgot_password_login_link {
+
+  display: inline-block;
+  position: relative;
+    float: right;
+}
+
+#register_login_link:hover, #login_register_link:hover, #forgot_password_login_link:hover {
 background: linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-text-fill-color: transparent;
@@ -206,13 +227,13 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
 #profile_cont {
   width: 100%;
     display: inline-block;
-    background: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(41, 171, 226, 0.5));
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.4), rgba(41, 171, 226, 0.4));
 }
 
 #user_profile {
   margin: 50px 25%;
   padding: 50px;
-  background: linear-gradient(to left, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+  background: linear-gradient(to left, rgba(0, 0, 255, 0.2), rgba(41, 171, 226, 0.2));
 }
 
 #proflie_pic {
@@ -384,7 +405,7 @@ float: right;
   opacity: 0;
     border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
     border-image-slice: 1;
-    border-width: 3px;
+    border-width: 2px;
   float: right;
   transition: 1s;
 }
@@ -416,7 +437,7 @@ float: right;
   position: relative;
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  font-weight: light;
+  font-weight: bolder;
   font-size: 12pt;
   margin: 4px 0 ;
 }

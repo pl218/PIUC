@@ -11,10 +11,9 @@
 <body>
   <header>
     <div id="nav_bar">
-        <img id="nav_bar_logo" src="{% static 'logo2.png' %}">
-
+      <img id="nav_bar_logo" src="{% static 'logo2.png' %}">
         <div id="nav_bar_profile">
-            <img src="{% static 'profile_icon.png' %}">
+            <img src="{% static 'profile_icon_black.png' %}">
           <div id="nv_profile_card">
             <img id="nv_profile_pic" src="{% static 'profile_pic_placeholder.jpg' %}">
             <p>{{ user.first_name }}  {{ user.last_name }} Place Holder </p>
@@ -28,7 +27,7 @@
         </div>
 
         <div id="nav_bar_search">
-          <img src="{% static 'search_icon.png' %}">
+          <img src="{% static 'search_icon_black.png' %}">
         </div>
 
         <input id="nv_search_input" type="text" placeholder="Search..">
@@ -49,9 +48,18 @@
 
   document.getElementById("nav_bar_profile").addEventListener("click", RevealProfile);
   document.getElementById("nav_bar_search").addEventListener("click", RevealSearchBar);
+  document.querySelector("#nav_bar_profile > img").addEventListener("mouseover", changeProfileLogo);
+  document.querySelector("#nav_bar_profile > img").addEventListener("mouseleave", changeProfileLogo);
+  document.querySelector("#nav_bar_profile > img").addEventListener("click", changeProfileLogo);
+  document.querySelector("#nav_bar_search > img").addEventListener("mouseover", changeSearchLogo);
+  document.querySelector("#nav_bar_search > img").addEventListener("mouseleave", changeSearchLogo);
+  document.querySelector("#nav_bar_search > img").addEventListener("click", changeSearchLogo);
+
 
   var checker = true;
   var checker_s = true;
+  var checker_c_s = true;
+  var checker_c_p = true;
 
   function RevealProfile() {
     if(checker){
@@ -64,7 +72,6 @@
       checker = true;
     }
   }
-
   function RevealSearchBar() {
     if(checker_s){
       document.getElementById("nv_search_input").style.width = "150px";
@@ -76,9 +83,24 @@
       checker_s = true;
     }
   }
-
-
-
+  function changeProfileLogo() {
+    if(checker_c_s){
+      document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon.png' %}";
+      checker_c_s = false;
+    } else {
+        document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon_black.png' %}";
+      checker_c_s = true;
+    }
+  }
+  function changeSearchLogo() {
+    if(checker_c_p){
+      document.querySelector("#nav_bar_search > img").src="{% static 'search_icon.png' %}";
+      checker_c_p = false;
+    } else {
+        document.querySelector("#nav_bar_search > img").src="{% static 'search_icon_black.png' %}";
+      checker_c_p = true;
+    }
+  }
 </script>
 
 
