@@ -1,7 +1,7 @@
 
 
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 <title>Login</title>
 {% block body %}
 <script type="text/javascript">
@@ -19,16 +19,9 @@ function placeholders() {
 </script>
 <div class="container" id="login_form">
   <div id="login_para">
-
-<<<<<<< HEAD
-    <form method="post">
-      {{ form.as_p }}
-=======
       <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
->>>>>>> 4b82bd4c74244d859f203f49c0f3cbd21fca61e4
-
       <button id="login_sub_button" type="submit">LOGIN</button>
 
       <a href="{% url 'register' %}" id="register_login_link">Create account?</a>
