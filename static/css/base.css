@@ -73,7 +73,7 @@ label {
    display:block;
 }
 
-#login_sub_button, #register_sub_button {
+#login_sub_button, #register_sub_button, #feed_submit_form > form  > button {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   letter-spacing: 3pt;
@@ -92,7 +92,7 @@ label {
 }
 
 
-#login_sub_button:hover, #register_sub_button:hover {
+#login_sub_button:hover, #register_sub_button:hover, #feed_submit_form > form > button:hover {
   background: linear-gradient(to left, #0000FF, #29ABE2);
   cursor: pointer;
   letter-spacing: 10pt;
@@ -134,8 +134,6 @@ label {
   left: calc(50% - 70px);
 }
 
-
-
 .container > h1 {
   text-align: center;
   display: block;
@@ -150,6 +148,7 @@ label {
   display: block;
   margin: 15px;
   color: black;
+  margin-bottom: 200px;
 }
 
 #register_login_link:hover, #login_register_link:hover {
@@ -297,9 +296,9 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
 
 }
 
-#nav_bar_link_selected {
+#nav_bar > ul > #nav_bar_link_selected {
   cursor: pointer;
-  padding-bottom: 0px;
+  padding-bottom: 20px;
   border-bottom: solid red;
   border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
        border-image-slice: 1;
@@ -388,4 +387,103 @@ float: right;
     border-width: 3px;
   float: right;
   transition: 1s;
+}
+
+
+#feed_cont {
+    background: linear-gradient(to left, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+}
+
+#feed_submit {
+    text-align: center;
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+    padding: 10px 0;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+ -moz-user-select: none;     /* Firefox all */
+ -ms-user-select: none;      /* IE 10+ */
+ user-select: none;
+
+}
+
+#feed_submit:hover {
+  background: linear-gradient(to left, rgba(0, 0, 255, 0.2), rgba(41, 171, 226, 0.2));
+  cursor: pointer;
+}
+
+
+#feed_submit > p:nth-child(1) {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: light;
+  font-size: 12pt;
+  margin: 4px 0 ;
+}
+
+
+#feed_submit_form{
+  display: none;
+  position: relative;
+  width: 30%;
+  padding: 0 35%;
+  padding-bottom: 50px;
+  font-family: 'nunito', sans-serif;
+  background: linear-gradient(to right, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+}
+
+#feed_submit_form > p > label {
+  text-align: left;
+}
+
+#id_title, #id_post {
+  background-color: white;
+  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 1px;
+  padding: 0;
+}
+
+#id_title {
+  font-size: 16pt;
+  font-weight: bold;
+  width: calc(100% - 6px);
+}
+
+#id_post {
+  width: calc(100% - 6px);
+  height: 36pt;
+  font-size: 12pt;
+  font-weight: light;
+}
+
+.feed_post {
+  width: 55%;
+  margin: auto;
+  margin-top: 50px;
+  border: solid red 10px;
+  padding: 20px 50px;
+  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 1px;
+}
+
+.post_title{
+  font-size: 24pt;
+  font-family: 'Roboto',sans-serif;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.post_text{
+    font-family: 'nunito',sans-serif;
+    font-weight: lighter;
+    margin-top: 0;
+}
+
+.post_user{
+  font-family: 'Roboto',sans-serif;
+  text-align: right;
+  font-size: 10pt;
+  font-weight: bold;
 }
