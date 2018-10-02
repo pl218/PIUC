@@ -32,4 +32,4 @@ def profile(request):
     return render(request,'accounts/profile.html',{'user': request.user})
 
 def logout(request):
-    return render(request,'accounts/logout.html',{'user': request.user})
+    return render(request,'accounts/logout.html')
