@@ -16,8 +16,9 @@
     </form>
 
   </div>
+  {% for post in posts %}
   <div class="feed_post">
-    {% for post in posts %}
+
 
     <div class="post_title"> {{ post.title }}</div>
     <div class="post_text">  <p>{{ post.post }}
@@ -29,8 +30,9 @@
  </p> </div>
     <div class="post_user">  <p> Posted by {{ post.user.get_full_name }} ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p> </div>
 
-    {% endfor %}
+
   </div>
+    {% endfor %}
 </div>
 
 

@@ -380,7 +380,7 @@ float: right;
   margin-bottom: 40px;
 }
 
-#nv_profile_card > ul > li {
+#nv_profile_card > ul > li, #nv_profile_card > ul > li > a  {
   font-family: 'nunito', sans-serif;
   color: grey;
   font-size: 12pt;
@@ -412,7 +412,8 @@ float: right;
 
 
 #feed_cont {
-    background: linear-gradient(to left, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+  background: linear-gradient(to left, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+  padding-bottom: 200px;
 }
 
 #feed_submit {

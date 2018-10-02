@@ -16,12 +16,13 @@
             <img src="{% static 'profile_icon_black.png' %}">
           <div id="nv_profile_card">
             <img id="nv_profile_pic" src="{% static 'profile_pic_placeholder.jpg' %}">
-            <p>{{ user.first_name }}  {{ user.last_name }} Place Holder </p>
+            <p>{{ user.first_name }}  {{ user.last_name }} </p>
             <p> {{ user }} </p>
             <ul>
+              <li><a href="{% url 'profile' %}">View Profile</a></li>
               <li>Edit Profile</li>
               <li>Need Help?</li>
-              <li>>Logout</a></li>
+              <li>Logout</li>
             </ul>
           </div>
         </div>
