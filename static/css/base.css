@@ -198,3 +198,116 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
   width: 100%;
   transition: 1s;
 }
+
+#profile_cont {
+  width: 100%;
+    display: inline-block;
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(41, 171, 226, 0.5));
+}
+
+#user_profile {
+  margin: 50px 25%;
+  padding: 50px;
+  background: linear-gradient(to left, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+}
+
+#proflie_pic {
+  border-radius: 50%;
+  width: 30%;
+  min-width: 100px;
+  max-width: 300px;
+  display: inline-block;
+  margin-right: 50px;
+}
+
+#user_info {
+  position: relative;
+  display: inline-block;
+}
+
+#user_info > p {
+  font-size: 24pt;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+}
+
+#user_info > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 18pt;
+}
+
+.user_desc{
+  font-size: 12pt;
+  font-family: 'Nunico', sans-serif;
+  font-weight: lighter;
+}
+
+.user_fill {
+  padding: 10px;
+  font-size: 18pt;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+}
+
+#nav_bar {
+  background: white;
+  height: 150px;
+}
+
+#nav_bar_logo {
+  margin: 25px 25px;
+  height: 100px;
+  display: inline-block;
+}
+
+#nav_bar > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  float: right;
+}
+
+#nav_bar > ul > li{
+  display: inline-block;
+  font-size: 18pt;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  padding-top: calc(125px - 18pt);
+  padding-bottom: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0px 20px;
+}
+
+#nav_bar > ul > li:hover{
+  cursor: pointer;
+  padding-bottom: 20px;
+  border-bottom: solid red;
+  border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 5px;
+}
+
+#nav_bar_profile {
+  display: inline-block;
+  float: right;
+  background-color: red;
+  height: 18pt;
+  width: 18pt;
+  margin: 0px 30px;
+  margin-top: calc(125px - 18pt);
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+#nv_profile_card {
+  position: absolute;
+  right: -1000px;
+  top: 150px;
+  background-color: white;
+  opacity: 0;
+  transition: right 1s, opacity 3s;
+}

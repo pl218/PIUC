@@ -9,9 +9,57 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito|Roboto" rel="stylesheet">
 </head>
 <body>
+  <header>
+    <div id="nav_bar">
+        <img id="nav_bar_logo" src="{% static 'logo2.png' %}">
+
+        <div id="nav_bar_profile">
+          <div id="nv_profile_card">
+            <ul>
+                <img id="proflie_pic" src="{% static 'profile_pic_placeholder.jpg' %}">
+
+                <p>{{ user.first_name }}  {{ user.last_name }} Place Holder </p>
+                <li>Edit Profile</li>
+                <li>Need Help?</li>
+                <li>Logout</li>
+            </ul>
+
+          </div>
+        </div>
+
+        <ul id="nav_bar_links">
+            <li>feed</li>
+            <li>favourites</li>
+            <li>inbox</li>
+        </ul>
+
+    </div>
+  </header>
   {% block body %}
   BASE
   {% endblock %}
+
+<script type="text/javascript">
+
+  document.getElementById("nav_bar_profile").addEventListener("click", RevealProfile);
+
+  var checker = true;
+
+  function RevealProfile() {
+    if(checker){
+      document.getElementById("nv_profile_card").style.right = "0px";
+      document.getElementById("nv_profile_card").style.opacity = "1";
+      checker = false;
+    } else {
+      document.getElementById("nv_profile_card").style.right = "-1000px";
+      document.getElementById("nv_profile_card").style.opacity = "0";
+      checker = true;
+    }
+  }
+
+</script>
+
+
 </body>
 
 </html>
