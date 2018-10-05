@@ -16,10 +16,10 @@ def register(request):
             user.refresh_from_db()
             user.userprofile.ORCID= form.cleaned_data.get('ORCID') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
             user.userprofile.scientific_area=form.cleaned_data.get('scientific_area')
-            user.save() #guarda os dados adicionar do perfil na bd
+            user.save() #guarda os dados adicionais do perfil na bd
 
             #Entrar na conta após os registo
-            username = form.cleaned_data.get('username')
+            username = user.username
             password = form.cleaned_data.get('password1')
             user = authenticate(username= username, password=password)
             login(request,user)
