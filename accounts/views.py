@@ -23,13 +23,15 @@ def register(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username= username, password=password)
             login(request,user)
-            return redirect('/accounts/profile')
+            return redirect('/accounts/profile/'+username)
     else:
         form=RegistrationForm()
     return render(request,'accounts/register.html',{'form':form})
 
-def profile(request):
-    return render(request,'accounts/profile.html',{'user': request.user})
+def profile(request, username):
+    user = User.objects.get(username=username)
+    #return render(request, '<app_name>/user_profile.html', {"user":user})
+    return render(request,'accounts/profile.html',{'user': user})
 
 def logout(request):
     return render(request,'accounts/logout.html')

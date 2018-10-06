@@ -56,8 +56,8 @@ function addClass() {
       {% csrf_token %}
       {{ form.as_p }}
 
-      <button id="register_sub_button" type="submit">REGISTER</button>
-      <a href="{% url 'login' %}" id="login_register_link">Already registered?</a>
+      <button id="register_sub_button" type="submit" >REGISTER</button>
+      <a href="{% url 'accounts:login' %}" id="login_register_link">Already registered?</a>
     </form>
   </div>
 </div>

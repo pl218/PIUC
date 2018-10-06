@@ -19,7 +19,7 @@
             <p>{{ user.first_name }}  {{ user.last_name }} </p>
             <p> {{ user }} </p>
             <ul>
-              <li><a href="{% url 'profile' %}">View Profile</a></li>
+              <li><a href="{% url 'accounts:profile' user.get_username %}">View Profile</a></li>
               <li>Edit Profile</li>
               <li>Need Help?</li>
               <li>Logout</li>
