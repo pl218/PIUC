@@ -2,12 +2,12 @@
 Plataforma de Investigadores da Universidade de Coimbra
 
 ### Master Branch Status
-[![Build Status](https://travis-ci.com/pl218/PIUC.svg?branch=master)](https://travis-ci.com/pl218/PIUC.svg?branch=master)
+[![Build Status](https://travis-ci.org/pl218/PIUC.svg?branch=master)](https://travis-ci.org/pl218/PIUC.svg?branch=master)
 
 ### Login Branch Tests
-(no running tests for now)
+(no tests running for now)
 
-[![Build Status](https://travis-ci.com/pl218/PIUC.svg?branch=login)](https://travis-ci.com/pl218/PIUC.svg?branch=login)
+[![Build Status](https://travis-ci.org/pl218/PIUC.svg?branch=login)](https://travis-ci.org/pl218/PIUC.svg?branch=login)
 
 
 ## Requirements
@@ -18,7 +18,7 @@ Plataforma de Investigadores da Universidade de Coimbra
 
 Currently all code is in login branch
 
-To run the project first change to 'login' branch with:
+To run the project, first change to the 'login' branch with:
 
 `git checkout login`
  
