@@ -1,4 +1,4 @@
-PL2_ES2018
+﻿PL2_ES2018
 Faculdade de Ciências e Tecnologia da Universidade de Coimbra
 Cadeira de Engenharia de Software 2018/2019
 Docente Mário Alberto da Costa Zenha Rela
@@ -53,6 +53,6 @@ REQUISITOS
 
 Sofia Torres - sofiatgfp1239@gmail.com - 933400131 - 201620821
 Rafaela Rodrigues - rafaalex_rodrigues@hotmail.com - 919841947 - 2016217950
-João Almeida - joaofilipeferreiraalmeida@gmail.com - 939811910
+João Almeida - joaofilipeferreiraalmeida@gmail.com - 939811910 - 2016242976
 Yusleivy Vivas - y.u.s100@hotmail.com - 965019806 - 2016245268
 Damian Krawczyk - damian.krawczyk07@gmail.com - +48 662236149 - 2018261113
