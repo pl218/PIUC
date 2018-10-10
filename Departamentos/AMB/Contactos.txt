@@ -1,4 +1,4 @@
-﻿PL2_ES2018 
+PL2_ES2018 
 Faculdade de Ciências e Tecnologia da Universidade de Coimbra
 Cadeira de Engenharia de Software 2018/2019
 Docente Mário Alberto da Costa Zenha Rela
@@ -43,7 +43,7 @@ Carlícia Marques -carliciamarques97@gmail.com - 931788503
 AMBIENTE 
 
 Inês - inesvanbrabant@gmail.com - 916166169 - 2004101168
-João Carvalho - joaomcarvalho@sapo.pt - 910013550
+João Carvalho - joaomcarvalho@sapo.pt - 910013550 - 2001027493
 Yussara Monteiro - yussarasophia@hotmail.com - 964224062
 Michael Ortet - tavareslaudelino20@gmail.com - 927689148
 Rita - ritagarrido@hotmail.com 
