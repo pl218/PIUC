@@ -22,7 +22,7 @@
               <li><a href="{% url 'accounts:profile' user.get_username %}">View Profile</a></li>
               <li>Edit Profile</li>
               <li>Need Help?</li>
-              <li>Logout</li>
+              <li><a href="{% url 'accounts:login' %}" onclick="return confirm('Are you sure you want to Logout?')">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -61,6 +61,7 @@
   var checker_s = true;
   var checker_c_s = true;
   var checker_c_p = true;
+
 
   function RevealProfile() {
     if(checker){
