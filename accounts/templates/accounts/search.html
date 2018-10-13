@@ -1,0 +1,19 @@
+{% extends 'base_signed.html' %}
+{% load static %}
+{% block head %}
+    <title>Profile</title>
+{% endblock %}
+\
+{% block body %}
+<div id="profile_cont">
+  {% for post in posts %}
+  	<p> {{ post.title}} </p>
+  	<p> {{post.post}} </p>
+  {% endfor%}
+
+  {% for user in users %}
+  	<p> {{ user.username}} </p>
+  	<p> {{ user.first_name }} </p>
+  {% endfor%}
+</div>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm
 from django.contrib.auth.models import User
+from feed.models import Post
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import authenticate, login
 
@@ -35,3 +36,8 @@ def profile(request, username):
 
 def logout(request):
     return render(request,'accounts/logout.html')
+
+def search(request, input):
+    posts = Post.objects.filter(post__contains = input );
+    users = User.objects.filter(username__contains = input);
+    return render(request,'accounts/search.html', {'posts': posts, 'users': users})    

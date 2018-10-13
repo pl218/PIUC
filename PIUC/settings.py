@@ -128,4 +128,4 @@ STATICFILES_DIRS = [
     #'/var/www/static/',
 ]
 
-LOGIN_REDIRECT_URL = '../feed/mainpage'
+LOGIN_REDIRECT_URL = '../../feed/mainpage'

@@ -28,11 +28,21 @@
         </div>
 
         <div id="nav_bar_search">
-          <img src="{% static 'search_icon_black.png' %}">
+          <img src="{% static 'search_icon_black.png' %}"> 
         </div>
 
-        <input id="nv_search_input" type="text" placeholder="Search..">
+        <input id="nv_search_input" type="text" placeholder="Search.." value="">
+        
+        <button onclick="oi()" type="submit"> button </button>
+        <script type="text/javascript">
+          function oi() {
 
+            var input = document.getElementById("nv_search_input").value;
+            alert(input)
+            window.location.href = "../../accounts/search/" + input;
+            
+          } 
+        </script>
         <ul id="nav_bar_links">
           <li><a href="{% url 'feed:mainpage' %}">feed</a></li>
           <li>favorites</li>
@@ -46,7 +56,6 @@
   {% endblock %}
 
 <script type="text/javascript">
-
   document.getElementById("nav_bar_profile").addEventListener("click", RevealProfile);
   document.getElementById("nav_bar_search").addEventListener("click", RevealSearchBar);
   document.querySelector("#nav_bar_profile > img").addEventListener("mouseover", changeProfileLogo);
