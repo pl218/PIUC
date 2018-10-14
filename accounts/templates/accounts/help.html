@@ -1,0 +1,27 @@
+{% extends 'base_signed.html' %}
+{% load static %}
+{% block head %}
+    <title>Help</title>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1>Help</h1>
+    <h2>Send e-mail to pl2.es18@gmail.com</h2>
+    <div class="help_email">
+      <form action="mailto:pl2.es18@gmail.com" method="post" enctype="text/plain">
+        Name:<br>
+        <input id="help_name_input" type="text" name="name">
+        <br><br>
+        E-mail:<br>
+        <input id="help_email_input" type="text" name="mail">
+        <br><br>
+        Message:<br>
+        <textarea id="help_message_input" type="text" name="Message" rows="10"></textarea>
+        <br><br>
+        <input type="submit" value="Send">
+        <input type="reset" value="Reset">
+      </form>
+    <div>
+  </div>
+{% endblock %}

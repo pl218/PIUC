@@ -490,6 +490,24 @@ float: right;
        border-width: 1px;
 }
 
+.help_email {
+  width: 55%;
+  margin: auto;
+  margin-top: 50px;
+  border: solid blue 5px;
+  padding: 20px 20px;
+}
+
+#help_email_input, #help_name_input, #help_message_input{
+  width: 100%;
+  font-size: 12pt;
+  color: black;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
 .post_title{
   font-size: 24pt;
   font-family: 'Roboto',sans-serif;
@@ -508,4 +526,8 @@ float: right;
   text-align: right;
   font-size: 10pt;
   font-weight: bold;
+}
+
+centerText{
+  text-align: center;
 }

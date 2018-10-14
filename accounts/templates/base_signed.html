@@ -21,18 +21,18 @@
             <ul>
               <li><a href="{% url 'accounts:profile' user.get_username %}">View Profile</a></li>
               <li>Edit Profile</li>
-              <li>Need Help?</li>
+              <li><a href="{% url 'accounts:help' %}">Need Help?</a></li>
               <li><a href="{% url 'accounts:login' %}" onclick="return confirm('Are you sure you want to Logout?')">Logout</a></li>
             </ul>
           </div>
         </div>
 
         <div id="nav_bar_search">
-          <img src="{% static 'search_icon_black.png' %}"> 
+          <img src="{% static 'search_icon_black.png' %}">
         </div>
 
         <input id="nv_search_input" type="text" placeholder="Search.." value="">
-        
+
         <button onclick="oi()" type="submit"> button </button>
         <script type="text/javascript">
           function oi() {
@@ -40,8 +40,8 @@
             var input = document.getElementById("nv_search_input").value;
             alert(input)
             window.location.href = "../../accounts/search/" + input;
-            
-          } 
+
+          }
         </script>
         <ul id="nav_bar_links">
           <li><a href="{% url 'feed:mainpage' %}">feed</a></li>

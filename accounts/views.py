@@ -40,4 +40,8 @@ def logout(request):
 def search(request, input):
     posts = Post.objects.filter(post__contains = input );
     users = User.objects.filter(username__contains = input);
-    return render(request,'accounts/search.html', {'posts': posts, 'users': users})    
+    return render(request,'accounts/search.html', {'posts': posts, 'users': users})
+
+def help(request):
+    #user = User.objects.get(username=username)
+    return render(request,'accounts/help.html')
