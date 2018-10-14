@@ -31,8 +31,13 @@ def register(request):
 
 def profile(request, username):
     user = User.objects.get(username=username)
+    idd = user.id
+    posts = []
+    for post in Post.objects.all():
+        if post.user_id == idd:
+            posts.append(post)
     #return render(request, '<app_name>/user_profile.html', {"user":user})
-    return render(request,'accounts/profile.html',{'user': user})
+    return render(request,'accounts/profile.html',{'user': user, 'posts': posts})
 
 def logout(request):
     return render(request,'accounts/logout.html')

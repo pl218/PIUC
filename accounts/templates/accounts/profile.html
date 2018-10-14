@@ -20,6 +20,10 @@
         <li class="user_desc"> ORCID</li>
         <li class="user_fill">{{ user.userprofile.ORCID }} </li>
       </ul>
+      {% for post in posts %}
+        <p> {{ post.title }} </p>
+        <p> {{ post.post }} </p>
+      {% endfor%}
     </div>
   </div>
 </div>
