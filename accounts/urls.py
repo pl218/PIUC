@@ -11,5 +11,6 @@ urlpatterns = [
     path('logout/',views.logout, name='logout'),
     path('feed/', include('feed.urls')),
     path('search/<slug:input>',views.search, name='search'),
-    path('help/',views.help, name='help')
+    path('help/',views.help, name='help'),
+    path('favorite/<slug:post_id>', views.favorite, name='favorite')
 ]

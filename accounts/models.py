@@ -14,6 +14,7 @@ class UserProfile(models.Model):
     ORCID=models.CharField(max_length=30, default='')
     scientific_area=models.CharField(max_length=50, default='')
     confirmed_email=models.BooleanField(default=False)
+    favorites = models.CharField(max_length=30, default='') 
 
 @receiver(post_save, sender=User) #Tratamento de Sinais
 def update_UserProfile(sender, instance, created, **kwargs):

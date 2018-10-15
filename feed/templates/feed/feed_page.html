@@ -19,8 +19,18 @@
   {% for post in posts %}
     <div class="feed_post">
 
-
-      <div class="post_title"> {{ post.title }}</div>
+     
+    <div id = "postHeader">
+      <div class="post_title"> {{ post.title }}
+        <div id="Favorito"> 
+          <from action href="{% url 'accounts:favorite' post.id %}" method="post">
+              {% csrf_token %}
+              <input type="submit" class="btn" value="favorite" name="mybtn">
+          </form>
+        </div>
+      </div>
+    </div>   
+    
       <div class="post_text">  
         <p> {{ post.post }}
 

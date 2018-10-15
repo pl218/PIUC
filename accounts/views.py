@@ -50,3 +50,12 @@ def search(request, input):
 def help(request):
     #user = User.objects.get(username=username)
     return render(request,'accounts/help.html')
+    
+def favorite(request, post_id):
+    form= FeedForm(request.POST)
+    print >>sys.stderr, 'Goodbye, cruel world!'
+    user = form.save(commit=False)
+    user.favorites.append(post_id)
+    user.save()
+    return render(request,self.template_name,{'form':form})
+
