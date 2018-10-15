@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from accounts.forms import RegistrationForm
+from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm
 from django.contrib.auth.models import User
 from feed.models import Post
 from django.contrib.auth.forms import UserChangeForm
@@ -50,7 +50,7 @@ def search(request, input):
 def help(request):
     #user = User.objects.get(username=username)
     return render(request,'accounts/help.html')
-    
+
 def favorite(request, post_id):
     form= FeedForm(request.POST)
     print >>sys.stderr, 'Goodbye, cruel world!'
@@ -59,3 +59,20 @@ def favorite(request, post_id):
     user.save()
     return render(request,self.template_name,{'form':form})
 
+def edit_profile(request,username):
+    user= User.objects.get(username=username)
+    if request.method == 'POST':
+        formProfile=EditProfileForm(request.POST,instance=request.user.userprofile)
+        formUser=EditUserForm(request.POST,instance=request.user)
+
+        if formProfile.is_valid() and formUser.is_valid() :
+            postUser=formUser.save();
+            postProfile=formProfile.save(commit=False)
+            postProfile.user= request.user
+            postProfile.save();
+
+            return redirect('/accounts/profile/'+username)
+    else:
+        formProfile=EditProfileForm(instance=request.user.userprofile)
+        formUser=EditUserForm(instance=request.user)
+    return render(request,'accounts/profileEdit.html',{'formUser':formUser,'formProfile':formProfile})
