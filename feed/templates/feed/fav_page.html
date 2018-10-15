@@ -1,16 +1,12 @@
-
 {% extends 'base_signed.html' %}
 
 {% block body %}
 
-
+  <div id="feed_cont">
   {% for post in posts %}
-    <div class="feed_post">     
-    <div id = "postHeader">
-      {% if post.id in user.favorite %}
-        <div class="post_title"> {{ post.title }}
-        </div>
-    </div>   
+    <div class="feed_post">  
+      {% if post in user.favorite.all %}
+        <div class="post_title"> {{ post.title }} </div> 
     
       <div class="post_text">  
         <p> {{ post.post }}
@@ -24,15 +20,15 @@
       <div class="post_user"> 
         <p> Posted by <a href="{% url 'accounts:profile' post.user.get_username %}" id="redirect_profile">{{ post.user.get_full_name }}</a> ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p> 
       </div>
-
-    </div>
     {% endif %}
+    </div>
   {% endfor %}
-</div>
+  </div>
 
 
 <script type="text/javascript">
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
   document.querySelector("#nav_bar_links > li:nth-child(1)").id = "nav_bar_link_selected";
-
+  
+</script>
 {% endblock %}

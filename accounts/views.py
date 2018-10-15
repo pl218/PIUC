@@ -5,7 +5,6 @@ from feed.models import Post
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import authenticate, login
 from feed.forms import FeedForm
-import sys
 # Create your views here.
 #def loginPage(request):
 #    return render(request, 'accounts/login.html')
@@ -72,14 +71,17 @@ def edit_profile(request,username):
     return render(request,'accounts/profileEdit.html',{'formUser':formUser,'formProfile':formProfile})
 
 def favorite(request, id):
+    form=FeedForm()
     user = request.user
     posts = Post.objects.all().order_by('-date')
-    form=FeedForm()
+
     post = Post.objects.get(id=id)
-    if  user.userprofile.favorites.filter(post=post).exists():
-        user.userprofile.favorites.add(post)
-    else:
+    favs = user.userprofile.favorites.all()
+    if post in favs:
         user.userprofile.favorites.remove(post)
+    else:
+        user.userprofile.favorites.add(post)
 
     user.save()
-    return render(request,'feed/feed_page.html',{'form': form, 'users': user,'posts': posts})
+    
+    return render(request,'feed/feed_page.html',{'user': user,'posts': posts})
