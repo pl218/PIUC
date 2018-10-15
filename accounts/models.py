@@ -17,4 +17,4 @@ class UserProfile(models.Model):
 def update_UserProfile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
-    instance.userprofile.save()
+    #instance.userprofile.save()
