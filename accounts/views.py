@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from feed.models import Post
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import authenticate, login
-
+from feed.forms import FeedForm
+import sys
 # Create your views here.
 #def loginPage(request):
 #    return render(request, 'accounts/login.html')
@@ -30,6 +31,7 @@ def register(request):
     return render(request,'accounts/register.html',{'form':form})
 
 def profile(request, username):
+
     user = User.objects.get(username=username)
     idd = user.id
     posts = []
@@ -51,14 +53,6 @@ def help(request):
     #user = User.objects.get(username=username)
     return render(request,'accounts/help.html')
 
-def favorite(request, post_id):
-    form= FeedForm(request.POST)
-    print >>sys.stderr, 'Goodbye, cruel world!'
-    user = form.save(commit=False)
-    user.favorites.append(post_id)
-    user.save()
-    return render(request,self.template_name,{'form':form})
-
 def edit_profile(request,username):
     user= User.objects.get(username=username)
     if request.method == 'POST':
@@ -76,3 +70,16 @@ def edit_profile(request,username):
         formProfile=EditProfileForm(instance=request.user.userprofile)
         formUser=EditUserForm(instance=request.user)
     return render(request,'accounts/profileEdit.html',{'formUser':formUser,'formProfile':formProfile})
+
+def favorite(request, id):
+    user = request.user
+    posts = Post.objects.all().order_by('-date')
+    form=FeedForm()
+    post = Post.objects.get(id=id)
+    if  user.userprofile.favorites.filter(post=post).exists():
+        user.userprofile.favorites.add(post)
+    else:
+        user.userprofile.favorites.remove(post)
+
+    user.save()
+    return render(request,'feed/feed_page.html',{'form': form, 'users': user,'posts': posts})

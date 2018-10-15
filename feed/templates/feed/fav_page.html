@@ -4,32 +4,12 @@
 {% block body %}
 
 
-<div id="feed_cont">
- <div id="feed_submit">
-    <p> SUBMIT NEW </p>
-  </div>
-  <div id="feed_submit_form">
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">POST</button>
-    </form>
-
-  </div>
   {% for post in posts %}
-    <div class="feed_post">
-
-     
+    <div class="feed_post">     
     <div id = "postHeader">
-      <div class="post_title"> {{ post.title }}
-        <div id="Favorito">
-          {% if post in user.favorites.all %}
-            <a href="{% url 'accounts:favorite' post.id %}">FavOff</a>
-          {% else %}
-            <a href="{% url 'accounts:favorite' post.id %}">FavOn</a>
-          {% endif %}
+      {% if post.id in user.favorite %}
+        <div class="post_title"> {{ post.title }}
         </div>
-      </div>
     </div>   
     
       <div class="post_text">  
@@ -46,6 +26,7 @@
       </div>
 
     </div>
+    {% endif %}
   {% endfor %}
 </div>
 
@@ -53,21 +34,5 @@
 <script type="text/javascript">
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
   document.querySelector("#nav_bar_links > li:nth-child(1)").id = "nav_bar_link_selected";
-
-  document.getElementById("feed_submit").addEventListener("click", RevealSubmit);
-
-  var checker_submit = true;
-
-  function RevealSubmit() {
-    console.log(checker_submit);
-    if(checker_submit){
-      document.getElementById("feed_submit_form").style.display = "inline-block";
-      checker_submit = false;
-    } else {
-      document.getElementById("feed_submit_form").style.display = "none";
-      checker_submit = true;
-    }
-  }
-</script>
 
 {% endblock %}
