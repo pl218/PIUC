@@ -3,12 +3,11 @@
 {% block body %}
 
   <div id="feed_cont">
-  {% for post in posts %}
+  {% for post in user.userprofile.favorites.all %}
     <div class="feed_post">  
-      {% if post in user.favorite.all %}
-        <div class="post_title"> {{ post.title }} </div> 
-    
-      <div class="post_text">  
+      <div class="post_title"> {{ post.title }} 
+      </div> 
+        <div class="post_text">  
         <p> {{ post.post }}
 
         This is useful in situations where you want to provide an easier/cleaner copy-paste experience for users (not have them accidentally text-select useless things, like icons or images). However it's a bit buggy. Firefox enforces the fact that any text matching that selector cannot be copied. WebKit still allows the text to be copied if you select elements around it.
@@ -16,11 +15,10 @@
         You can also use this to enforce that an entire element gets selection:
 
         </p> 
-      </div>
+        </div>
       <div class="post_user"> 
         <p> Posted by <a href="{% url 'accounts:profile' post.user.get_username %}" id="redirect_profile">{{ post.user.get_full_name }}</a> ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p> 
       </div>
-    {% endif %}
     </div>
   {% endfor %}
   </div>

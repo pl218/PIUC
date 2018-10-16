@@ -13,5 +13,5 @@ urlpatterns = [
     path('feed/', include('feed.urls')),
     path('search/<slug:input>',views.search, name='search'),
     path('help/',views.help, name='help'),
-    path('favorite/<slug:id>', views.favorite, name='favorite')
+    path('favorite/<slug:username><slug:id>', views.favorite, name='favorite')
 ]

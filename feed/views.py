@@ -23,12 +23,11 @@ class FeedView(TemplateView):
 
         return render(request,self.template_name,{'form':form})
 
-    def favorites(request):
-        form=FeedForm()
-        user = request.user
+    def favorites(request, username):
+        user = User.objects.get(username=username)
         
         if user.userprofile.favorites.count()>0:
             posts = user.userprofile.favorites.all().order_by('-date')
-            return render(request,'feed/fav_page.html',{'form': form,'posts': posts})
+            return render(request,'feed/fav_page.html',{'user':user ,'posts': posts})
         else:
             return redirect('/feed/mainpage')

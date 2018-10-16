@@ -70,14 +70,11 @@ def edit_profile(request,username):
         formUser=EditUserForm(instance=request.user)
     return render(request,'accounts/profileEdit.html',{'formUser':formUser,'formProfile':formProfile})
 
-def favorite(request, id):
-    form=FeedForm()
-    user = request.user
+def favorite(request,username,id):
     posts = Post.objects.all().order_by('-date')
-
+    user = User.objects.get(username=username)
     post = Post.objects.get(id=id)
-    favs = user.userprofile.favorites.all()
-    if post in favs:
+    if post in user.userprofile.favorites.all():
         user.userprofile.favorites.remove(post)
     else:
         user.userprofile.favorites.add(post)
