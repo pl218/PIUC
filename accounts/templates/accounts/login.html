@@ -12,8 +12,8 @@ function placeholders() {
 
 //  document.getElementById("id_username").setAttribute("placeholder", "Username");
 //  document.getElementById("id_password").setAttribute("placeholder", "Password");
-  document.querySelector("#login_para > form > p > label").innerHTML = "username";
-  document.querySelector("#login_para > form > p:nth-child(2) > label").innerHTML = "password";
+  //document.querySelector("#login_para > form > p > label").innerHTML = "username";
+  //document.querySelector("#login_para > form > p:nth-child(2) > label").innerHTML = "password";
 }
 
 </script>
@@ -23,8 +23,8 @@ function placeholders() {
           {% csrf_token %}
           {{ form.as_p }}
       <button id="login_sub_button" type="submit">LOGIN</button>
-      <div id="login_link"> 
-        <a href="{% url 'accounts:register' %}" id="register_login_link">Create account?</a>  
+      <div id="login_link">
+        <a href="{% url 'accounts:register' %}" id="register_login_link">Create account?</a>
         <a href="{% url 'accounts:register' %}" id="forgot_password_login_link">Forgot password?</a>
       </div>
     </form>
