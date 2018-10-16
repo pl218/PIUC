@@ -1,8 +1,9 @@
 from django import forms
 from accounts.models import UserProfile
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 import re
+from django.forms import ModelForm
 
 
 class RegistrationForm(UserCreationForm):
@@ -47,6 +48,39 @@ class RegistrationForm(UserCreationForm):
 
     def clean_ORCID(self): #Verifica se o ORCID é válido
         ORCID=self.cleaned_data['ORCID']
+        regex=re.compile('(\d{4})-(\d{4})-(\d{4})-(\d{3}[0-9X])$')
+        if regex.search(ORCID) is None:
+            raise forms.ValidationError('Please use a valid ORCID! Ex: 0001-0003-0002-0009')
+        if UserProfile.objects.filter(ORCID=ORCID).exists():
+            raise forms.ValidationError('ORCID already used!')
+        return ORCID
+
+class EditUserForm(UserChangeForm):
+    class Meta:
+        model=User
+        fields=(
+            'email',
+            'password'
+        )
+    def clean_email(self): #Verifica se o email já existe
+        email = self.cleaned_data['email']
+        print(self.instance.email)
+        if User.objects.filter(email=email).exists() and email != self.instance.email:
+            raise forms.ValidationError('Email already exists')
+        return email
+
+
+class EditProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields =(
+            'ORCID',
+            'scientific_area',
+        )
+    def clean_ORCID(self): #Verifica se o ORCID é válido
+        ORCID=self.cleaned_data['ORCID']
+        if(ORCID==self.instance.ORCID):
+            return ORCID
         regex=re.compile('(\d{4})-(\d{4})-(\d{4})-(\d{3}[0-9X])$')
         if regex.search(ORCID) is None:
             raise forms.ValidationError('Please use a valid ORCID! Ex: 0001-0003-0002-0009')

@@ -19,8 +19,18 @@
   {% for post in posts %}
     <div class="feed_post">
 
-
-      <div class="post_title"> {{ post.title }}</div>
+    <div id = "postHeader">
+      <div class="post_title"> {{ post.title }}
+        <div id="Favorito">
+          {% if post in user.userprofile.favorites.all %}
+            <a href="{% url 'accounts:favorite' user.get_username post.id %}">FavOff</a>
+          {% else %}
+            <a href="{% url 'accounts:favorite' user.get_username post.id %}">FavOn</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>   
+    
       <div class="post_text">  
         <p> {{ post.post }}
 

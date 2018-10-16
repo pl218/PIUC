@@ -2,12 +2,13 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from feed.forms import FeedForm
 from feed.models import Post
-
+from django.contrib.auth.models import User
 
 class FeedView(TemplateView):
     template_name= 'feed/feed_page.html'
 
     def get(self, request):
+        
         form=FeedForm()
         posts= Post.objects.all().order_by('-date')
         return render(request,self.template_name,{'form': form,'posts': posts})
@@ -21,3 +22,12 @@ class FeedView(TemplateView):
             return redirect('/feed/mainpage')
 
         return render(request,self.template_name,{'form':form})
+
+    def favorites(request, username):
+        user = User.objects.get(username=username)
+        
+        if user.userprofile.favorites.count()>0:
+            posts = user.userprofile.favorites.all().order_by('-date')
+            return render(request,'feed/fav_page.html',{'user':user ,'posts': posts})
+        else:
+            return redirect('/feed/mainpage')
