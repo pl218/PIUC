@@ -109,14 +109,16 @@ class PasswordResetForm(forms.Form):
         email = self.cleaned_data["email"]
         #user = self.get_users(email);
         #userna = User.objects.filter(email=email).values('username')
+
         try:
             user = User.objects.get(email=email)
-
+            send_mail('OLA', user, email, ['TESTE'])
             context = {
                 'email': email,
+                'domain': get_current_site(request).domain,
+                'site_name':get_current_site(request).name,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
                 'user': user,
-                'domain': get_current_site(request).domain,
                 'token': token_generator.make_token(user),
                 'protocol': 'https' if use_https else 'http',
                 **(extra_email_context or {}),
