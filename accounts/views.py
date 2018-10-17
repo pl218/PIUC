@@ -157,13 +157,15 @@ class PasswordResetForm(forms.Form):
         Generate a one-use only link for resetting password and send it to the
         user.
         """
-
+        send_mail('ANTES DO PRIMERIO', user, 'OI', ['DSADASDASDASDSADSADSADS'])
         email = self.cleaned_data["email"]
         #user = self.get_users(email);
         #userna = User.objects.filter(email=email).values('username')
+        send_mail('PRIMEIRO', user, 'OI', ['DSADASDASDASDSADSADSADS'])
         try:
+            send_mail('SEGUNDO', user, 'OI', ['DSADASDASDASDSADSADSADS'])
             user = User.objects.get(email=email)
-
+            send_mail('TERCEIRO', user, 'OI', ['DSADASDASDASDSADSADSADS'])
             context = {
                 'email': email,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
@@ -189,7 +191,8 @@ class PasswordResetView(PasswordContextMixin, FormView):
     from_email = None
     html_email_template_name = None
     subject_template_name = 'registration/password_reset_subject.txt'
-    success_url = reverse_lazy('password_reset_done')
+    success_url = reverse_lazy('accounts:password_reset_done')
+
     template_name = 'registration/password_reset_form.html'
     title = ('Password reset')
     token_generator = default_token_generator
@@ -197,6 +200,7 @@ class PasswordResetView(PasswordContextMixin, FormView):
     @method_decorator(csrf_protect)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
 
     def form_valid(self, form):
         opts = {
@@ -209,6 +213,7 @@ class PasswordResetView(PasswordContextMixin, FormView):
             'html_email_template_name': self.html_email_template_name,
             'extra_email_context': self.extra_email_context,
         }
+        send_mail('PasswordResetView', 'user', 'OI', ['DSADASDASDASDSADSADSADS'])
         form.save(**opts)
         #form.send_mail(opts)
 
