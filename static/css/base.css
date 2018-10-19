@@ -355,7 +355,7 @@ float: right;
   transition: right 1s, opacity 3s;
 }
 
-#nv_profile_card > img {
+#nv_profile_card > a > img {
   border-radius: 50%;
   height: 150px;
   margin: 25px 75px;
@@ -394,6 +394,15 @@ float: right;
   padding: 0;
 }
 
+
+.nv_profile_links:hover{
+  background: linear-gradient(to left, #29ABE2, #0000FF);
+    -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    transition: 0.5s;
+}
+
 #nv_search_input {
   margin: 0px 30px;
   margin-top: calc(125px - 18pt);
@@ -419,6 +428,7 @@ float: right;
 #feed_submit {
     text-align: center;
     background: linear-gradient(to right, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+    margin-top: 4px;
     padding: 10px 0;
     -webkit-user-select: none;  /* Chrome all / Safari all */
  -moz-user-select: none;     /* Firefox all */
