@@ -22,3 +22,10 @@ def update_UserProfile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
     instance.userprofile.save()
+
+
+class BookmarksModel(models.Model):
+    user= models.ForeignKey(User,on_delete=models.CASCADE)
+    urlName=models.CharField(max_length=50)
+    url=models.URLField(max_length=150)
+    keyword=models.CharField(max_length=100, default='')

@@ -15,6 +15,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/<slug:username>',views.profile,name='profile'),
     path('profile/edit/<slug:username>',views.edit_profile,name='edit_profile'),
+    path('bookmarks/<slug:username>',views.BookmarksView,name='bookmarks'),
     path('logout/',views.logout, name='logout'),
     path('feed/', include('feed.urls')),
     path('search/<slug:input>',views.search, name='search'),

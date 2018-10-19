@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+  <title>Bookmarks</title>
+
+  {% block body %}
+    <div class="container">
+        <h1>BookMarks</h1>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Submit</button>
+        </form>
+    </div>
+        {% for marks in data %}
+
+            {{ marks.urlName}}
+            {{marks.url}}
+            {{marks.keyword}}
+            <br>
+        {% endfor %}
+
+  {% endblock %}

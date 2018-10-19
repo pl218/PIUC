@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm
+from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm, BookmarksForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import (UserChangeForm)
 from django.contrib.auth import authenticate, login
@@ -19,6 +19,7 @@ from django.shortcuts import resolve_url
 from django import forms
 from feed.forms import FeedForm
 from feed.models import Post
+from accounts.models import BookmarksModel
 
 
 # Create your views here.
@@ -74,7 +75,7 @@ def edit_profile(request,username):
         formProfile=EditProfileForm(request.POST,instance=request.user.userprofile)
         formUser=EditUserForm(request.POST,instance=request.user)
 
-        if formProfile.is_valid() and formUser.is_valid() :
+        if formProfile.is_valid(): #and formUser.is_valid() :
             postUser=formUser.save();
             postProfile=formProfile.save(commit=False)
             postProfile.user= request.user
@@ -223,3 +224,19 @@ class PasswordResetView(PasswordContextMixin, FormView):
 
 def PasswordResetCompleteView(request):
     return redirect('../../login')
+
+
+def BookmarksView(request,username):
+    id=User.objects.get(username=username).pk
+    data= BookmarksModel.objects.filter(user=id);
+    if request.method=='GET':
+        form=BookmarksForm();
+        return render(request,'accounts/bookmarks.html',{'form': form,'data': data})
+    else:
+        form= BookmarksForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=False)
+            post.user= request.user
+            post.save();
+            return redirect('/accounts/bookmarks/'+username);
+        return render(request,'accounts/bookmarks.html',{'form':form,'data':data})
