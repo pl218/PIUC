@@ -4,9 +4,10 @@
 
 {% block body %}
   <div class="container">
-      <h1>Logged out</h1>
-      <p>
-        You have logged out!
+      <p id="logged_out_title">
+        You have logged out.
       </p>
+
+        <a href="{% url 'accounts:login' %}" id="logout_sign_in" >Sign in?</a>
     </div>
 {% endblock %}

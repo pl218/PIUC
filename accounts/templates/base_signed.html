@@ -30,12 +30,13 @@
         <div id="nav_bar_search">
           <img src="{% static 'search_icon_black.png' %}">
         </div>
+        <div id="nv_search_submit"> </div>
+        <input id="nv_search_input"  type="text" placeholder="Search.." value="">
 
-        <input id="nv_search_input" type="text" placeholder="Search.." value="">
-
-        <button onclick="oi()" type="submit"> button </button>
+        <!-- <button onclick="oi()" type="submit"> button </button> -->
 
         <script type="text/javascript">
+        document.getElementById("nv_search_submit").addEventListener("click", oi);
           function oi() {
 
             var input = document.getElementById("nv_search_input").value;
@@ -90,10 +91,14 @@
     if(checker_s){
       document.getElementById("nv_search_input").style.width = "150px";
       document.getElementById("nv_search_input").style.opacity = "1";
+      document.getElementById("nv_search_submit").style.width = "30px";
+      document.getElementById("nv_search_submit").style.opacity = "1";
       checker_s = false;
     } else {
       document.getElementById("nv_search_input").style.width = "0px";
       document.getElementById("nv_search_input").style.opacity = "0";
+      document.getElementById("nv_search_submit").style.width = "0px";
+      document.getElementById("nv_search_submit").style.opacity = "0";
       checker_s = true;
     }
   }

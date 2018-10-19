@@ -61,7 +61,7 @@ label {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 400px;
+  width: 300px;
   margin-top: 150px;
   margin-bottom: 50px;
 }
@@ -147,7 +147,7 @@ label {
   width: 100%;
 }
 
-#register_login_link, #login_register_link, #forgot_password_login_link {
+#register_login_link, #login_register_link, #forgot_password_login_link, #logout_sign_in {
   font-family: 'Roboto', sans-serif;
   text-align: center;
   text-decoration: none;
@@ -172,7 +172,7 @@ label {
     float: right;
 }
 
-#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover {
+#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover {
 background: linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-text-fill-color: transparent;
@@ -239,15 +239,18 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
 #proflie_pic {
   border-radius: 50%;
   width: 30%;
-  min-width: 100px;
+  min-width: 150px;
   max-width: 300px;
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 100px;
+  margin-bottom: 50px;
+  float: left;
 }
 
 #user_info {
   position: relative;
   display: inline-block;
+  margin: auto;
 }
 
 #user_info > p {
@@ -270,6 +273,7 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
 }
 
 .user_fill {
+  margin-bottom: 20px;
   padding: 10px;
   font-size: 18pt;
   font-family: 'Roboto', sans-serif;
@@ -403,8 +407,11 @@ float: right;
     transition: 0.5s;
 }
 
+
+
 #nv_search_input {
-  margin: 0px 30px;
+  margin: 0px 5px;
+  margin-left: 30px;
   margin-top: calc(125px - 18pt);
   margin-bottom: 25px;
   font-family: 'nunito', sans-serif;
@@ -419,6 +426,18 @@ float: right;
   transition: 1s;
 }
 
+#nv_search_submit{
+  background-color: red;
+  margin-top: calc(125px - 18pt);
+  margin-bottom: 25px;
+  padding: 0;
+  height: 18pt;
+  width: -0px;
+  display: inline-block;
+  float: right;
+  transition: 1s;
+  cursor: pointer;
+}
 
 #feed_cont {
   background: linear-gradient(to left, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
@@ -540,4 +559,14 @@ float: right;
 
 centerText{
   text-align: center;
+}
+
+
+/* Logout page */
+#logged_out_title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 20pt;
+  margin-top: 70px;
 }
