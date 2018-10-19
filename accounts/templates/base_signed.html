@@ -34,6 +34,7 @@
         <input id="nv_search_input" type="text" placeholder="Search.." value="">
 
         <button onclick="oi()" type="submit"> button </button>
+
         <script type="text/javascript">
           function oi() {
 
@@ -43,6 +44,8 @@
 
           }
         </script>
+
+
         <ul id="nav_bar_links">
           <li><a href="{% url 'feed:mainpage' %}">feed</a></li>
           <li><a href="{% url 'feed:favorites' user.get_username %}">favorites</a></li>

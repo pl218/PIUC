@@ -152,12 +152,12 @@ label {
   text-align: center;
   text-decoration: none;
   display: block;
-  margin: 15px;
+  margin: 25px;
   color: black;
   margin-bottom: 200px;
 }
 
-#register_login_link, #forgot_password_login_link{
+#register_login_link, #reset_password_link{
   display: inline-block;
   text-align: center;
   width: 40%;
@@ -165,14 +165,14 @@ label {
   margin-bottom: 20px;
 }
 
-#forgot_password_login_link {
+#reset_password_link {
 
   display: inline-block;
   position: relative;
     float: right;
 }
 
-#register_login_link:hover, #login_register_link:hover, #forgot_password_login_link:hover {
+#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover {
 background: linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-text-fill-color: transparent;
