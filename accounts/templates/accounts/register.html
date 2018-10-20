@@ -12,7 +12,6 @@
 window.onload = addClass;
 
 function addClass() {
-
   document.getElementById("id_username").className = "input_textbox";
   document.getElementById("id_first_name").className = "input_textbox";
   document.getElementById("id_last_name").className = "input_textbox";
@@ -29,7 +28,7 @@ function addClass() {
 
   //PLACES UL INSIDE CORRECT <p> ELEMENT
   var password_info = document.querySelector(".container > #register_form > form > ul");
-  document.querySelector("p:nth-child(8)").appendChild(password_info); 
+  document.querySelector("p:nth-child(8)").appendChild(password_info);
 
   //ADDS IDs TO THE INPUT DESCRIPTONS SO YOU CAN HIDE THEM WITH CSS
   document.querySelector("p:nth-child(2) > span").id = "user_description";

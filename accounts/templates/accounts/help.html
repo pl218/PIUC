@@ -1,27 +1,25 @@
 {% extends 'base_signed.html' %}
 {% load static %}
 {% block head %}
-    <title>Help</title>
+<title>Help</title>
 {% endblock %}
 
 {% block body %}
-  <div class="container">
-    <h1>Help</h1>
-    <h2>Send e-mail to pl2.es18@gmail.com</h2>
-    <div class="help_email">
-      <form action="mailto:pl2.es18@gmail.com" method="post" enctype="text/plain">
-        Name:<br>
+<div class="signed_container" id="help_cont">
+
+  <p class="page_title"> Help </p>
+  <p class="page_subtittle">  Send e-mail to pl2.es18@gmail.com </p>
+  <div id="help_email">
+    <form action="mailto:pl2.es18@gmail.com" method="post" enctype="text/plain">
+      <p class="help_form_label"> Name <p>
         <input id="help_name_input" type="text" name="name">
-        <br><br>
-        E-mail:<br>
-        <input id="help_email_input" type="text" name="mail">
-        <br><br>
-        Message:<br>
-        <textarea id="help_message_input" type="text" name="Message" rows="10"></textarea>
-        <br><br>
-        <input type="submit" value="Send">
-        <input type="reset" value="Reset">
-      </form>
-    <div>
-  </div>
-{% endblock %}
+        <p class="help_form_label"> E-mail <p>
+          <input id="help_email_input" type="text" name="mail">
+          <p class="help_form_label"> Message <p>
+            <textarea id="help_message_input" type="text" name="Message" rows="10"></textarea>
+            <input id="help_submit_button" type="submit" value="SEND">
+            <input id="help_reset_button" type="reset" value="Reset">
+          </form>
+        </div>
+      </div>
+      {% endblock %}

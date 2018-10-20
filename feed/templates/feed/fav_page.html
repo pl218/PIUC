@@ -2,22 +2,23 @@
 
 {% block body %}
 
-  <div id="feed_cont">
+  <div class="signed_container">
+    <br>
   {% for post in user.userprofile.favorites.all %}
-    <div class="feed_post">  
-      <div class="post_title"> {{ post.title }} 
-      </div> 
-        <div class="post_text">  
+    <div class="feed_post">
+      <div class="post_title"> {{ post.title }}
+      </div>
+        <div class="post_text">
         <p> {{ post.post }}
 
         This is useful in situations where you want to provide an easier/cleaner copy-paste experience for users (not have them accidentally text-select useless things, like icons or images). However it's a bit buggy. Firefox enforces the fact that any text matching that selector cannot be copied. WebKit still allows the text to be copied if you select elements around it.
 
         You can also use this to enforce that an entire element gets selection:
 
-        </p> 
+        </p>
         </div>
-      <div class="post_user"> 
-        <p> Posted by <a href="{% url 'accounts:profile' post.user.get_username %}" id="redirect_profile">{{ post.user.get_full_name }}</a> ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p> 
+      <div class="post_user">
+        <p> Posted by <a href="{% url 'accounts:profile' post.user.get_username %}" id="redirect_profile">{{ post.user.get_full_name }}</a> ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p>
       </div>
     </div>
   {% endfor %}
@@ -26,7 +27,7 @@
 
 <script type="text/javascript">
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
-  document.querySelector("#nav_bar_links > li:nth-child(1)").id = "nav_bar_link_selected";
-  
+  document.querySelector("#nav_bar_links > li:nth-child(2)").id = "nav_bar_link_selected";
+
 </script>
 {% endblock %}

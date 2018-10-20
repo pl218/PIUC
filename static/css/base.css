@@ -15,6 +15,11 @@ button {
   border: none;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -28,7 +33,24 @@ label {
   font-weight: bold;
 }
 
+<<<<<<< HEAD
 #login_form, #register_form,#profile_edit {
+=======
+
+/* ++++ MENSAGENS DE ERRO NO LOGIN E RESGISTO +++++ */
+.errorlist {
+  list-style: none;
+  background: linear-gradient(to left, #BD291E, #EB3325);
+    -webkit-background:  linear-gradient(to left, #BD291E, #EB3325);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  padding: 0;
+  margin: 0;
+display: inline-block;
+}
+
+#login_form, #register_form {
+>>>>>>> ff8d310a91138637426bd4a6a28d495feaa576d3
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -66,15 +88,20 @@ label {
   margin-bottom: 50px;
 }
 
-
 #logo_off, #logo_change:hover #logo_on{
    display:none;
 }
+
 #logo_on, #logo_change:hover #logo_off{
    display:block;
 }
 
+<<<<<<< HEAD
 #login_sub_button, #register_sub_button, #profile_sub_button, #feed_submit_form > form  > button {
+=======
+/*++++++++++++++++ DEFUALT BUTTON +++++++++++++ */
+#login_sub_button, #register_sub_button, #feed_submit_form > form  > button, #help_submit_button, .default_button {
+>>>>>>> ff8d310a91138637426bd4a6a28d495feaa576d3
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   letter-spacing: 3pt;
@@ -92,8 +119,12 @@ label {
   transition: 1.5s;
 }
 
+<<<<<<< HEAD
 
 #login_sub_button:hover, #register_sub_button:hover, #profile_sub_button:hover, #feed_submit_form > form > button:hover {
+=======
+#login_sub_button:hover, #register_sub_button:hover, #feed_submit_form > form > button:hover, #help_submit_button:hover, .default_button:hover {
+>>>>>>> ff8d310a91138637426bd4a6a28d495feaa576d3
   background: linear-gradient(to left, #0000FF, #29ABE2);
   cursor: pointer;
   letter-spacing: 10pt;
@@ -172,8 +203,9 @@ label {
     float: right;
 }
 
-#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover {
-background: linear-gradient(to left, #29ABE2, #0000FF);
+/*+++++++++++ DEFAULT LINK TEXT HOVER ++++++++++++ */
+#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover, #help_reset_button:hover, .default_text_hover:hover{
+  background: linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -282,7 +314,7 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
 
 #nav_bar {
   background: white;
-  height: 150px;
+  height: 154px;
 }
 
 #nav_bar_logo {
@@ -301,14 +333,14 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
 
 #nav_bar > ul > li{
   display: inline-block;
-  font-size: 18pt;
+  font-size: 1.5vw;
   font-family: 'Roboto', sans-serif;
   font-weight: bolder;
-  padding-top: calc(125px - 18pt);
+  padding-top: calc(126px - 1.5vw);
   padding-bottom: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 0px 20px;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  margin: 0px 2vw;
 }
 
 #nav_bar > ul > li:not(#nav_bar_link_selected):hover{
@@ -342,28 +374,29 @@ float: right;
 #nav_bar_profile > img, #nav_bar_search > img {
   display: inline-block;
   float: right;
-  height: 18pt;
-  width: 18pt;
-  margin: 0px 30px;
-  margin-top: calc(125px - 18pt);
+  height: 1.5vw;
+  width: 1.5vw;
+  margin: 0px 2vw;
+  margin-top: calc(125px - 1.5vw);
   margin-bottom: 25px;
   cursor: pointer;
 }
 
 #nv_profile_card {
   position: absolute;
-  right: -1000px;
-  top: 154px;
+  top:0;
+  right: 0;
   background-color: white;
   opacity: 0;
-  transition: right 1s, opacity 3s;
+  transition: top 1s, opacity 1s;
+  pointer-events: none;
 }
 
 #nv_profile_card > a > img {
   border-radius: 50%;
   height: 150px;
   margin: 25px 75px;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 
 }
 
@@ -411,7 +444,7 @@ float: right;
 
 #nv_search_input {
   margin: 0px 5px;
-  margin-left: 30px;
+  margin-left: 2vw;
   margin-top: calc(125px - 18pt);
   margin-bottom: 25px;
   font-family: 'nunito', sans-serif;
@@ -439,16 +472,16 @@ float: right;
   cursor: pointer;
 }
 
-#feed_cont {
-  background: linear-gradient(to left, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+.signed_container{
+  background: linear-gradient(to left, rgba(0, 0, 255, 0.05), rgba(41, 171, 226, 0.05));
   padding-bottom: 200px;
+
 }
 
 #feed_submit {
     text-align: center;
     background: linear-gradient(to right, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
-    margin-top: 4px;
-    padding: 10px 0;
+    padding: 12pt 0;
     -webkit-user-select: none;  /* Chrome all / Safari all */
  -moz-user-select: none;     /* Firefox all */
  -ms-user-select: none;      /* IE 10+ */
@@ -469,7 +502,6 @@ float: right;
   font-family: 'Roboto', sans-serif;
   font-weight: bolder;
   font-size: 12pt;
-  margin: 4px 0 ;
 }
 
 
@@ -509,64 +541,171 @@ float: right;
 }
 
 .feed_post {
-  width: 55%;
+  width: 50%;
   margin: auto;
   margin-top: 50px;
   border: solid red 10px;
-  padding: 20px 50px;
+  padding: 2vw;
+  background-color: white;
   border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
        border-image-slice: 1;
        border-width: 1px;
 }
 
-.help_email {
-  width: 55%;
-  margin: auto;
-  margin-top: 50px;
-  border: solid blue 5px;
-  padding: 20px 20px;
-}
-
-#help_email_input, #help_name_input, #help_message_input{
-  width: 100%;
-  font-size: 12pt;
-  color: black;
-  margin: auto;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-}
-
-.post_title{
+.post_title {
   font-size: 24pt;
   font-family: 'Roboto',sans-serif;
   font-weight: bold;
   margin-bottom: 0;
+  background-color: #E0E9F8;
+  display: inline-block;
+  padding: 5pt;
+}
+
+/* +++++ BOTAO DE FAVORITOS NO FEED +++++ */
+.fav_off, .fav_on {
+  width: 20pt;
+  height: 20pt;
+  display: inline-block;
+  position: relative;
+  bottom: 0;
+  margin-left: 50px;
+}
+
+.fav_off {
+  background-color: blue;
+}
+
+.fav_on {
+  background-color: green;
 }
 
 .post_text{
     font-family: 'nunito',sans-serif;
+    font-size: 12pt;
     font-weight: lighter;
+    width: 80%;
     margin-top: 0;
+    background-color: #CEDFE7;
+    padding: 10px;
+    margin: 12pt 0;
 }
 
 .post_user{
   font-family: 'Roboto',sans-serif;
-  text-align: right;
-  font-size: 10pt;
+  font-size: 8pt;
   font-weight: bold;
+  background-color: #E0E9F8;
+  padding: 10px;
+}
+
+#redirect_profile:hover {
+  background: linear-gradient(to left, #29ABE2, #0000FF);
+    -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    transition: 0.5s;
 }
 
 centerText{
   text-align: center;
 }
 
-
-/* Logout page */
+/* LOGOUT PAGE */
 #logged_out_title {
   font-family: 'Roboto', sans-serif;
   font-weight: bolder;
   text-align: center;
   font-size: 20pt;
   margin-top: 70px;
+}
+
+/* HELP PAGE */
+#help_email {
+  width: 50%;
+  margin: auto;
+  margin-top: 25px;
+  border: solid red 10px;
+  padding: 2vw;
+  background-color: white;
+  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 1px;
+}
+
+.page_title {
+  margin-top: 48pt;
+  text-align: center;
+  font-weight: bolder;
+  font-family: 'Roboto' sans-serif;
+  font-size: 24pt;
+}
+
+.page_subtittle {
+  margin-top: 12pt;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 12pt;
+}
+
+#help_email_input, #help_name_input, #help_message_input{
+  width: calc(100% - 10pt);
+  font-size: 12pt;
+  color: black;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6pt;
+  margin-bottom: 12pt;
+  border: none;
+  background-color: #E0E9F8;
+  padding: 5pt;
+}
+
+#help_submit_button {
+  height: calc(16pt + 20px);
+  width: 20%;
+  font-size: 10pt;
+  border: none;
+  margin-bottom: 10pt;
+}
+
+#help_reset_button {
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  margin: auto;
+  display: block;
+  font-size: 10pt;
+}
+
+.help_form_label {
+  font-size: 12pt;
+  font-weight: bolder;
+  border-bottom: 2px;
+  border: red;
+}
+
+#reset_password_button {
+  font-size: 10pt;
+  width: 25%;
+}
+
+#id_email {
+  padding: 5px;
+  border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 2px;
+  left: 0;
+  font-size: 12pt;
+  background-color: white;
+  width: calc(40% - 20px) ;
+  min-width: 250px;
+  height: 16pt;
+  display: block;
+  position: relative;
+  color: grey;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
 }
