@@ -2,7 +2,7 @@
 
 {% block body %}
 
-  <div class="feed_cont">
+  <div class="signed_container">
   {% for post in user.userprofile.favorites.all %}
     <div class="feed_post">
       <div class="post_title"> {{ post.title }}
