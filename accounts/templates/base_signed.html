@@ -78,12 +78,14 @@
 
   function RevealProfile() {
     if(checker){
-      document.getElementById("nv_profile_card").style.right = "0px";
+      document.getElementById("nv_profile_card").style.pointerEvents = "all";
+      document.getElementById("nv_profile_card").style.top = "154px";
       document.getElementById("nv_profile_card").style.opacity = "1";
       checker = false;
     } else {
-      document.getElementById("nv_profile_card").style.right = "-1000px";
+      document.getElementById("nv_profile_card").style.top = "0";
       document.getElementById("nv_profile_card").style.opacity = "0";
+      document.getElementById("nv_profile_card").style.pointerEvents = "none";
       checker = true;
     }
   }

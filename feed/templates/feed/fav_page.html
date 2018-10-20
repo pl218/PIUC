@@ -3,6 +3,7 @@
 {% block body %}
 
   <div class="signed_container">
+    <br>
   {% for post in user.userprofile.favorites.all %}
     <div class="feed_post">
       <div class="post_title"> {{ post.title }}

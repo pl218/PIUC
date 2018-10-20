@@ -191,7 +191,7 @@ display: inline-block;
 }
 /*+++++++++++ DEFAULT LINK TEXT HOVER ++++++++++++ */
 #register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover, #help_reset_button:hover {
-background: linear-gradient(to left, #29ABE2, #0000FF);
+  background: linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -319,14 +319,14 @@ background: linear-gradient(to left, #29ABE2, #0000FF);
 
 #nav_bar > ul > li{
   display: inline-block;
-  font-size: 18pt;
+  font-size: 1.5vw;
   font-family: 'Roboto', sans-serif;
   font-weight: bolder;
-  padding-top: calc(125px - 18pt);
+  padding-top: calc(126px - 1.5vw);
   padding-bottom: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 0px 20px;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  margin: 0px 2vw;
 }
 
 #nav_bar > ul > li:not(#nav_bar_link_selected):hover{
@@ -360,21 +360,22 @@ float: right;
 #nav_bar_profile > img, #nav_bar_search > img {
   display: inline-block;
   float: right;
-  height: 18pt;
-  width: 18pt;
-  margin: 0px 30px;
-  margin-top: calc(125px - 18pt);
+  height: 1.5vw;
+  width: 1.5vw;
+  margin: 0px 2vw;
+  margin-top: calc(125px - 1.5vw);
   margin-bottom: 25px;
   cursor: pointer;
 }
 
 #nv_profile_card {
   position: absolute;
-  right: -1000px;
-  top: 154px;
+  top:0;
+  right: 0;
   background-color: white;
   opacity: 0;
-  transition: right 1s, opacity 3s;
+  transition: top 1s, opacity 1s;
+  pointer-events: none;
 }
 
 #nv_profile_card > a > img {
@@ -429,7 +430,7 @@ float: right;
 
 #nv_search_input {
   margin: 0px 5px;
-  margin-left: 30px;
+  margin-left: 2vw;
   margin-top: calc(125px - 18pt);
   margin-bottom: 25px;
   font-family: 'nunito', sans-serif;
@@ -460,7 +461,7 @@ float: right;
 .signed_container{
   background: linear-gradient(to left, rgba(0, 0, 255, 0.05), rgba(41, 171, 226, 0.05));
   padding-bottom: 200px;
-  overflow: auto;
+
 }
 
 #feed_submit {
