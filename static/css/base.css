@@ -28,7 +28,7 @@ label {
   font-weight: bold;
 }
 
-#login_form, #register_form {
+#login_form, #register_form,#profile_edit {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -74,7 +74,7 @@ label {
    display:block;
 }
 
-#login_sub_button, #register_sub_button, #feed_submit_form > form  > button {
+#login_sub_button, #register_sub_button, #profile_sub_button, #feed_submit_form > form  > button {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   letter-spacing: 3pt;
@@ -93,7 +93,7 @@ label {
 }
 
 
-#login_sub_button:hover, #register_sub_button:hover, #feed_submit_form > form > button:hover {
+#login_sub_button:hover, #register_sub_button:hover, #profile_sub_button:hover, #feed_submit_form > form > button:hover {
   background: linear-gradient(to left, #0000FF, #29ABE2);
   cursor: pointer;
   letter-spacing: 10pt;
