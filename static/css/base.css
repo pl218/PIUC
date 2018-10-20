@@ -93,7 +93,7 @@ display: inline-block;
 }
 
 /*++++++++++++++++ DEFUALT BUTTON +++++++++++++ */
-#login_sub_button, #register_sub_button, #feed_submit_form > form  > button, #help_submit_button {
+#login_sub_button, #register_sub_button, #feed_submit_form > form  > button, #help_submit_button, .default_button {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   letter-spacing: 3pt;
@@ -111,7 +111,7 @@ display: inline-block;
   transition: 1.5s;
 }
 
-#login_sub_button:hover, #register_sub_button:hover, #feed_submit_form > form > button:hover, #help_submit_button:hover {
+#login_sub_button:hover, #register_sub_button:hover, #feed_submit_form > form > button:hover, #help_submit_button:hover, .default_button:hover {
   background: linear-gradient(to left, #0000FF, #29ABE2);
   cursor: pointer;
   letter-spacing: 10pt;
@@ -189,8 +189,9 @@ display: inline-block;
   position: relative;
     float: right;
 }
+
 /*+++++++++++ DEFAULT LINK TEXT HOVER ++++++++++++ */
-#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover, #help_reset_button:hover {
+#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover, #help_reset_button:hover, .default_text_hover:hover{
   background: linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-text-fill-color: transparent;
@@ -619,7 +620,7 @@ centerText{
        border-width: 1px;
 }
 
-#help_cont > p:nth-child(1) {
+.page_title {
   margin-top: 48pt;
   text-align: center;
   font-weight: bolder;
@@ -627,7 +628,7 @@ centerText{
   font-size: 24pt;
 }
 
-#help_cont > p:nth-child(2) {
+.page_subtittle {
   margin-top: 12pt;
   text-align: center;
   font-weight: lighter;
@@ -670,4 +671,28 @@ centerText{
   font-weight: bolder;
   border-bottom: 2px;
   border: red;
+}
+
+#reset_password_button {
+  font-size: 10pt;
+  width: 25%;
+}
+
+#id_email {
+  padding: 5px;
+  border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 2px;
+  left: 0;
+  font-size: 12pt;
+  background-color: white;
+  width: calc(40% - 20px) ;
+  min-width: 250px;
+  height: 16pt;
+  display: block;
+  position: relative;
+  color: grey;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
 }
