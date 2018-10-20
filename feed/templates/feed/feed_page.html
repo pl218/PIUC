@@ -14,37 +14,39 @@
       {{ form.as_p }}
       <button type="submit">POST</button>
     </form>
-
   </div>
   {% for post in posts %}
-    <div class="feed_post">
+  <div class="feed_post">
 
-    <div id = "postHeader">
-      <div class="post_title"> {{ post.title }}
-        <div id="Favorito">
-          {% if post in user.userprofile.favorites.all %}
-            <a href="{% url 'accounts:favorite' user.get_username post.id %}">FavOff</a>
-          {% else %}
-            <a href="{% url 'accounts:favorite' user.get_username post.id %}">FavOn</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>   
-    
-      <div class="post_text">  
-        <p> {{ post.post }}
+    <div class="post_title">
+      <span>
+        {{ post.title }}
+      </span>
+      {% if post in user.userprofile.favorites.all %}
+      <a href="{% url 'accounts:favorite' user.get_username post.id %}">
+        <div class="fav_on"> </div>
+      </a>
+      {% else %}
+      <a href="{% url 'accounts:favorite' user.get_username post.id %}">
+        <div class="fav_off"> </div>
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="post_text">
+      <p> {{ post.post }}
 
         This is useful in situations where you want to provide an easier/cleaner copy-paste experience for users (not have them accidentally text-select useless things, like icons or images). However it's a bit buggy. Firefox enforces the fact that any text matching that selector cannot be copied. WebKit still allows the text to be copied if you select elements around it.
 
         You can also use this to enforce that an entire element gets selection:
 
-        </p> 
-      </div>
-      <div class="post_user"> 
-        <p> Posted by <a href="{% url 'accounts:profile' post.user.get_username %}" id="redirect_profile">{{ post.user.get_full_name }}</a> ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p> 
-      </div>
-
+      </p>
     </div>
+    <div class="post_user">
+      <p> Posted by <a href="{% url 'accounts:profile' post.user.get_username %}" id="redirect_profile">{{ post.user.get_full_name }}</a> ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p>
+    </div>
+
+  </div>
   {% endfor %}
 </div>
 

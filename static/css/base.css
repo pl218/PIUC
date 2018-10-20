@@ -28,6 +28,19 @@ label {
   font-weight: bold;
 }
 
+
+/* ++++ MENSAGENS DE ERRO NO LOGIN E RESGISTO +++++ */
+.errorlist {
+  list-style: none;
+  background: linear-gradient(to left, #BD291E, #EB3325);
+    -webkit-background:  linear-gradient(to left, #BD291E, #EB3325);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  padding: 0;
+  margin: 0;
+display: inline-block;
+}
+
 #login_form, #register_form {
   display: block;
   margin-left: auto;
@@ -440,7 +453,7 @@ float: right;
 }
 
 #feed_cont {
-  background: linear-gradient(to left, rgba(0, 0, 255, 0.1), rgba(41, 171, 226, 0.1));
+  background: linear-gradient(to left, rgba(0, 0, 255, 0.05), rgba(41, 171, 226, 0.05));
   padding-bottom: 200px;
 }
 
@@ -508,17 +521,6 @@ float: right;
   font-weight: light;
 }
 
-.feed_post {
-  width: 55%;
-  margin: auto;
-  margin-top: 50px;
-  border: solid red 10px;
-  padding: 20px 50px;
-  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
-       border-image-slice: 1;
-       border-width: 1px;
-}
-
 .help_email {
   width: 55%;
   margin: auto;
@@ -537,24 +539,79 @@ float: right;
   margin-top: 20px;
 }
 
+
+.feed_post {
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+  border: solid red 10px;
+  padding: 2vw;
+  background-color: white;
+  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 1px;
+}
+
+
+
 .post_title{
   font-size: 24pt;
   font-family: 'Roboto',sans-serif;
   font-weight: bold;
   margin-bottom: 0;
+  background-color: #E0E9F8;
+  display: inline-block;
+  padding: 5pt;
+}
+
+
+/* +++++ BOTAO DE FAVORITOS NO FEED +++++ */
+.fav_off, .fav_on {
+  width: 20pt;
+  height: 20pt;
+  display: inline-block;
+  position: relative;
+  bottom: 0;
+  margin-left: 50px;
+}
+
+.fav_off {
+  background-color: blue;
+}
+
+.fav_on {
+  background-color: green;
+}
+
+.post_user > p, .post_text > p {
+  margin: 0;
 }
 
 .post_text{
     font-family: 'nunito',sans-serif;
+    font-size: 12pt;
     font-weight: lighter;
+    width: 90%;
     margin-top: 0;
+    background-color: #CEDFE7;
+    padding: 10px;
+    margin: 12pt 0;
 }
 
 .post_user{
   font-family: 'Roboto',sans-serif;
-  text-align: right;
-  font-size: 10pt;
+  font-size: 8pt;
   font-weight: bold;
+  background-color: #E0E9F8;
+  padding: 10px;
+}
+
+#redirect_profile:hover {
+  background: linear-gradient(to left, #29ABE2, #0000FF);
+    -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    transition: 0.5s;
 }
 
 centerText{
