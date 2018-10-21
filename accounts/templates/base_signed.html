@@ -30,15 +30,12 @@
         <div id="nav_bar_search">
           <img src="{% static 'search_icon_black.png' %}">
         </div>
-        <div id="nv_search_submit"> </div>
+        <img src="{% static 'search_arrow.png' %}" id="nv_search_submit">
         <input id="nv_search_input"  type="text" placeholder="Search.." value="">
-
-        <!-- <button onclick="oi()" type="submit"> button </button> -->
-
         <script type="text/javascript">
         document.getElementById("nv_search_submit").addEventListener("click", oi);
-          function oi() {
 
+          function oi() {
             var input = document.getElementById("nv_search_input").value;
             alert(input)
             window.location.href = "../../accounts/search/" + input;
@@ -48,8 +45,8 @@
 
 
         <ul id="nav_bar_links">
-          <li><a href="{% url 'feed:mainpage' %}">feed</a></li>
-          <li><a href="{% url 'feed:favorites' user.get_username %}">favorites</a></li>
+          <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
+          <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
           <li>inbox</li>
         </ul>
 
@@ -68,12 +65,15 @@
   document.querySelector("#nav_bar_search > img").addEventListener("mouseover", changeSearchLogo);
   document.querySelector("#nav_bar_search > img").addEventListener("mouseleave", changeSearchLogo);
   document.querySelector("#nav_bar_search > img").addEventListener("click", changeSearchLogo);
+  document.querySelector("#nv_search_submit").addEventListener("mouseover", changeSearchArrow);
+  document.querySelector("#nv_search_submit").addEventListener("mouseleave", changeSearchArrow);
 
 
   var checker = true;
   var checker_s = true;
   var checker_c_s = true;
   var checker_c_p = true;
+  var checker_s_a = true;
 
 
   function RevealProfile() {
@@ -93,7 +93,7 @@
     if(checker_s){
       document.getElementById("nv_search_input").style.width = "150px";
       document.getElementById("nv_search_input").style.opacity = "1";
-      document.getElementById("nv_search_submit").style.width = "30px";
+      document.getElementById("nv_search_submit").style.width = "18pt";
       document.getElementById("nv_search_submit").style.opacity = "1";
       checker_s = false;
     } else {
@@ -120,6 +120,17 @@
     } else {
         document.querySelector("#nav_bar_search > img").src="{% static 'search_icon_black.png' %}";
       checker_c_p = true;
+    }
+  }
+
+  function changeSearchArrow() {
+    if(checker_s_a){
+      document.querySelector("#nv_search_submit").src="{% static 'search_arrow_hover.png' %}";
+
+      checker_s_a = false;
+    } else {
+        document.querySelector("#nv_search_submit").src="{% static 'search_arrow.png' %}";
+      checker_s_a = true;
     }
   }
 </script>

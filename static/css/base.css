@@ -88,6 +88,7 @@ label {
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
+  margin-bottom: 20px;
 }
 
 #logo_on, #logo_off, #logo_change {
@@ -222,7 +223,7 @@ label {
   overflow: visible;
   float: left;
   display: block;
-  top: calc(-20pt - 20px);
+  top: calc(-20pt - 40px);
   left: calc(100% + 20px);
   color: grey;
   opacity: 0;
@@ -464,7 +465,6 @@ float: right;
 }
 
 #nv_search_submit{
-  background-color: red;
   margin-top: calc(125px - 18pt);
   margin-bottom: 25px;
   padding: 0;
@@ -571,11 +571,11 @@ float: right;
 }
 
 .fav_off {
-  background-color: blue;
+  background-color: grey;
 }
 
 .fav_on {
-  background-color: green;
+  background-color: blue;
 }
 
 .post_text{
@@ -672,23 +672,4 @@ centerText{
 #reset_password_button {
   font-size: 10pt;
   width: 25%;
-}
-
-#id_email {
-  padding: 5px;
-  border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
-       border-image-slice: 1;
-       border-width: 2px;
-  left: 0;
-  font-size: 12pt;
-  background-color: white;
-  width: calc(40% - 20px) ;
-  min-width: 250px;
-  height: 16pt;
-  display: block;
-  position: relative;
-  color: grey;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 25px;
 }
