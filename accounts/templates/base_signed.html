@@ -40,9 +40,10 @@
           function oi() {
 
             var input = document.getElementById("nv_search_input").value;
-            alert(input)
-            window.location.href = "../../accounts/search/" + input;
-
+            if(input.charAt(0)=='#')
+              window.location.href = "../../accounts/search_tweets/" + input.substring(1);
+            else
+              window.location.href = "../../accounts/search/" + input;
           }
         </script>
 

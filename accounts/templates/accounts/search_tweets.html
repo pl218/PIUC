@@ -1,0 +1,13 @@
+{% extends 'base_signed.html' %}
+{% load static %}
+{% block head %}
+    <title>Profile</title>
+{% endblock %}
+\
+{% block body %}
+<div id="profile_cont">
+  {% for tweet in tweets %}
+  	<p> {{ tweet.all_text}} </p>
+  {% endfor%}
+</div>
+{% endblock %}

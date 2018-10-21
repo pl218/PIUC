@@ -24,10 +24,13 @@ from feed.forms import FeedForm
 from feed.models import Post
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
+from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
 
 # Create your views here.
 #def loginPage(request):
 #    return render(request, 'accounts/login.html')
+
+enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
 
 def register(request):
     if request.method == 'POST': #POST -> cliente envia info para o server
@@ -296,3 +299,8 @@ class PasswordResetConfirmView(PasswordContextMixin, FormView):
                 'validlink': False,
             })
         return context
+
+def search_tweets(request, input):
+    rule = gen_rule_payload(input, results_per_call=100)
+    tweets = collect_results(rule, max_results=100, result_stream_args=enterprise_search_args)
+    return render(request,'accounts/search_tweets.html', {'tweets': tweets})
