@@ -18,23 +18,24 @@ function addClass() {
     document.getElementById("id_scientific_area").className = "input_textbox";
 
 
-
+/*
     document.querySelector("label").innerHTML = "email";
     document.querySelector("p:nth-child(3) > label").innerHTML = "password";
     document.querySelector("id_ORCID").innerHTML = "ORCID";
     document.querySelector("id_scientific_area").innerHTML = "research interests";
+    */
 
 
   }
 </script>
 
   <div class="container" id="profile_edit">
-      <h1>Profile Edit</h1>
+      <p class="page_title">Profile Edit</p>
       <form method="post">
         {% csrf_token %}
         {{ formUser.as_p }}
         {{ formProfile.as_p }}
-        <button id="profile_sub_button" type="submit">Submit</button>
+        <button class="default_button" id="profile_sub_button" type="submit">Submit</button>
       </form>
   </div>
 {% endblock %}
