@@ -33,10 +33,6 @@ label {
   font-weight: bold;
 }
 
-<<<<<<< HEAD
-#login_form, #register_form,#profile_edit {
-=======
-
 /* ++++ MENSAGENS DE ERRO NO LOGIN E RESGISTO +++++ */
 .errorlist {
   list-style: none;
@@ -49,8 +45,7 @@ label {
 display: inline-block;
 }
 
-#login_form, #register_form {
->>>>>>> ff8d310a91138637426bd4a6a28d495feaa576d3
+#login_form, #register_form, #profile_edit {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -96,12 +91,8 @@ display: inline-block;
    display:block;
 }
 
-<<<<<<< HEAD
-#login_sub_button, #register_sub_button, #profile_sub_button, #feed_submit_form > form  > button {
-=======
-/*++++++++++++++++ DEFUALT BUTTON +++++++++++++ */
+
 #login_sub_button, #register_sub_button, #feed_submit_form > form  > button, #help_submit_button, .default_button {
->>>>>>> ff8d310a91138637426bd4a6a28d495feaa576d3
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   letter-spacing: 3pt;
@@ -119,17 +110,13 @@ display: inline-block;
   transition: 1.5s;
 }
 
-<<<<<<< HEAD
 
-#login_sub_button:hover, #register_sub_button:hover, #profile_sub_button:hover, #feed_submit_form > form > button:hover {
-=======
 #login_sub_button:hover, #register_sub_button:hover, #feed_submit_form > form > button:hover, #help_submit_button:hover, .default_button:hover {
->>>>>>> ff8d310a91138637426bd4a6a28d495feaa576d3
   background: linear-gradient(to left, #0000FF, #29ABE2);
   cursor: pointer;
   letter-spacing: 10pt;
   transition: 1.5s;
-
+  cursor: pointer;
 }
 
 #login_about_us {
@@ -506,7 +493,6 @@ float: right;
 
 
 #feed_submit_form{
-  display: none;
   position: relative;
   width: 30%;
   padding: 0 35%;
