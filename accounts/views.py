@@ -1,8 +1,9 @@
+
 from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import (UserChangeForm)
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import (UserChangeForm, SetPasswordForm)
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.views import (PasswordContextMixin)
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy, reverse
@@ -10,16 +11,19 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.core.mail import send_mail, EmailMultiAlternatives
-from django.utils.http import urlsafe_base64_encode
+from django.core.exceptions import ValidationError
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.template import loader
 from django.contrib.sites.shortcuts import get_current_site
 from django.views.generic.base import TemplateView
 from django.shortcuts import resolve_url
+from django.http import HttpResponseRedirect
 from django import forms
 from feed.forms import FeedForm
 from feed.models import Post
-
+from django.views.decorators.debug import sensitive_post_parameters
+from django.views.decorators.cache import never_cache
 
 # Create your views here.
 #def loginPage(request):
@@ -115,6 +119,9 @@ def change_password(request):
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
 
+def password_reset_complete(request):
+    return redirect('../../login')
+
 class PasswordResetForm(forms.Form):
     email = forms.EmailField(label=("Email"), max_length=254)
 
@@ -157,15 +164,9 @@ class PasswordResetForm(forms.Form):
         Generate a one-use only link for resetting password and send it to the
         user.
         """
-        send_mail('ANTES DO PRIMERIO', user, 'OI', ['DSADASDASDASDSADSADSADS'])
         email = self.cleaned_data["email"]
-        #user = self.get_users(email);
-        #userna = User.objects.filter(email=email).values('username')
-        send_mail('PRIMEIRO', user, 'OI', ['DSADASDASDASDSADSADSADS'])
         try:
-            send_mail('SEGUNDO', user, 'OI', ['DSADASDASDASDSADSADSADS'])
             user = User.objects.get(email=email)
-            send_mail('TERCEIRO', user, 'OI', ['DSADASDASDASDSADSADSADS'])
             context = {
                 'email': email,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
@@ -213,13 +214,85 @@ class PasswordResetView(PasswordContextMixin, FormView):
             'html_email_template_name': self.html_email_template_name,
             'extra_email_context': self.extra_email_context,
         }
-        send_mail('PasswordResetView', 'user', 'OI', ['DSADASDASDASDSADSADSADS'])
         form.save(**opts)
         #form.send_mail(opts)
 
 
         return super().form_valid(form)
 
+INTERNAL_RESET_URL_TOKEN = 'set-password'
+INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'
 
-def PasswordResetCompleteView(request):
-    return redirect('../../login')
+class PasswordResetConfirmView(PasswordContextMixin, FormView):
+    form_class = SetPasswordForm
+    post_reset_login = False
+    post_reset_login_backend = None
+    success_url = reverse_lazy('accounts:password_reset_complete')
+    template_name = 'accounts/reset_password_confirm.html'
+    title = ('Enter new password')
+    token_generator = default_token_generator
+
+    @method_decorator(sensitive_post_parameters())
+    @method_decorator(never_cache)
+    def dispatch(self, *args, **kwargs):
+        assert 'uidb64' in kwargs and 'token' in kwargs
+
+        self.validlink = False
+        self.user = self.get_user(kwargs['uidb64'])
+
+        if self.user is not None:
+            token = kwargs['token']
+            if token == INTERNAL_RESET_URL_TOKEN:
+                session_token = self.request.session.get(INTERNAL_RESET_SESSION_TOKEN)
+                if self.token_generator.check_token(self.user, session_token):
+                    # If the token is valid, display the password reset form.
+                    self.validlink = True
+                    return super().dispatch(*args, **kwargs)
+            else:
+                if self.token_generator.check_token(self.user, token):
+                    # Store the token in the session and redirect to the
+                    # password reset form at a URL without the token. That
+                    # avoids the possibility of leaking the token in the
+                    # HTTP Referer header.
+                    self.request.session[INTERNAL_RESET_SESSION_TOKEN] = token
+                    redirect_url = self.request.path.replace(token, INTERNAL_RESET_URL_TOKEN)
+                    return HttpResponseRedirect(redirect_url)
+
+        # Display the "Password reset unsuccessful" page.
+        return self.render_to_response(self.get_context_data())
+
+    def get_user(self, uidb64):
+        #try:
+            # urlsafe_base64_decode() decodes to bytestring
+        UserModel = get_user_model()
+        uid = urlsafe_base64_decode(uidb64).decode()
+        #user = UserModel._default_manager.get(pk=uid)
+        user = User.objects.get(pk=uid)
+        print(user)
+        #except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist, ValidationError):
+        #    user = None
+        return user
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.user
+        return kwargs
+
+    def form_valid(self, form):
+        user = form.save()
+        del self.request.session[INTERNAL_RESET_SESSION_TOKEN]
+        if self.post_reset_login:
+            auth_login(self.request, user, self.post_reset_login_backend)
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.validlink:
+            context['validlink'] = True
+        else:
+            context.update({
+                'form': None,
+                'title': ('Password reset unsuccessful'),
+                'validlink': False,
+            })
+        return context
