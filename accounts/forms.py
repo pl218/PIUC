@@ -1,5 +1,5 @@
 from django import forms
-from accounts.models import UserProfile
+from accounts.models import UserProfile, BookmarksModel
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.forms import ModelForm
@@ -54,12 +54,11 @@ class RegistrationForm(UserCreationForm):
             raise forms.ValidationError('ORCID already used!')
         return ORCID
 
-class EditUserForm(UserChangeForm):
+class EditUserForm(ModelForm):
     class Meta:
         model=User
         fields=(
             'email',
-            'password'
         )
     def clean_email(self): #Verifica se o email já existe
         email = self.cleaned_data['email']
@@ -68,21 +67,23 @@ class EditUserForm(UserChangeForm):
             raise forms.ValidationError('Email already exists')
         return email
 
-
 class EditProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         fields =(
-            'ORCID',
+            'description',
+            'city',
+            'website',
             'scientific_area',
         )
-    def clean_ORCID(self): #Verifica se o ORCID é válido
-        ORCID=self.cleaned_data['ORCID']
-        if(ORCID==self.instance.ORCID):
-            return ORCID
-        regex=re.compile('(\d{4})-(\d{4})-(\d{4})-(\d{3}[0-9X])$')
-        if regex.search(ORCID) is None:
-            raise forms.ValidationError('Please use a valid ORCID! Ex: 0001-0003-0002-0009')
-        if UserProfile.objects.filter(ORCID=ORCID).exists():
-            raise forms.ValidationError('ORCID already used!')
-        return ORCID
+
+class BookmarksForm(ModelForm):
+    url=forms.URLField(required=True);
+
+    class Meta:
+        model = BookmarksModel
+        fields = (
+            'urlName',
+            'url',
+            'keyword',
+        )

@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm
+from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm, BookmarksForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import (UserChangeForm, SetPasswordForm)
 from django.contrib.auth import authenticate, login, get_user_model
@@ -25,6 +25,7 @@ from feed.models import Post
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
+from accounts.models import BookmarksModel
 
 # Create your views here.
 #def loginPage(request):
@@ -304,3 +305,18 @@ def search_tweets(request, input):
     rule = gen_rule_payload(input, results_per_call=100)
     tweets = collect_results(rule, max_results=100, result_stream_args=enterprise_search_args)
     return render(request,'accounts/search_tweets.html', {'tweets': tweets})
+
+def BookmarksView(request,username):
+    id=User.objects.get(username=username).pk
+    data= BookmarksModel.objects.filter(user=id);
+    if request.method=='GET':
+        form=BookmarksForm();
+        return render(request,'accounts/bookmarks.html',{'form': form,'data': data})
+    else:
+        form= BookmarksForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=False)
+            post.user= request.user
+            post.save();
+            return redirect('/accounts/bookmarks/'+username);
+        return render(request,'accounts/bookmarks.html',{'form':form,'data':data})
