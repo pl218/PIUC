@@ -5,26 +5,29 @@
 {% endblock %}
 
 {% block body %}
-<div id="profile_cont">
-
-
-  <div id="user_profile">
+<div class="signed_container">
+  <br>
+  <div class="page_white_cont">
     <img id="proflie_pic" src="{% static 'profile_pic_placeholder.jpg' %}">
     <div id="user_info">
       <p>{{ user.first_name }}  {{ user.last_name }}</p>
       <ul>
         <li class="user_desc"> Username</li>
-        <li class="user_fill">{{ user }}</li>
+        <li class="blue_input">{{ user }}</li>
         <li class="user_desc"> Research Interests</li>
-        <li class="user_fill">{{ user.userprofile.scientific_area }} </li>
+        <li class="blue_input">{{ user.userprofile.scientific_area }} </li>
         <li class="user_desc"> ORCID</li>
-        <li class="user_fill">{{ user.userprofile.ORCID }} </li>
+        <li class="blue_input">{{ user.userprofile.ORCID }} </li>
       </ul>
-      {% for post in posts %}
-        <p> {{ post.title }} </p>
-        <p> {{ post.post }} </p>
-      {% endfor%}
     </div>
-  </div>
+    </div>
+
+    {% for post in posts %}
+    <div class="page_white_cont">
+      <p class="post_title"> {{ post.title }} </p>
+      <p class="post_text"> {{ post.post }} </p>
+        </div>
+    {% endfor%}
+
 </div>
 {% endblock %}

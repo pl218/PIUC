@@ -12,30 +12,34 @@ window.onload = addClass;
 function addClass() {
 
 
-    document.getElementById("id_email").className = "input_textbox";
-    document.getElementById("id_password").className = "input_textbox";
-    document.getElementById("id_ORCID").className = "input_textbox";
-    document.getElementById("id_scientific_area").className = "input_textbox";
+    document.getElementById("id_email").className = "blue_input";
+    document.getElementById("id_password").className = "blue_input";
+    document.getElementById("id_ORCID").className = "blue_input";
+    document.getElementById("id_scientific_area").className = "blue_input";
 
-
-/*
-    document.querySelector("label").innerHTML = "email";
-    document.querySelector("p:nth-child(3) > label").innerHTML = "password";
-    document.querySelector("id_ORCID").innerHTML = "ORCID";
-    document.querySelector("id_scientific_area").innerHTML = "research interests";
-    */
+    document.querySelector('label[for="id_email"]').innerHTML = "E-mail";
+    document.querySelector('label[for="id_password"]').innerHTML = "Password";
+    document.querySelector('label[for="id_ORCID"]').innerHTML = "ORCID";
+    document.querySelector('label[for="id_scientific_area"]').innerHTML = "Research Interests";
+    document.querySelector('label[for="id_email"]').className = "help_form_label"
+    document.querySelector('label[for="id_password"]').className = "help_form_label"
+    document.querySelector('label[for="id_ORCID"]').className = "help_form_label"
+    document.querySelector('label[for="id_scientific_area"]').className = "help_form_label"
 
 
   }
 </script>
+  <div class="signed_container">
+    <br>
 
-  <div class="container" id="profile_edit">
-      <p class="page_title">Profile Edit</p>
+      <p class="page_title">Edit Profile</p>
+      <div id="profile_edit" class="page_white_cont">
       <form method="post">
         {% csrf_token %}
         {{ formUser.as_p }}
         {{ formProfile.as_p }}
         <button class="default_button" id="profile_sub_button" type="submit">Submit</button>
       </form>
+    </div>
   </div>
 {% endblock %}
