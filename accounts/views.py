@@ -306,6 +306,7 @@ def search_tweets(request, input):
     tweets = collect_results(rule, max_results=100, result_stream_args=enterprise_search_args)
     return render(request,'accounts/search_tweets.html', {'tweets': tweets})
 
+
 def BookmarksView(request,username):
     id=User.objects.get(username=username).pk
     data= BookmarksModel.objects.filter(user=id);
