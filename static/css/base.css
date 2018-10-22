@@ -217,7 +217,7 @@ label {
   transition: 0.5s;
 }
 
-#user_description, #password1_description, #password2_description {
+.helptext {
   position: relative;
   height: 0;
   overflow: visible;
@@ -237,7 +237,7 @@ label {
 
 }
 
-#id_username:focus + #user_description{
+#id_username:focus + .helptext{
   display: block;
   opacity: 1;
   float: left;
@@ -245,7 +245,7 @@ label {
   transition: 1s;
 }
 
-#id_password1:focus + #password1_description{
+#id_password1:focus + .helptext{
   display: block;
   opacity: 1;
   float: left;
@@ -253,7 +253,7 @@ label {
   transition: 1s;
 }
 
-#id_password2:focus + #password2_description{
+#id_password2:focus + .helptext{
   display: block;
   opacity: 1;
   float: left;
