@@ -30,5 +30,5 @@ urlpatterns = [
     path('reset-password/done/', PasswordResetDoneView.as_view(template_name='accounts/reset_password_done.html'), name='password_reset_done'),
     path('reset-password/confirm/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset-password/complete/', views.password_reset_complete, name='password_reset_complete'),
-    path('search_tweets/<slug:input>', views.search_tweets, name='search_tweets')
+#    path('search_tweets/<slug:input>', views.search_tweets, name='search_tweets')
 ]
