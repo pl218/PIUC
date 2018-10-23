@@ -1,9 +1,7 @@
 language: python
 python:
-  - "3.5"
+  - "3.6"
 install:
       - pip install Django #requirements.txt
 script:
   - python manage.py test
-
-  
