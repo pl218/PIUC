@@ -5,8 +5,6 @@ Plataforma de Investigadores da Universidade de Coimbra
 [![Build Status](https://travis-ci.org/pl218/PIUC.svg?branch=master)](https://travis-ci.org/pl218/PIUC.svg?branch=master)
 
 ### Login Branch Tests
-(no tests running for now)
-
 [![Build Status](https://travis-ci.org/pl218/PIUC.svg?branch=login)](https://travis-ci.org/pl218/PIUC.svg?branch=login)
 
 
