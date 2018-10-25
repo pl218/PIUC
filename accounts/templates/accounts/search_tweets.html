@@ -5,9 +5,13 @@
 {% endblock %}
 \
 {% block body %}
-<div id="profile_cont">
+<div class="signed_container">
+  <br>
+
   {% for tweet in tweets %}
+  <div class="feed_post">
   	<p> {{ tweet.all_text}} </p>
+  </div>
   {% endfor%}
 </div>
 {% endblock %}
