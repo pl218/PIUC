@@ -73,7 +73,6 @@ class EditProfileForm(ModelForm):
         fields =(
             'description',
             'city',
-            'website',
             'scientific_area',
         )
 
