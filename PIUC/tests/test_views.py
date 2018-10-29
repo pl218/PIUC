@@ -35,25 +35,25 @@ class HomePageTests(TestCase):
             response, 'Hi there! I should not be on the page.')
 
     def test_view_uses_correct_template_after_login(self):
-        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        user = User.objects.create_user('test', 'test@test.com', 'testpassowrd123')
         user.save()
-        logged = self.client.login(username='john', password='johnpassword')
+        logged = self.client.login(username='test', password='testpassowrd123')
         response = self.client.get('/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'feed/feed_page.html')
 
     def test_home_page_contains_correct_html_after_login(self):
-        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        user = User.objects.create_user('test', 'test@test.com', 'testpassword123')
         user.save()
-        logged = self.client.login(username='john', password='johnpassword')
+        logged = self.client.login(username='test', password='testpassword123')
         response = self.client.get('/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, f'div id="feed_cont"')
 
     def test_home_page_does_not_contain_incorrect_html_after_login(self):
-        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        user = User.objects.create_user('test', 'test@test.com', 'testpassword123')
         user.save()
-        logged = self.client.login(username='john', password='johnpassword')
+        logged = self.client.login(username='test', password='testpassword123')
         response = self.client.get('/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertNotContains(
