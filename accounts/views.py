@@ -24,14 +24,14 @@ from feed.forms import FeedForm
 from feed.models import Post
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
-#from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
+from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
 from accounts.models import BookmarksModel
 
 # Create your views here.
 #def loginPage(request):
 #    return render(request, 'accounts/login.html')
 
-#enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
+enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
 
 def register(request):
     if request.method == 'POST': #POST -> cliente envia info para o server
@@ -40,7 +40,7 @@ def register(request):
             user=form.save() #guarda os dados basicos do utilizador (username pass...)
             user.refresh_from_db()
             user.userprofile.ORCID= form.cleaned_data.get('ORCID') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
-            user.userprofile.scientific_area=form.cleaned_data.get('scientific_area')
+            user.userprofile.researchInterests=form.cleaned_data.get('researchInterests')
             user.save() #guarda os dados adicionais do perfil na bd
 
             #Entrar na conta após os registo
@@ -79,7 +79,8 @@ def help(request):
 def edit_profile(request,username):
     user= User.objects.get(username=username)
     if request.method == 'POST':
-        formProfile=EditProfileForm(request.POST,instance=request.user.userprofile)
+        print(request.FILES)
+        formProfile=EditProfileForm(request.POST,request.FILES,instance=request.user.userprofile)
         formUser=EditUserForm(request.POST,instance=request.user)
 
         if formProfile.is_valid() and formUser.is_valid() :
@@ -300,12 +301,12 @@ class PasswordResetConfirmView(PasswordContextMixin, FormView):
                 'validlink': False,
             })
         return context
-"""
+
 def search_tweets(request, input):
     rule = gen_rule_payload(input, results_per_call=100)
     tweets = collect_results(rule, max_results=100, result_stream_args=enterprise_search_args)
     return render(request,'accounts/search_tweets.html', {'tweets': tweets})
-"""
+
 
 def BookmarksView(request,username):
     id=User.objects.get(username=username).pk

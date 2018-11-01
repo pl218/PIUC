@@ -1,19 +1,33 @@
-{% extends 'base_signed.html' %}
+{% extends ‘base_signed.html’ %}
 {% load static %}
 {% block head %}
-    <title>Profile</title>
+   <title>Profile</title>
 {% endblock %}
 \
 {% block body %}
-<div id="profile_cont">
-  {% for post in posts %}
-  	<p> {{ post.title}} </p>
-  	<p> {{post.post}} </p>
-  {% endfor%}
+<div class=“signed_container”>
+ <br>
+ <div class=“feed_post”>
+   {% for post in posts %}
+   <div class=“post_title”>
+     <span> {{ post.title}} </span>
+   </div>
 
-  {% for user in users %}
-  	<p> {{ user.username}} </p>
-  	<p> {{ user.first_name }} </p>
-  {% endfor%}
+   <div class=“post_text”>
+   <p> {{post.post}} </p>
+ </div>
+   {% endfor%}
+
+   {% for user in users %}
+
+   <div class=“post_user”>
+     <p> Posted by
+       {{ user.username}}
+       {{ user.first_name }}
+     </p>
+   </div>
+   {% endfor%}
+
+ </div>
 </div>
 {% endblock %}

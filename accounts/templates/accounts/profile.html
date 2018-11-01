@@ -8,16 +8,23 @@
 <div class="signed_container">
   <br>
   <div class="page_white_cont">
-    <img id="proflie_pic" src="{% static 'profile_pic_placeholder.jpg' %}">
+    <img id="proflie_pic" src="{{user.userprofile.profilePic.url}}">
     <div id="user_info">
       <p>{{ user.first_name }}  {{ user.last_name }}</p>
       <ul>
         <li class="user_desc"> Username</li>
         <li class="blue_input">{{ user }}</li>
         <li class="user_desc"> Research Interests</li>
-        <li class="blue_input">{{ user.userprofile.scientific_area }} </li>
+        <li class="blue_input">{{ user.userprofile.researchInterests }} </li>
         <li class="user_desc"> ORCID</li>
         <li class="blue_input">{{ user.userprofile.ORCID }} </li>
+        <li class="user_desc">City </li>
+        <li class="blue_input">{{ user.userprofile.city }} </li>
+        <li class="user_desc"> BIO</li>
+        <li class="blue_input">{{ user.userprofile.bio }} </li>
+        <li class="user_desc">My WebSite </li>
+        <li class="blue_input">{{ user.userprofile.website }} </li>
+
       </ul>
     </div>
     </div>

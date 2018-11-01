@@ -15,7 +15,7 @@
         <div id="nav_bar_profile">
             <img src="{% static 'profile_icon_black.png' %}">
           <div id="nv_profile_card">
-            <a href="{% url 'accounts:profile' user.get_username %}"><img id="nv_profile_pic" src="{% static 'profile_pic_placeholder.jpg' %}"></a>
+            <a href="{% url 'accounts:profile' user.get_username %}"><img id="nv_profile_pic" src="{{user.userprofile.profilePic.url}}"></a>
             <p>{{ user.first_name }}  {{ user.last_name }} </p>
             <p> {{ user }} </p>
             <ul>

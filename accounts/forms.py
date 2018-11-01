@@ -10,7 +10,7 @@ class RegistrationForm(UserCreationForm):
     last_name=forms.CharField(max_length=30, required=True)
     email= forms.EmailField(required=True)
     ORCID= forms.CharField(max_length=30, required=True)
-    scientific_area=forms.CharField(max_length=30,required=True)
+    researchInterests=forms.CharField(max_length=200,required=True)
 
     class Meta:
         model = User
@@ -20,7 +20,7 @@ class RegistrationForm(UserCreationForm):
             'last_name',
             'email',
             'ORCID',
-            'scientific_area',
+            'researchInterests',
             'password1',
             'password2',
         )
@@ -58,8 +58,23 @@ class EditUserForm(ModelForm):
     class Meta:
         model=User
         fields=(
+            'first_name',
+            'last_name',
             'email',
         )
+    def clean_first_name(self): #Verifica se o nome possui numeros
+        first_name=self.cleaned_data['first_name']
+        regex=re.compile('\d')
+        if regex.search(first_name):
+            raise forms.ValidationError('First name cannot have numbers')
+        return first_name
+
+    def clean_last_name(self): #Verifica se o nome possui numeros
+        last_name=self.cleaned_data['last_name']
+        regex=re.compile('\d')
+        if regex.search(last_name):
+            raise forms.ValidationError('Last name cannot have numbers')
+        return last_name
     def clean_email(self): #Verifica se o email já existe
         email = self.cleaned_data['email']
         print(self.instance.email)
@@ -68,13 +83,18 @@ class EditUserForm(ModelForm):
         return email
 
 class EditProfileForm(ModelForm):
+    bio=forms.CharField(max_length=500,required=False)
+    city=forms.CharField(max_length=30,required=False)
+    website=forms.URLField(required=False)
+    researchInterests=forms.CharField(max_length=200,required=False)
     class Meta:
         model = UserProfile
         fields =(
-            'description',
+            'bio',
             'city',
             'website',
-            'scientific_area',
+            'researchInterests',
+            'profilePic',
         )
 
 class BookmarksForm(ModelForm):

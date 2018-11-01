@@ -15,16 +15,16 @@ function addClass() {
     document.getElementById("id_email").className = "blue_input";
     document.getElementById("id_password").className = "blue_input";
     document.getElementById("id_ORCID").className = "blue_input";
-    document.getElementById("id_scientific_area").className = "blue_input";
+    document.getElementById("id_researchInterests").className = "blue_input";
 
     document.querySelector('label[for="id_email"]').innerHTML = "E-mail";
     document.querySelector('label[for="id_password"]').innerHTML = "Password";
     document.querySelector('label[for="id_ORCID"]').innerHTML = "ORCID";
-    document.querySelector('label[for="id_scientific_area"]').innerHTML = "Research Interests";
+    document.querySelector('label[for="id_researchInterests"]').innerHTML = "Research Interests";
     document.querySelector('label[for="id_email"]').className = "help_form_label"
     document.querySelector('label[for="id_password"]').className = "help_form_label"
     document.querySelector('label[for="id_ORCID"]').className = "help_form_label"
-    document.querySelector('label[for="id_scientific_area"]').className = "help_form_label"
+    document.querySelector('label[for="id_researchInterests"]').className = "help_form_label"
 
 
   }
@@ -34,7 +34,7 @@ function addClass() {
 
       <p class="page_title">Edit Profile</p>
       <div id="profile_edit" class="page_white_cont">
-      <form method="post">
+      <form method="post"enctype="multipart/form-data">
         {% csrf_token %}
         {{ formUser.as_p }}
         {{ formProfile.as_p }}
