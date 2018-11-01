@@ -598,6 +598,15 @@ float: right;
     transition: 0.5s;
 }
 
+#redirect_bookmark:hover {
+  background: linear-gradient(to left, #29ABE2, #0000FF);
+    -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    transition: 0.5s;
+}
+
+
 centerText{
   text-align: center;
 }

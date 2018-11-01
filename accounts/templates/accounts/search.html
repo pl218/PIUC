@@ -5,29 +5,24 @@
 {% endblock %}
 \
 {% block body %}
-<div class=“signed_container”>
- <br>
- <div class=“feed_post”>
-   {% for post in posts %}
-   <div class=“post_title”>
-     <span> {{ post.title}} </span>
-   </div>
+<div class="signed_container">
+  <br>
+  <div class="feed_post">
+  {% for post in posts %}
+  <div class="post_title">
+  	<p> {{ post.title}} </p>
+  </div>
+  <div class="post_text">
+  	<p> {{post.post}} </p>
+  </div>
+  {% endfor%}
 
-   <div class=“post_text”>
-   <p> {{post.post}} </p>
- </div>
-   {% endfor%}
-
-   {% for user in users %}
-
-   <div class=“post_user”>
-     <p> Posted by
-       {{ user.username}}
-       {{ user.first_name }}
-     </p>
-   </div>
-   {% endfor%}
-
- </div>
+  {% for user in users %}
+    <div class="post_text">
+  	<p> {{ user.username}} </p>
+  	<p> {{ user.first_name }} </p>
+  </div>
+  {% endfor%}
+</div>
 </div>
 {% endblock %}

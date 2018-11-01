@@ -48,6 +48,7 @@
         <ul id="nav_bar_links">
           <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
           <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
+          <li onclick="location.href='{% url 'accounts:bookmarks' user.get_username %}';">bookmarks</li>
           <li>inbox</li>
         </ul>
 
