@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_signed.html' %}
 
   <title>Bookmarks</title>
 
@@ -13,8 +13,10 @@
     </div>
         {% for marks in data %}
             {{ marks.urlName}}
-            {{marks.url}}
-            {{marks.keyword}}
+            <a href={{ marks.url }} id ="redirect_bookmark">
+            {{ marks.url }}
+            {{ marks.keyword }}
+            <br>
         {% endfor %}
 
   {% endblock %}

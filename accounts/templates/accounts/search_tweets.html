@@ -1,16 +1,19 @@
-{% extends 'base_signed.html' %}
+{% extends ‘base_signed.html’ %}
 {% load static %}
 {% block head %}
-    <title>Profile</title>
+   <title>Profile</title>
 {% endblock %}
 \
 {% block body %}
 <div class="signed_container">
   <br>
   {% for tweet in tweets %}
-  <div class="feed_post">
-  	<p> {{ tweet.all_text}} </p>
-  </div>
+   <a href="https://twitter.com/{{tweet.screen_name}}/status/{{tweet.id}}" target="_blank">
+    <div class="feed_post">
+      <p>{{tweet.created_at}}</p>
+    	<p>{{tweet.all_text}}</p>
+    </div>
+  </a>
   {% endfor%}
 </div>
 {% endblock %}

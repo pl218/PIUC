@@ -40,7 +40,7 @@ def register(request):
             user=form.save() #guarda os dados basicos do utilizador (username pass...)
             user.refresh_from_db()
             user.userprofile.ORCID= form.cleaned_data.get('ORCID') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
-            user.userprofile.scientific_area=form.cleaned_data.get('scientific_area')
+            user.userprofile.researchInterests=form.cleaned_data.get('researchInterests')
             user.save() #guarda os dados adicionais do perfil na bd
 
             #Entrar na conta após os registo
@@ -79,7 +79,8 @@ def help(request):
 def edit_profile(request,username):
     user= User.objects.get(username=username)
     if request.method == 'POST':
-        formProfile=EditProfileForm(request.POST,instance=request.user.userprofile)
+        print(request.FILES)
+        formProfile=EditProfileForm(request.POST,request.FILES,instance=request.user.userprofile)
         formUser=EditUserForm(request.POST,instance=request.user)
 
         if formProfile.is_valid() and formUser.is_valid() :
