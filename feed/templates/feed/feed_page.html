@@ -46,15 +46,12 @@
   {% endfor %}
 </div>
 
-
 <script type="text/javascript">
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
   document.querySelector("#nav_bar_links > li:nth-child(1)").id = "nav_bar_link_selected";
-
   document.getElementById("feed_submit").addEventListener("click", RevealSubmit);
-
+  
   var checker_submit = true;
-
   function RevealSubmit() {
   //  console.log(checker_submit);
     if(checker_submit){

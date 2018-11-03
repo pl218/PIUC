@@ -11,53 +11,49 @@
 <body>
   <header>
     <div id="nav_bar">
-      <img id="nav_bar_logo" src="{% static 'logo2.png' %}">
-        <div id="nav_bar_profile">
-            <img src="{% static 'profile_icon_black.png' %}">
-          <div id="nv_profile_card">
-            <a href="{% url 'accounts:profile' user.get_username %}"><img id="nv_profile_pic" src="{% static 'profile_pic_placeholder.jpg' %}"></a>
-            <p>{{ user.first_name }}  {{ user.last_name }} </p>
-            <p> {{ user }} </p>
-            <ul>
-              <li class="nv_profile_links"><a href="{% url 'accounts:profile' user.get_username %}">View Profile</a></li>
-              <li class="nv_profile_links"><a href="{% url 'accounts:edit_profile' user.get_username %}">Edit Profile</a></li>
-              <li class="nv_profile_links"><a href="{% url 'accounts:help' %}">Need Help?</a></li>
-              <li class="nv_profile_links"><a href="{% url 'accounts:login' %}" onclick="return confirm('Are you sure you want to Logout?')">Logout</a></li>
-            </ul>
-          </div>
+      <a href="{% url 'feed:mainpage' %}"><img id="nav_bar_logo" src="{% static 'logo2.png' %}"></a>
+      <div id="nav_bar_profile">
+        <img src="{% static 'profile_icon_black.png' %}">
+        <div id="nv_profile_card">
+          <a href="{% url 'accounts:profile' user.get_username %}"><img id="nv_profile_pic" src="{% static 'profile_pic_placeholder.jpg' %}"></a>
+          <p>{{ user.first_name }}  {{ user.last_name }} </p>
+          <p> {{ user }} </p>
+          <ul>
+            <li class="nv_profile_links"><a href="{% url 'accounts:profile' user.get_username %}">View Profile</a></li>
+            <li class="nv_profile_links"><a href="{% url 'accounts:edit_profile' user.get_username %}">Edit Profile</a></li>
+            <li class="nv_profile_links"><a href="{% url 'accounts:help' %}">Need Help?</a></li>
+            <li class="nv_profile_links"><a href="{% url 'accounts:login' %}" onclick="return confirm('Are you sure you want to Logout?')">Logout</a></li>
+          </ul>
         </div>
-
-        <div id="nav_bar_search">
-          <img src="{% static 'search_icon_black.png' %}">
-        </div>
-        <img src="{% static 'search_arrow.png' %}" id="nv_search_submit">
-        <input id="nv_search_input"  type="text" placeholder="Search.." value="">
-        <script type="text/javascript">
-        document.getElementById("nv_search_submit").addEventListener("click", oi);
-
-          function oi() {
-            var input = document.getElementById("nv_search_input").value;
-            if(input.charAt(0)=='#')
-              window.location.href = "../../accounts/search_tweets/" + input.substring(1);
-            else
-              window.location.href = "../../accounts/search/" + input;
-          }
-        </script>
-
-
-        <ul id="nav_bar_links">
-          <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
-          <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
-          <li>inbox</li>
-        </ul>
-
       </div>
+
+      <div id="nav_bar_search">
+        <img src="{% static 'search_icon_black.png' %}">
+      </div>
+      <img src="{% static 'search_arrow.png' %}" id="nv_search_submit">
+      <input id="nv_search_input"  type="text" placeholder="Search.." value="">
+      <ul id="nav_bar_links">
+        <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
+        <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
+        <li>inbox</li>
+      </ul>
+
+    </div>
   </header>
   {% block body %}
   BASE
   {% endblock %}
-
 <script type="text/javascript">
+  document.getElementById("nv_search_submit").addEventListener("click", search_go);
+
+  function search_go() {
+    var input = document.getElementById("nv_search_input").value;
+    if(input.charAt(0)=='#')
+    window.location.href = "../../accounts/search_tweets/" + input.substring(1);
+    else
+    window.location.href = "../../accounts/search/" + input;
+  }
+
   document.getElementById("nav_bar_profile").addEventListener("click", RevealProfile);
   document.getElementById("nav_bar_search").addEventListener("click", RevealSearchBar);
   document.querySelector("#nav_bar_profile > img").addEventListener("mouseover", changeProfileLogo);
@@ -110,7 +106,7 @@
       document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon.png' %}";
       checker_c_s = false;
     } else {
-        document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon_black.png' %}";
+      document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon_black.png' %}";
       checker_c_s = true;
     }
   }
@@ -119,7 +115,7 @@
       document.querySelector("#nav_bar_search > img").src="{% static 'search_icon.png' %}";
       checker_c_p = false;
     } else {
-        document.querySelector("#nav_bar_search > img").src="{% static 'search_icon_black.png' %}";
+      document.querySelector("#nav_bar_search > img").src="{% static 'search_icon_black.png' %}";
       checker_c_p = true;
     }
   }
@@ -130,13 +126,11 @@
 
       checker_s_a = false;
     } else {
-        document.querySelector("#nv_search_submit").src="{% static 'search_arrow.png' %}";
+      document.querySelector("#nv_search_submit").src="{% static 'search_arrow.png' %}";
       checker_s_a = true;
     }
   }
 </script>
-
-
 </body>
 
 </html>
