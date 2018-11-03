@@ -1,6 +1,6 @@
 {% extends 'base_signed.html' %}
 
-  <title>Logout</title>
+  <title>Edit profile</title>
 
 {% block body %}
 
@@ -11,23 +11,23 @@ window.onload = addClass;
 
 function addClass() {
 
+  document.getElementById("id_first_name").className = "blue_input";
+  document.getElementById("id_last_name").className = "blue_input";
+  document.getElementById("id_email").className = "blue_input";
+  document.getElementById("id_bio").className = "blue_input";
+  document.getElementById("id_city").className = "blue_input";
+  document.getElementById("id_website").className = "blue_input";
+  document.getElementById("id_researchInterests").className = "blue_input";
 
-    document.getElementById("id_email").className = "blue_input";
-    document.getElementById("id_password").className = "blue_input";
-    document.getElementById("id_ORCID").className = "blue_input";
-    document.getElementById("id_researchInterests").className = "blue_input";
-
-    document.querySelector('label[for="id_email"]').innerHTML = "E-mail";
-    document.querySelector('label[for="id_password"]').innerHTML = "Password";
-    document.querySelector('label[for="id_ORCID"]').innerHTML = "ORCID";
-    document.querySelector('label[for="id_researchInterests"]').innerHTML = "Research Interests";
-    document.querySelector('label[for="id_email"]').className = "help_form_label"
-    document.querySelector('label[for="id_password"]').className = "help_form_label"
-    document.querySelector('label[for="id_ORCID"]').className = "help_form_label"
-    document.querySelector('label[for="id_researchInterests"]').className = "help_form_label"
-
-
+  document.querySelector('label[for="id_first_name"]').innerHTML = "First Name";
+  document.querySelector('label[for="id_last_name"]').innerHTML = "Last Name";
+  document.querySelector('label[for="id_email"]').innerHTML = "Email";
+  document.querySelector('label[for="id_bio"]').innerHTML = "Biography";
+  document.querySelector('label[for="id_city"]').innerHTML = "City";
+  document.querySelector('label[for="id_website"]').innerHTML = "City";
+  document.querySelector('label[for="id_researchInterests"]').innerHTML = "Research Interests";
   }
+
 </script>
   <div class="signed_container">
     <br>

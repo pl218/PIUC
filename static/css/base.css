@@ -275,7 +275,8 @@ label {
 
 #proflie_pic {
   border-radius: 50%;
-  width: 30%;
+  width: 30vh;
+  height: 30vh;
   min-width: 150px;
   max-width: 300px;
   display: inline-block;

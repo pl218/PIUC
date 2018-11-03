@@ -30,6 +30,7 @@
         <div id="nav_bar_search">
           <img src="{% static 'search_icon_black.png' %}">
         </div>
+        
         <img src="{% static 'search_arrow.png' %}" id="nv_search_submit">
         <input id="nv_search_input"  type="text" placeholder="Search.." value="">
 
@@ -41,13 +42,7 @@
         </ul>
 
       </div>
-      <img src="{% static 'search_arrow.png' %}" id="nv_search_submit">
-      <input id="nv_search_input"  type="text" placeholder="Search.." value="">
-      <ul id="nav_bar_links">
-        <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
-        <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
-        <li>inbox</li>
-      </ul>
+
 
     </div>
   </header>
