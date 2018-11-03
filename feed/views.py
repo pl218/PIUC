@@ -3,26 +3,30 @@ from django.shortcuts import render, redirect
 from feed.forms import FeedForm
 from feed.models import Post
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class FeedView(TemplateView):
-    template_name= 'feed/feed_page.html'
-
+    
+    @method_decorator(login_required)
     def get(self, request):
         
         form=FeedForm()
         posts= Post.objects.all().order_by('-date')
-        return render(request,self.template_name,{'form': form,'posts': posts})
+        return render(request, 'feed/feed_page.html', {'form': form,'posts': posts})
 
+    @method_decorator(login_required)
     def post(self, request):
         form= FeedForm(request.POST)
         if form.is_valid():
             post=form.save(commit=False)
             post.user= request.user
-            post.save();
+            post.save()
             return redirect('/feed/mainpage')
 
-        return render(request,self.template_name,{'form':form})
+        return render(request, 'feed/feed_page.html',{'form':form})
 
+    @method_decorator(login_required)
     def favorites(request, username):
         user = User.objects.get(username=username)
         

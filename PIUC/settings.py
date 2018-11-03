@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -51,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
 ]
 
 ROOT_URLCONF = 'PIUC.urls'
@@ -66,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -128,8 +132,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/',
 ]
+#LOGIN_REDIRECT_URL = '../../feed/mainpage'
+#LOGIN_URL = "../../accounts/login/"
 
-LOGIN_REDIRECT_URL = '../../feed/mainpage'
+
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -143,3 +149,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'piuc.resetpass@gmail.com'
 EMAIL_HOST_PASSWORD = 'PIUCjafoste'
 EMAIL_PORT = 587
+
+
+
+SOCIAL_AUTH_TWITTER_KEY = 'gXZaakLcHCXoZ9zrtmZGz9gw5'
+SOCIAL_AUTH_TWITTER_SECRET = 'vIlaHSCNQGlvYbfmxri2EzZEHTcQu0PaVqv1wkXaRpSIIEVYTQ'
+
+

@@ -26,6 +26,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
 from accounts.models import BookmarksModel
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 #def loginPage(request):
@@ -33,6 +34,7 @@ from accounts.models import BookmarksModel
 
 enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
 
+@login_required
 def register(request):
     if request.method == 'POST': #POST -> cliente envia info para o server
         form=RegistrationForm(request.POST)
