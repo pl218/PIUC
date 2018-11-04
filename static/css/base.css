@@ -646,6 +646,7 @@ centerText{
   border: none;
   background-color: #E0E9F8;
   padding: 5pt;
+  display: block;
 }
 
 #help_submit_button {
@@ -709,4 +710,9 @@ centerText{
 /* PROFILE EDIT */
 #profile_sub_button {
   width: 20%;
+}
+
+
+#profile_pic_submit {
+  border: none;
 }
