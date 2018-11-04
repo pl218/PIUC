@@ -12,3 +12,11 @@ class FeedForm(forms.ModelForm):
             'post',
 
         )
+
+class TwitterLoginForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = (
+            'username',
+            'password',
+        )

@@ -26,7 +26,6 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
 from accounts.models import BookmarksModel
-
 # Create your views here.
 #def loginPage(request):
 #    return render(request, 'accounts/login.html')
