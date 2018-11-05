@@ -8,7 +8,7 @@ class FeedView(TemplateView):
     template_name= 'feed/feed_page.html'
 
     def get(self, request):
-        
+
         form=FeedForm()
         posts= Post.objects.all().order_by('-date')
         return render(request,self.template_name,{'form': form,'posts': posts})
@@ -25,7 +25,7 @@ class FeedView(TemplateView):
 
     def favorites(request, username):
         user = User.objects.get(username=username)
-        
+
         if user.userprofile.favorites.count()>0:
             posts = user.userprofile.favorites.all().order_by('-date')
             return render(request,'feed/fav_page.html',{'user':user ,'posts': posts})

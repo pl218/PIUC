@@ -21,7 +21,7 @@ from django.shortcuts import resolve_url
 from django.http import HttpResponseRedirect
 from django import forms
 from feed.forms import FeedForm
-from feed.models import Post
+from feed.models import Post, Seartweet
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
@@ -99,6 +99,7 @@ def favorite(request,username,id):
     posts = Post.objects.all().order_by('-date')
     user = User.objects.get(username=username)
     post = Post.objects.get(id=id)
+
     if post in user.userprofile.favorites.all():
         user.userprofile.favorites.remove(post)
     else:
@@ -107,6 +108,33 @@ def favorite(request,username,id):
     user.save()
 
     return render(request,'feed/feed_page.html',{'user': user,'posts': posts})
+
+
+
+def favoriteTwitter(request,auxPage,username,name,id,created_at,all_text):
+    posts = Post.objects.all().order_by('-date')
+    user = User.objects.get(username=username)
+
+    try:
+        post = Post.objects.get(idpost=id)
+    except Post.DoesNotExist:
+        post = Post.objects.create()
+        post.idpost = id
+        post.title = name
+        post.post = all_text
+        post.created_at = created_at
+        post.save();
+
+    if post in user.userprofile.favorites.all():
+        user.userprofile.favorites.remove(post)
+    else:
+        user.userprofile.favorites.add(post)
+
+    user.save()
+
+    if auxPage == '1':
+        return render(request,'feed/fav_page.html',{'user':user ,'posts': posts})
+
 
 def change_password(request):
     if request.method == 'POST':
@@ -321,3 +349,25 @@ def BookmarksView(request,username):
             post.save();
             return redirect('/accounts/bookmarks/'+username);
         return render(request,'accounts/bookmarks.html',{'form':form,'data':data})
+
+def add_tweets_search(request, input, username):
+    posts = Seartweet.objects.all()
+    user = User.objects.get(username=username)
+
+
+    try:
+        post = Seartweet.objects.get(name=input)
+    except Seartweet.DoesNotExist:
+        post = Seartweet.objects.create()
+        post.name = input
+        post.check = 1
+        post.save();
+
+    if post in user.userprofile.tweets.all():
+        user.userprofile.tweets.remove(post)
+    else:
+        user.userprofile.tweets.add(post)
+
+    user.save()
+
+    return redirect('/accounts/feed/')

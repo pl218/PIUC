@@ -1,4 +1,4 @@
-{% extends ‘base_signed.html’ %}
+{% extends 'base_signed.html' %}
 {% load static %}
 {% block head %}
    <title>Profile</title>
@@ -8,12 +8,31 @@
 <div class="signed_container">
   <br>
   {% for tweet in tweets %}
-   <a href="https://twitter.com/{{tweet.screen_name}}/status/{{tweet.id}}" target="_blank">
-    <div class="feed_post">
-      <p>{{tweet.created_at}}</p>
-    	<p>{{tweet.all_text}}</p>
-    </div>
-  </a>
+    {% if tweet.lang == 'en' or tweet.lang == 'pt' %}
+      <div class="feed_post">
+        <div class="post_title">
+          <span>
+            {{tweet.user.name}}
+          </span>
+          {% if tweet in user.userprofile.favorites.all %}
+          <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
+            <div class="fav_on"> </div>
+          </a>
+          {% else %}
+          <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
+            <div class="fav_off"> </div>
+          </a>
+          {% endif %}
+        </div>
+        <div class="post_text">
+          <a href="https://twitter.com/{{tweet.screen_name}}/status/{{tweet.id}}" target="_blank">
+            <p>{{tweet.lang}}</p>
+            <p>{{tweet.created_at}}</p>
+          	<p>{{tweet.all_text}}</p>
+          </a>
+        </div>
+      </div>
+    {% endif %}
   {% endfor%}
 </div>
 {% endblock %}

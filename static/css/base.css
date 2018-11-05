@@ -709,3 +709,19 @@ centerText{
 #profile_sub_button {
   width: 20%;
 }
+
+.column1 {
+  float: left;
+  width: 20%;
+}
+
+.column2 {
+  float: left;
+  width: 60%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

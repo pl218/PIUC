@@ -15,35 +15,30 @@
       <button type="submit">POST</button>
     </form>
   </div>
-  {% for post in posts %}
-  <div class="feed_post">
 
-    <div class="post_title">
-      <span>
-        {{ post.title }}
-      </span>
-      {% if post in user.userprofile.favorites.all %}
-      <a href="{% url 'accounts:favorite' user.get_username post.id %}">
-        <div class="fav_on"> </div>
-      </a>
-      {% else %}
-      <a href="{% url 'accounts:favorite' user.get_username post.id %}">
-        <div class="fav_off"> </div>
-      </a>
-      {% endif %}
-    </div>
+  <div class = "row">
+    <div class = "column1">
+      <p>Pesquisas Twitter</p>
+      {% for seartweet in user.userprofile.tweets.all %}
+        <div>
+            <input type="checkbox" name="feature" value="scales" /> Scales
+        </div>
+        <div>
+            <input type="checkbox" name="feature" value="horns" /> Horns
+        </div>
+      {% endfor %}
 
-    <div class="post_text">
-      <p>
-        {{ post.post }}
-      </p>
-    </div>
-    <div class="post_user">
-      <p> Posted by <a href="{% url 'accounts:profile' post.user.get_username %}" id="redirect_profile">{{ post.user.get_full_name }}</a> ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p>
-    </div>
+      <input id="tweet_search_add"  type="text" placeholder="Add new Search Tweet" value="">
+      <button onClick="oi()">
+        Save
+      </button>
 
+    </div>
+    <div class = "column2">
+      <p> OLA </p>
+    </div
   </div>
-  {% endfor %}
+
 </div>
 
 
@@ -64,6 +59,13 @@
       document.getElementById("feed_submit_form").style.display = "none";
       checker_submit = true;
     }
+  }
+
+  function oi() {
+    var input = document.getElementById("tweet_search_add").value;
+    window.location.href = "{% url 'accounts:add_tweets_search' "+input+" user.get_username %}";
+
+
   }
 </script>
 
