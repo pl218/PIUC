@@ -10,7 +10,7 @@
       <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
-      <button id="login_sub_button" type="submit">LOGIN</button>
+      <button class="default_button" type="submit">LOGIN</button>
       <div id="login_link">
         <a href="{% url 'accounts:register' %}" id="register_login_link">Create account?</a>
         <a href="{% url 'accounts:reset_password' %}" id="reset_password_link">Forgot password?</a>
