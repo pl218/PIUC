@@ -58,9 +58,6 @@ def profile(request, username):
     user = User.objects.get(username=username)
     idd = user.id
     posts = []
-    for post in Post.objects.all():
-        if post.user_id == idd:
-            posts.append(post)
     #return render(request, '<app_name>/user_profile.html', {"user":user})
     return render(request,'accounts/profile.html',{'user': user, 'posts': posts})
 
@@ -360,7 +357,7 @@ def add_tweets_search(request, input, username):
     except Seartweet.DoesNotExist:
         post = Seartweet.objects.create()
         post.name = input
-        post.check = 1
+        post.check = True
         post.save();
 
     if post in user.userprofile.tweets.all():

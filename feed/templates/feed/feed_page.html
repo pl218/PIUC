@@ -63,7 +63,7 @@
 
   function oi() {
     var input = document.getElementById("tweet_search_add").value;
-    window.location.href = "{% url 'accounts:add_tweets_search' "+input+" user.get_username %}";
+    window.location.href = "{% url 'accounts:add_tweets_search' 'input' user.get_username %}";
 
 
   }

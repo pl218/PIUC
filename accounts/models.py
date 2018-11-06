@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from feed.models import Post
+from feed.models import Post, Seartweet
 
 
 # Create your models here.
@@ -15,6 +15,7 @@ class UserProfile(models.Model):
     researchInterests=models.CharField(max_length=200, default='')
     confirmed_email=models.BooleanField(default=False)
     favorites = models.ManyToManyField(Post)
+    tweets = models.ManyToManyField(Seartweet)
     profilePic=models.ImageField(default='profile_pics/profile_pic_placeholder.jpg',upload_to='profile_pics/')
 
 @receiver(post_save, sender=User) #Tratamento de Sinais
