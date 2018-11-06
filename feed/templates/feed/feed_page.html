@@ -24,11 +24,11 @@
       </span>
       {% if post in user.userprofile.favorites.all %}
       <a href="{% url 'accounts:favorite' user.get_username post.id %}">
-        <div class="fav_on"> </div>
+        <i class="fa fa-star fav_on"  aria-hidden="true" style = "font-size:17pt; line-height: 24pt; text-align: center"></i>
       </a>
       {% else %}
       <a href="{% url 'accounts:favorite' user.get_username post.id %}">
-        <div class="fav_off"> </div>
+        <i class="fa fa-star fav_off" aria-hidden="true" style = "font-size:17pt; line-height: 24pt; text-align: center"></i>
       </a>
       {% endif %}
     </div>
@@ -50,7 +50,7 @@
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
   document.querySelector("#nav_bar_links > li:nth-child(1)").id = "nav_bar_link_selected";
   document.getElementById("feed_submit").addEventListener("click", RevealSubmit);
-  
+
   var checker_submit = true;
   function RevealSubmit() {
   //  console.log(checker_submit);

@@ -423,22 +423,40 @@ float: right;
 
 /* +++++ BOTAO DE FAVORITOS NO FEED +++++ */
 .fav_off, .fav_on {
-  width: 20pt;
-  height: 20pt;
+  width: 24pt;
+  height: 24pt;
   display: inline-block;
   position: relative;
   bottom: 0;
-  margin-left: 50px;
+  font-size: 10pt;
+
 }
 
 .fav_off {
-  background-color: grey;
+  color: grey;
 }
 
 .fav_on {
-  background-color: blue;
+  background: linear-gradient(0.50turn, #29ABE2, #0000FF);
+    -webkit-background:  linear-gradient(0.50turn, #29ABE2, #0000FF);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+.fav_off:hover{
+  background: linear-gradient(0.50turn, #29ABE2, #0000FF);
+    -webkit-background:  linear-gradient(0.50turn, #29ABE2, #0000FF);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
+.fav_on:hover{
+
+  background: linear-gradient(0.50turn, #666666, #CCCCCC);
+    -webkit-background:  linear-gradient(0.50turn, #666666, #CCCCCC);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+/* ++++++++++++++++++++ */
 .post_text{
     font-family: 'nunito',sans-serif;
     font-size: 12pt;
