@@ -4,10 +4,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from feed.models import Post
 
-
 # Create your models here.
 class UserProfile(models.Model):
     user= models.OneToOneField(User,on_delete=models.CASCADE)
+    token = models.CharField(max_length=100, default='') #Twitter auth
+    token_secret = models.CharField(max_length=100, default='') #Twitter auth
     bio=models.CharField(max_length=500, default='')
     city=models.CharField(max_length=30, default='')
     website=models.URLField(default='')

@@ -5,5 +5,6 @@ app_name = 'feed'
 urlpatterns = [
     path('mainpage', views.FeedView.as_view(), name='mainpage'),
     path('favorites/<slug:username>', views.FeedView.favorites, name='favorites'),
-    path('TwitterLogIn/', TwitterLogInView.as_view(template_name= "feed/TwitterLogIn.html"), name='Twitterlogin'),
+    path('TwitterSignIn/<slug:username>', views.FeedView.TwitterSignIn, name='TwitterSignIn'),
+
 ]

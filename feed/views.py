@@ -3,11 +3,17 @@ from django.shortcuts import render, redirect
 from feed.forms import FeedForm
 from feed.models import Post
 from django.contrib.auth.models import User
+from django.conf import settings
 from twitter import *
+import oauth2 as oauth
+import cgi
 
-consumer_key= "gXZaakLcHCXoZ9zrtmZGz9gw5"
-consumer_secret= "vIlaHSCNQGlvYbfmxri2EzZEHTcQu0PaVqv1wkXaRpSIIEVYTQ"
-t = object
+consumer = oauth.Consumer(settings.TWITTER_TOKEN, settings.TWITTER_SECRET)
+client = oauth.Client(consumer)
+
+request_token_url = 'https://api.twitter.com/oauth/request_token'
+access_token_url = 'https://api.twitter.com/oauth/access_token'
+authenticate_url = 'https://api.twitter.com/oauth/authenticate'
 
 class FeedView(TemplateView):
     template_name= 'feed/feed_page.html'
@@ -18,12 +24,13 @@ class FeedView(TemplateView):
         posts= Post.objects.all().order_by('-date')
         return render(request,self.template_name,{'form': form,'posts': posts})
 
-    def post(self, request):
+    def post(self, request, username):
         form= FeedForm(request.POST)
-        try:
-            t.t.statuses.home_timeline()
-        except:
-            return redirect('/feed/TwitterLogIn')
+        user= request.user
+        t = Twitter(user.token, user.token_secret,consumer_key,consumer_secret)
+        if not user.token:
+            #print "log in first"
+            return redirect('/feed/mainpage')
 
         if form.is_valid():
             post=form.save(commit=False)
@@ -34,17 +41,26 @@ class FeedView(TemplateView):
 
         return render(request,self.template_name,{'form':form})
 
-    def TwitterLogIn(request):
-        form= TwitterLoginForm(request.POST)
-        if form.is_valid():
-            post=form.save(commit=False)
-            post.user= request.user
-            post.save();
-            t = Twitter(auth=OAuth(token, token_secret, consumer_key, consumer_secret))
-            return redirect('/feed/mainpage')
-        return render(request,self.template_name,{'form':form})
+    
+    def TwitterSignIn(request, username):
+        user = request.user   
+
+        token = oauth.Token(request.session['request_token']['oauth_token'],request.session['request_token']['oauth_token_secret'])
+        client = oauth.Client(consumer, token)
+        resp, content = client.request(access_token_url, "GET")
+        if resp['status'] != '200':
+            raise Exception("Invalid response from Twitter.")
+
+        access_token = dict(cgi.parse_qsl(content))
+
+        user.token = access_token['oauth_token']
+        user.token_secret = access_token['oauth_token_secret']
+        profile.save()
 
 
+        user = authenticate(username=access_token['screen_name'],password=access_token['oauth_token_secret'])
+
+        auth_login(request, user)
 
     def favorites(request, username):
         user = User.objects.get(username=username)

@@ -143,3 +143,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'piuc.resetpass@gmail.com'
 EMAIL_HOST_PASSWORD = 'PIUCjafoste'
 EMAIL_PORT = 587
+
+TWITTER_TOKEN = ''
+TWITTER_SECRET = ''

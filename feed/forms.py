@@ -10,13 +10,4 @@ class FeedForm(forms.ModelForm):
         fields = (
             'title',
             'post',
-
-        )
-
-class TwitterLoginForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = (
-            'username',
-            'password',
         )
