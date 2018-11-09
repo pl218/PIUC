@@ -44,7 +44,32 @@
 
   </div>
   {% endfor %}
+  {% if loggedReddit %}
+        {% for submissions in RedditPosts %}
+          Subreddit Name
+          {{ submissions.subreddit}}
+          <br>
+          TITLE
+          {{submissions.title}}
+          <br>
+          Post
+          {{ submissions.selftext}}
+          <br>
+          Imagem/videos post
+          {{submissions.url}}
+          <br>
+          Link
+          www.reddit.com{{ submissions.permalink}}
+          <br>
+          Author
+          {{ submissions.author }}
+          <br>
+        {% endfor %}
+  {% else %}
+      Login to show reddit posts!!!
+  {% endif %}
 </div>
+<a href="loginReddit">Login Reddit</a>
 
 <script type="text/javascript">
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
