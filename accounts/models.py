@@ -7,8 +7,9 @@ from feed.models import Post
 # Create your models here.
 class UserProfile(models.Model):
     user= models.OneToOneField(User,on_delete=models.CASCADE)
-    token = models.CharField(max_length=100, default='') #Twitter auth
-    token_secret = models.CharField(max_length=100, default='') #Twitter auth
+    token = models.CharField(max_length=200) #Twitter auth
+    token_secret = models.CharField(max_length=200) #Twitter auth
+    Twitter_SignedIn = models.BooleanField(default=False)
     bio=models.CharField(max_length=500, default='')
     city=models.CharField(max_length=30, default='')
     website=models.URLField(default='')

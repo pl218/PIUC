@@ -22,7 +22,7 @@
             <li class="nv_profile_links"><a href="{% url 'accounts:profile' user.get_username %}">View Profile</a></li>
             <li class="nv_profile_links"><a href="{% url 'accounts:edit_profile' user.get_username %}">Edit Profile</a></li>
             <li class="nv_profile_links"><a href="{% url 'accounts:help' %}">Need Help?</a></li>
-            <li class="nv_profile_links"><a href="{% url 'feed:TwitterSignIn' user.get_username %}">Log in with Twitter</a></li>
+            <li class="nv_profile_links"><a href="{% url 'accounts:TwitterSignIn' user.get_username %}">Log in with Twitter</a></li>
             <li class="nv_profile_links"><a href="{% url 'accounts:login' %}" onclick="return confirm('Are you sure you want to Logout?')">Logout</a></li>
           </ul>
         </div>
