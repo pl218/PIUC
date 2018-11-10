@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm, BookmarksForm
 from django.contrib.auth.models import User
@@ -41,6 +40,8 @@ def register(request):
             user.refresh_from_db()
             user.userprofile.ORCID= form.cleaned_data.get('ORCID') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
             user.userprofile.researchInterests=form.cleaned_data.get('researchInterests')
+            user.userprofile.afiliation= form.cleaned_data.get('afiliation') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
+            user.userprofile.subafiliation=form.cleaned_data.get('subafiliation')
             user.save() #guarda os dados adicionais do perfil na bd
 
             #Entrar na conta após os registo

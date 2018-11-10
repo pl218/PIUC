@@ -5,6 +5,8 @@ document.getElementById("id_last_name").className = "input_textbox";
 document.getElementById("id_email").className = "input_textbox";
 document.getElementById("id_ORCID").className = "input_textbox";
 document.getElementById("id_researchInterests").className = "input_textbox";
+document.getElementById("id_afiliation").className = "input_textbox";
+document.getElementById("id_subafiliation").className = "input_textbox";
 document.getElementById("id_password1").className = "input_textbox";
 document.getElementById("id_password2").className = "input_textbox";
 
@@ -22,5 +24,7 @@ document.querySelector('label[for="id_last_name"]').innerHTML = "Last name";
 document.querySelector('label[for="id_email"]').innerHTML = "E-mail";
 document.querySelector('label[for="id_ORCID"]').innerHTML = "ORCID";
 document.querySelector('label[for="id_researchInterests"]').innerHTML = "Research Interests";
+document.querySelector('label[for="id_afiliation"]').innerHTML = "Afiliação";
+document.querySelector('label[for="id_subafiliation"]').innerHTML = "Sub-afiliação";
 document.querySelector('label[for="id_password1"]').innerHTML = "Password";
 document.querySelector('label[for="id_password2"]').innerHTML = "Repeat Password";
