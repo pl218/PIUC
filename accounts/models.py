@@ -16,6 +16,7 @@ class UserProfile(models.Model):
     confirmed_email=models.BooleanField(default=False)
     favorites = models.ManyToManyField(Post)
     profilePic=models.ImageField(default='profile_pics/profile_pic_placeholder.jpg',upload_to='profile_pics/')
+    redditRefreshToken=models.CharField(max_length=200,null=True,default=None)
 
 @receiver(post_save, sender=User) #Tratamento de Sinais
 def update_UserProfile(sender, instance, created, **kwargs):
