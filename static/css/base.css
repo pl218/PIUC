@@ -539,29 +539,35 @@ centerText{
 
 #reset_password_desc {
   padding-top: 20px;
+}
+
+#reset_password_done {
+  width: 50%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.rp_container {
   width: 30%;
   margin: auto;
 }
 
-#reset_email_p > .input_textbox {
-  width: 30%;
-  font-size: 10pt;
-  border-width: 2px;
-  height: 14pt;
-}
 
-#reset_email_p > label {
-  margin-top: 100px;
-  width: calc(30% + 14px);
-  margin: auto;
+#id_new_password1:focus + .helptext{
   display: block;
+  opacity: 1;
+  float: left;
+  width: 100%;
+  transition: 1s;
 }
 
-#reset_password_button {
-  font-size: 10pt;
-  width: calc(30% + 14px);
-  min-width: 0;
+#rp_complete_info{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  float: right;
 }
+
 
 
 /* PROFILE EDIT */

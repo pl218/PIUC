@@ -163,3 +163,23 @@ label {
        border-image-slice: 1;
        border-width: 1px;
 }
+
+.input_textbox_small{
+  padding: 5px;
+  border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 3px;
+  left: 0;
+  font-size: 10pt;
+  background-color: white;
+  width: calc(100% - 12px) ;
+  min-width: 250px;
+  height: 14pt;
+  display: block;
+  position: relative;
+  color: grey;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
