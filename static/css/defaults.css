@@ -92,12 +92,13 @@ label {
 }
 
 /*+++++++++++ DEFAULT LINK TEXT HOVER ++++++++++++ */
-#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover, #help_reset_button:hover, .default_text_hover:hover{
+.default_text_hover:hover, #register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover, #help_reset_button:hover{
   background: linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 /*+++++++++++ DEFAULT INPUT (LOGIN AND REGISTER) ++++++++++++ */
@@ -182,4 +183,53 @@ label {
   margin-right: auto;
   margin-top: 5px;
   margin-bottom: 20px;
+}
+
+.feed_post, .feed_post_reddit {
+  width: 700px;
+  margin: 0 calc((100% - 700px)/2);
+  margin-top: 50px;
+  border: solid red 10px;
+  padding: 20px;
+  transform: translate(-20px);
+  background-color: white;
+  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 1px;
+}
+
+.post_title {
+  font-size: 24pt;
+  font-family: 'Roboto',sans-serif;
+  font-weight: bold;
+  margin-bottom: 0;
+  background-color: #E0E9F8;
+  display: inline-block;
+  padding: 5pt;
+}
+
+
+.post_text{
+    font-family: 'nunito',sans-serif;
+    font-size: 12pt;
+    font-weight: lighter;
+    width: 80%;
+    margin-top: 0;
+    background-color: #CEDFE7;
+    padding: 10px;
+    margin: 12pt 0;
+}
+
+.post_user{
+  font-family: 'Roboto',sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  background-color: #E0E9F8;
+  padding: 10px;
+}
+
+.feed_post_reddit {
+  border-image: linear-gradient(to left, #DC3408 0%, #FC987E 100%);
+       border-image-slice: 1;
+       border-width: 1px;
 }

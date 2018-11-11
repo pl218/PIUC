@@ -46,6 +46,7 @@
   {% endfor %}
   {% if loggedReddit %}
         {% for submissions in RedditPosts %}
+          <div class="feed_post_reddit">
           Subreddit Name
           {{ submissions.subreddit}}
           <br>
@@ -64,6 +65,7 @@
           Author
           {{ submissions.author }}
           <br>
+        </div>
         {% endfor %}
   {% else %}
       Login to show reddit posts!!!

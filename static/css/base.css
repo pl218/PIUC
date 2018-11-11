@@ -260,8 +260,11 @@ float: right;
 }
 
 #nv_profile_card > a > img {
+  border: solid #489CE0 2px;
   border-radius: 50%;
   height: 150px;
+  width: 150px;
+  overflow: hidden;
   margin: 25px 75px;
   margin-bottom: 10px;
 
@@ -400,29 +403,6 @@ float: right;
   font-weight: light;
 }
 
-.feed_post {
-  width: 700px;
-  margin: 0 calc((100% - 700px)/2);
-  margin-top: 50px;
-  border: solid red 10px;
-  padding: 20px;
-  transform: translate(-20px);
-  background-color: white;
-  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
-       border-image-slice: 1;
-       border-width: 1px;
-}
-
-.post_title {
-  font-size: 24pt;
-  font-family: 'Roboto',sans-serif;
-  font-weight: bold;
-  margin-bottom: 0;
-  background-color: #E0E9F8;
-  display: inline-block;
-  padding: 5pt;
-}
-
 /* +++++ BOTAO DE FAVORITOS NO FEED +++++ */
 .fav_off, .fav_on {
   width: 24pt;
@@ -459,24 +439,7 @@ float: right;
     -webkit-background-clip: text;
 }
 /* ++++++++++++++++++++ */
-.post_text{
-    font-family: 'nunito',sans-serif;
-    font-size: 12pt;
-    font-weight: lighter;
-    width: 80%;
-    margin-top: 0;
-    background-color: #CEDFE7;
-    padding: 10px;
-    margin: 12pt 0;
-}
 
-.post_user{
-  font-family: 'Roboto',sans-serif;
-  font-size: 8pt;
-  font-weight: bold;
-  background-color: #E0E9F8;
-  padding: 10px;
-}
 
 #redirect_profile:hover {
   background: linear-gradient(to left, #29ABE2, #0000FF);
@@ -552,7 +515,6 @@ centerText{
   margin: auto;
 }
 
-
 #id_new_password1:focus + .helptext{
   display: block;
   opacity: 1;
@@ -568,8 +530,6 @@ centerText{
   float: right;
 }
 
-
-
 /* PROFILE EDIT */
 #profile_sub_button {
   width: 20%;
@@ -577,4 +537,45 @@ centerText{
 
 #profile_pic_submit {
   border: none;
+}
+
+/* BOOKMARKS */
+
+#bookmark_sumbit_f > .page_subtittle {
+  margin-top: 0;
+}
+
+#bookmark_sumbit_f > form > p > label {
+  font-size: 12pt;
+}
+
+#bookmark_sumbit_f > form > button {
+  font-size: 10pt;
+  width: 10%;
+  min-width: 200px;
+  height: calc(20pt + 5px);
+}
+
+#bookmark_sumbit_f > form {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s ease;
+}
+
+.bookmark_name {
+  font-size: 18pt;
+  font-weight: bolder;
+}
+
+.bookmark_url {
+  font-size: 14pt;
+  margin: 10pt 0;
+  padding-left: 10pt;
+  border-left: solid #E0E9F8 5px;
+}
+
+.bookmark_keyword {
+  font-size: 10pt;
+  text-align: right;
 }

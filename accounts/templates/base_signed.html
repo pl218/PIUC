@@ -5,8 +5,8 @@
 <head>
   <meta charset="utf-8">
   <title></title>
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
   <link rel="stylesheet" href="{% static 'css/defaults.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
   <link href="https://fonts.googleapis.com/css?family=Nunito|Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -17,7 +17,7 @@
       <div id="nav_bar_profile">
         <img src="{% static 'profile_icon_black.png' %}">
         <div id="nv_profile_card">
-          <a href="{% url 'accounts:profile' user.get_username %}"><img id="nv_profile_pic" src="{% static 'profile_pic_placeholder.jpg' %}"></a>
+          <a href="{% url 'accounts:profile' user.get_username %}"><img id="nv_profile_pic" src="{{user.userprofile.profilePic.url}}"></a>
           <p>{{ user.first_name }}  {{ user.last_name }} </p>
           <p> {{ user }} </p>
           <ul>
@@ -40,11 +40,9 @@
           <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
           <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
           <li onclick="location.href='{% url 'accounts:bookmarks' user.get_username %}';">bookmarks</li>
-          <li>inbox</li>
         </ul>
 
       </div>
-
 
     </div>
   </header>
