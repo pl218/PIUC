@@ -19,6 +19,9 @@ class UserProfile(models.Model):
     subafiliation=models.CharField(max_length=500, default='')
     profilePic=models.ImageField(default='profile_pics/profile_pic_placeholder.jpg',upload_to='profile_pics/')
     redditRefreshToken=models.CharField(max_length=200,null=True,default=None)
+    token = models.CharField(max_length=200, default='') #Twitter auth
+    token_secret = models.CharField(max_length=200, default='') #Twitter auth
+    Twitter_SignedIn = models.BooleanField(default=False)
 
 @receiver(post_save, sender=User) #Tratamento de Sinais
 def update_UserProfile(sender, instance, created, **kwargs):
