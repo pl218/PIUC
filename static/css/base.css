@@ -315,7 +315,7 @@ float: right;
 #nv_search_input {
   margin: 0px 5px;
   margin-left: 2vw;
-  margin-top: calc(125px - 18pt);
+  margin-top: calc(130px - 18pt);
   margin-bottom: 25px;
   font-family: 'nunito', sans-serif;
   font-size: 12pt;
@@ -330,7 +330,7 @@ float: right;
 }
 
 #nv_search_submit{
-  margin-top: calc(125px - 18pt);
+  margin-top: calc(130px - 18pt);
   margin-bottom: 25px;
   padding: 0;
   height: 18pt;
@@ -339,6 +339,9 @@ float: right;
   float: right;
   transition: 1s;
   cursor: pointer;
+  position: absolute;
+  margin-right: 10px;
+  right: calc(8vw + 90px);
 }
 
 #feed_submit {

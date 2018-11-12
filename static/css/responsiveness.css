@@ -1,0 +1,32 @@
+@media screen and (max-width:750px){
+  #nav_bar_logo{
+    margin: 25px 0;
+    position: absolute;
+    height: 70px;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #nav_bar > ul {
+    float: none;
+    margin-left: 50px;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width:935px) {
+  #nv_search_input{
+    margin: 0;
+    position: absolute;
+    top: calc(135px + (18pt - 6px));
+    right: calc(4vw + 90px);
+  }
+  #nv_search_submit{
+    margin: 0;
+    position: absolute;
+    top: calc(135px + (18pt - 6px));
+    right: calc(4.5vw + 90px);
+    z-index: 1;
+    transition: none;
+  }
+
+}
