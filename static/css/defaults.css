@@ -62,6 +62,7 @@ label {
 .signed_container{
   background: linear-gradient(to left, rgba(0, 0, 255, 0.05), rgba(41, 171, 226, 0.05));
   padding-bottom: 200px;
+
 }
 
 /*+++++++++++ DEFAULT BUTTON ++++++++++++ */

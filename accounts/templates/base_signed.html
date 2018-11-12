@@ -4,6 +4,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
   <link rel="stylesheet" href="{% static 'css/defaults.css' %}">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -37,23 +38,28 @@
 
         <img src="{% static 'search_arrow.png' %}" id="nv_search_submit">
         <input id="nv_search_input"  type="text" placeholder="Search.." value="">
+        <div id="hamburger">
+          <div id="bar1"></div>
+          <div id="bar2"></div>
+          <div id="bar3"></div>
+        </div>
 
-        <ul id="nav_bar_links">
-          <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
-          <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
-          <li onclick="location.href='{% url 'accounts:bookmarks' user.get_username %}';">bookmarks</li>
-        </ul>
-
-      </div>
-
+        <div id="nav_search_card">
+                <ul id="nav_bar_links">
+                  <li id="pilas"> <input id="nv_search_input1"  type="text" placeholder="Search.." value=""></li>
+                  <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
+                  <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
+                  <li onclick="location.href='{% url 'accounts:bookmarks' user.get_username %}';">bookmarks</li>
+                </ul>
+        </div>
     </div>
+    <div id="background"></div>
   </header>
   {% block body %}
   BASE
   {% endblock %}
 <script type="text/javascript">
   document.getElementById("nv_search_submit").addEventListener("click", search_go);
-
   function search_go() {
     var input = document.getElementById("nv_search_input").value;
     if(input.charAt(0)=='#')
@@ -63,6 +69,9 @@
   }
 
   document.getElementById("nav_bar_profile").addEventListener("click", RevealProfile);
+  document.getElementById("hamburger").addEventListener("click", RevealSearchCard);
+  document.getElementById("background").addEventListener("click", RevealSearchCard);
+
   document.getElementById("nav_bar_search").addEventListener("click", RevealSearchBar);
   document.querySelector("#nav_bar_profile > img").addEventListener("mouseover", changeProfileLogo);
   document.querySelector("#nav_bar_profile > img").addEventListener("mouseleave", changeProfileLogo);
@@ -75,6 +84,7 @@
 
 
   var checker = true;
+  var checker_s_c = true;
   var checker_s = true;
   var checker_c_s = true;
   var checker_c_p = true;
@@ -94,6 +104,32 @@
       checker = true;
     }
   }
+
+  function RevealSearchCard() {
+    if(checker_s_c){
+      document.getElementById("nav_search_card").style.pointerEvents = "all";
+      document.getElementById("nav_search_card").style.left = "0";
+      document.getElementById("nav_search_card").style.opacity = "1";
+      document.getElementById('bar1').style.marginLeft ="10px";
+      document.getElementById('bar2').style.marginLeft ="0px";
+      document.getElementById('bar3').style.marginLeft ="10px";
+      document.getElementById("background").style.backgroundColor = "black";
+      document.getElementById("background").style.display = "inline";
+      document.getElementById("background").style.zIndex = "1";
+      checker_s_c = false;
+    } else {
+      document.getElementById("nav_search_card").style.left = "-100px";
+      document.getElementById("nav_search_card").style.opacity = "0";
+      document.getElementById("nav_search_card").style.pointerEvents = "none";
+      document.getElementById('bar1').style.marginLeft ="0px";
+      document.getElementById('bar2').style.marginLeft ="10px";
+      document.getElementById('bar3').style.marginLeft ="0px";
+      document.getElementById("background").style.zIndex = "-100000";
+      document.getElementById("background").style.display = "none";
+      checker_s_c = true;
+    }
+  }
+
   function RevealSearchBar() {
     if(checker_s){
       document.getElementById("nv_search_input").style.width = "130px";
@@ -138,6 +174,17 @@
       checker_s_a = true;
     }
   }
+  function myFunction(x) {
+    if (!x.matches) { // If media query matches
+        document.getElementById("nav_search_card").style.opacity = "1";
+    } else {
+      document.getElementById("nav_search_card").style.opacity = "0";
+    }
+}
+
+var x = window.matchMedia("(max-width: 700px)")
+myFunction(x) // Call listener function at run time
+x.addListener(myFunction)
 </script>
 </body>
 
