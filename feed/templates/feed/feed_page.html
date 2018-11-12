@@ -3,11 +3,10 @@
 
 {% block body %}
 
-
 <div class="signed_container">
-  <br>
- <!-- <div id="feed_submit">
-    <p> SUBMIT NEW </p>
+{% if user.userprofile.Twitter_SignedIn%}
+  <div id="feed_submit">
+    <p> POST ON TWEET </p>
   </div>
   <div id="feed_submit_form">
     <form method="post">
@@ -15,7 +14,12 @@
       {{ form.as_p }}
       <button type="submit">POST</button>
     </form>
-  </div> -->
+  </div>
+{% else %}
+  <div id="feed_submit">
+    <a href="{% url 'accounts:TwitterSignIn' user.get_username %}">SIGN IN ON TWITTER TO POST</a>
+  </div>
+{% endif %}
   {% for post in posts %}
   <div class="feed_post">
 
@@ -79,19 +83,19 @@
   document.querySelector("#nav_bar_links > li:nth-child(1)").id = "nav_bar_link_selected";
 
   /////SUBMIT POST
-  // document.getElementById("feed_submit").addEventListener("click", RevealSubmit);
-  //
-  // var checker_submit = true;
-  // function RevealSubmit() {
-  // //  console.log(checker_submit);
-  //   if(checker_submit){
-  //     document.getElementById("feed_submit_form").style.display = "inline-block";
-  //     checker_submit = false;
-  //   } else {
-  //     document.getElementById("feed_submit_form").style.display = "none";
-  //     checker_submit = true;
-  //   }
-  // }
+  document.getElementById("feed_submit").addEventListener("click", RevealSubmit);
+
+  var checker_submit = true;
+  function RevealSubmit() {
+    console.log(checker_submit);
+    if(checker_submit){
+      document.getElementById("feed_submit_form").style.display = "inline-block";
+      checker_submit = false;
+    } else {
+      document.getElementById("feed_submit_form").style.display = "none";
+      checker_submit = true;
+    }
+  }
 </script>
 
 {% endblock %}
