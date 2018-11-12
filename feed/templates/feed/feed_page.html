@@ -19,24 +19,53 @@
   <div class = "row">
     <div class = "column1">
       <p>Pesquisas Twitter</p>
-      {% for seartweet in user.userprofile.tweets.all %}
-        <div>
-            <input type="checkbox" name="feature" value="scales" /> Scales
-        </div>
-        <div>
-            <input type="checkbox" name="feature" value="horns" /> Horns
-        </div>
+      {% for seartweet in posts %}
+        {% if seartweet.check == 0 %}
+          <div>
+            <input type="checkbox" name="feature" value="{{seartweet.name}}" onClick='handleClick(this);'/> {{seartweet.name}}
+          </div>
+        {% else %}
+          <div>
+            <input type="checkbox" name="feature" value="{{seartweet.name}}" checked onClick='handleClick(this);'/> {{seartweet.name}}
+          </div>
+        {% endif %}
       {% endfor %}
 
       <input id="tweet_search_add"  type="text" placeholder="Add new Search Tweet" value="">
       <button onClick="oi()">
-        Save
+        Send
       </button>
 
     </div>
     <div class = "column2">
-      <p> OLA </p>
-    </div
+      {% for tweet in tweets %}
+        {% if tweet.lang == 'en' or tweet.lang == 'pt' %}
+          <div class="feed_post">
+            <div class="post_title">
+              <span>
+                {{tweet.user.name}}
+              </span>
+              {% if tweet in user.userprofile.favorites.all %}
+              <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
+                <div class="fav_on"> </div>
+              </a>
+              {% else %}
+              <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
+                <div class="fav_off"> </div>
+              </a>
+              {% endif %}
+            </div>
+            <div class="post_text">
+              <a href="https://twitter.com/{{tweet.screen_name}}/status/{{tweet.id}}" target="_blank">
+                <p>{{tweet.lang}}</p>
+                <p>{{tweet.created_at}}</p>
+              	<p>{{tweet.all_text}}</p>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor%}
+    </div>
   </div>
 
 </div>
@@ -63,9 +92,13 @@
 
   function oi() {
     var input = document.getElementById("tweet_search_add").value;
-    window.location.href = "{% url 'accounts:add_tweets_search' 'input' user.get_username %}";
+    window.location.href = "../../accounts/add_tweets_search/" + input + "/{{user.get_username}}";
+  }
 
+  function handleClick(cb) {
 
+    window.location.href = "../../accounts/change_check_tweet/" + cb.value + "/{{user.get_username}}/" + cb.checked;
+    //print("Clicked, new value = " + cb.checked);
   }
 </script>
 

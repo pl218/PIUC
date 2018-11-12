@@ -56,8 +56,8 @@ def register(request):
 def profile(request, username):
 
     user = User.objects.get(username=username)
+    posts = None
     idd = user.id
-    posts = []
     #return render(request, '<app_name>/user_profile.html', {"user":user})
     return render(request,'accounts/profile.html',{'user': user, 'posts': posts})
 
@@ -130,7 +130,9 @@ def favoriteTwitter(request,auxPage,username,name,id,created_at,all_text):
     user.save()
 
     if auxPage == '1':
-        return render(request,'feed/fav_page.html',{'user':user ,'posts': posts})
+        return redirect('/feed/favorites/'+user.username)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def change_password(request):
@@ -349,22 +351,27 @@ def BookmarksView(request,username):
 
 def add_tweets_search(request, input, username):
     posts = Seartweet.objects.all()
-    user = User.objects.get(username=username)
-
+    id = User.objects.get(username=username).pk
 
     try:
-        post = Seartweet.objects.get(name=input)
+        post = Seartweet.objects.get(name=input, user_id=id)
     except Seartweet.DoesNotExist:
         post = Seartweet.objects.create()
         post.name = input
         post.check = True
-        post.save();
+        post.user_id = id
+        post.save()
 
-    if post in user.userprofile.tweets.all():
-        user.userprofile.tweets.remove(post)
+    return redirect('/accounts/feed/mainpage')
+
+def change_check_tweet(request, input, username, type):
+    id = User.objects.get(username=username).pk
+    post = Seartweet.objects.get(name=input, user_id=id)
+
+    if type == 'false':
+        post.check = 'False'
     else:
-        user.userprofile.tweets.add(post)
+        post.check = 'True'
+    post.save()
 
-    user.save()
-
-    return redirect('/accounts/feed/')
+    return redirect('/accounts/feed/mainpage')
