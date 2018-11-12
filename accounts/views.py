@@ -117,8 +117,8 @@ def favoriteTwitter(request,auxPage,username,name,id,created_at,all_text):
     except Post.DoesNotExist:
         post = Post.objects.create()
         post.idpost = id
-        post.title = name
-        post.post = all_text
+        post.title = name.replace("-"," ")
+        post.post = all_text.replace("-"," ")
         post.created_at = created_at
         post.save();
 
