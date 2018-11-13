@@ -8,11 +8,11 @@
   {% if user.userprofile.Twitter_SignedIn%}
     <div id="feed_submit">
       <p> POST ON TWEET </p>
-    <div id="feed_submit">
-      <p> SUBMIT NEW </p>
     </div>
     <div id="feed_submit_form">
       <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
         <button type="submit">POST</button>
       </form>
     </div>
