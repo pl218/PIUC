@@ -123,4 +123,8 @@
     margin: 25px auto;
     transform: none;
   }
+
+  #nav_bar > #nav_search_card > #nav_bar_links > #pilas {
+    display: inline-block;
+  }
 }

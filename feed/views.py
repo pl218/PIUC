@@ -26,9 +26,19 @@ class FeedView(TemplateView):
 
                 subscribed = list(reddit.user.subreddits(limit=None))
                 loggedReddit=True
-                for subreddit in subscribed:
-                    for submissions in subreddit.new(limit=1):
-                        RedditPosts.append(submissions)
+                conta=0
+                stringSubreddits='+'.join(v.display_name for v in subscribed)
+                teste=True
+                while(teste):
+                   for submissions in reddit.subreddit(stringSubreddits).new(limit=100):#reddit.front.new(limit=100):
+                       if(submissions.subreddit in subscribed):
+                           conta+=1
+                           RedditPosts.append(submissions)
+                           subscribed.remove(submissions.subreddit)
+                           stringSubreddits='+'.join(v.display_name for v in subscribed)
+                           if not subscribed:
+                            teste=False
+                print(conta)
             except :
                 print("Chave Errada!")
                 user.userprofile.redditRefreshToken=None
