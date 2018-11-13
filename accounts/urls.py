@@ -33,7 +33,5 @@ urlpatterns = [
     path('reset-password/complete/', views.password_reset_complete, name='password_reset_complete'),
     path('search_tweets/<slug:input>', views.search_tweets, name='search_tweets'),
     path('add_tweets_search/<slug:input>/<slug:username>', views.add_tweets_search, name='add_tweets_search'),
-    path('change_check_tweet/<slug:input>/<slug:username>/<slug:type>', views.change_check_tweet, name='change_check_tweet'),
-    path('TwitterSignIn/<slug:username>', views.TwitterSignIn, name='TwitterSignIn'),
-    path('TwitterAuth/', views.TwitterAuth, name='TwitterAuth')
+    path('change_check_tweet/<slug:input>/<slug:username>/<slug:type>', views.change_check_tweet, name='change_check_tweet')
 ]

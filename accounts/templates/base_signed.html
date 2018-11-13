@@ -4,74 +4,62 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  <link rel="stylesheet" href="{% static 'css/defaults.css' %}">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
-  <link rel="stylesheet" href="{% static 'css/responsiveness.css' %}">
   <link href="https://fonts.googleapis.com/css?family=Nunito|Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
   <header>
     <div id="nav_bar">
-      <a href="{% url 'feed:mainpage' %}"><img id="nav_bar_logo" src="{% static 'logo2.png' %}"></a>
-      <div id="nav_bar_profile">
-        <img src="{% static 'profile_icon_black.png' %}">
-        <div id="nv_profile_card">
-          <a href="{% url 'accounts:profile' user.get_username %}"><img id="nv_profile_pic" src="{{user.userprofile.profilePic.url}}"></a>
-          <p>{{ user.first_name }}  {{ user.last_name }} </p>
-          <p> {{ user }} </p>
-          <ul>
-            <li class="nv_profile_links"><a href="{% url 'accounts:profile' user.get_username %}">View Profile</a></li>
-            <li class="nv_profile_links"><a href="{% url 'accounts:edit_profile' user.get_username %}">Edit Profile</a></li>
-            <li class="nv_profile_links"><a href="{% url 'accounts:help' %}">Need Help?</a></li>
-            <li class="nv_profile_links"><a href="{% url 'accounts:TwitterSignIn' user.get_username %}">Log in with Twitter</a></li>
-            <li class="nv_profile_links"><a href="{% url 'accounts:login' %}" onclick="return confirm('Are you sure you want to Logout?')">Logout</a></li>
-          </ul>
+      <img id="nav_bar_logo" src="{% static 'logo2.png' %}">
+        <div id="nav_bar_profile">
+            <img src="{% static 'profile_icon_black.png' %}">
+          <div id="nv_profile_card">
+            <a href="{% url 'accounts:profile' user.get_username %}"><img id="nv_profile_pic" src="{{user.userprofile.profilePic.url}}"></a>
+            <p>{{ user.first_name }}  {{ user.last_name }} </p>
+            <p> {{ user }} </p>
+            <ul>
+              <li class="nv_profile_links"><a href="{% url 'accounts:profile' user.get_username %}">View Profile</a></li>
+              <li class="nv_profile_links"><a href="{% url 'accounts:edit_profile' user.get_username %}">Edit Profile</a></li>
+              <li class="nv_profile_links"><a href="{% url 'accounts:help' %}">Need Help?</a></li>
+              <li class="nv_profile_links"><a href="{% url 'accounts:login' %}" onclick="return confirm('Are you sure you want to Logout?')">Logout</a></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
         <div id="nav_bar_search">
           <img src="{% static 'search_icon_black.png' %}">
         </div>
-
         <img src="{% static 'search_arrow.png' %}" id="nv_search_submit">
         <input id="nv_search_input"  type="text" placeholder="Search.." value="">
-        <div id="hamburger">
-          <div id="bar1"></div>
-          <div id="bar2"></div>
-          <div id="bar3"></div>
-        </div>
+        <script type="text/javascript">
+        document.getElementById("nv_search_submit").addEventListener("click", oi);
 
-        <div id="nav_search_card">
-                <ul id="nav_bar_links">
-                  <li id="pilas"> <input id="nv_search_input1"  type="text" placeholder="Search.." value=""></li>
-                  <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
-                  <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
-                  <li onclick="location.href='{% url 'accounts:bookmarks' user.get_username %}';">bookmarks</li>
-                </ul>
-        </div>
-    </div>
-    <div id="background"></div>
+          function oi() {
+            var input = document.getElementById("nv_search_input").value;
+            if(input.charAt(0)=='#')
+              window.location.href = "../../accounts/search_tweets/" + input.substring(1);
+            else
+              window.location.href = "../../accounts/search/" + input;
+          }
+        </script>
+
+
+        <ul id="nav_bar_links">
+          <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
+          <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
+          <li onclick="location.href='{% url 'accounts:bookmarks' user.get_username %}';">bookmarks</li>
+          <li>inbox</li>
+        </ul>
+
+      </div>
   </header>
   {% block body %}
   BASE
   {% endblock %}
+
 <script type="text/javascript">
-  document.getElementById("nv_search_submit").addEventListener("click", search_go);
-  function search_go() {
-    var input = document.getElementById("nv_search_input").value;
-    if(input.charAt(0)=='#')
-    window.location.href = "../../accounts/search_tweets/" + input.substring(1);
-    else
-    window.location.href = "../../accounts/search/" + input;
-  }
-
   document.getElementById("nav_bar_profile").addEventListener("click", RevealProfile);
-  document.getElementById("hamburger").addEventListener("click", RevealSearchCard);
-  document.getElementById("background").addEventListener("click", RevealSearchCard);
-
   document.getElementById("nav_bar_search").addEventListener("click", RevealSearchBar);
   document.querySelector("#nav_bar_profile > img").addEventListener("mouseover", changeProfileLogo);
   document.querySelector("#nav_bar_profile > img").addEventListener("mouseleave", changeProfileLogo);
@@ -84,7 +72,6 @@
 
 
   var checker = true;
-  var checker_s_c = true;
   var checker_s = true;
   var checker_c_s = true;
   var checker_c_p = true;
@@ -104,35 +91,9 @@
       checker = true;
     }
   }
-
-  function RevealSearchCard() {
-    if(checker_s_c){
-      document.getElementById("nav_search_card").style.pointerEvents = "all";
-      document.getElementById("nav_search_card").style.left = "0";
-      document.getElementById("nav_search_card").style.opacity = "1";
-      document.getElementById('bar1').style.marginLeft ="10px";
-      document.getElementById('bar2').style.marginLeft ="0px";
-      document.getElementById('bar3').style.marginLeft ="10px";
-      document.getElementById("background").style.backgroundColor = "black";
-      document.getElementById("background").style.display = "inline";
-      document.getElementById("background").style.zIndex = "1";
-      checker_s_c = false;
-    } else {
-      document.getElementById("nav_search_card").style.left = "-100px";
-      document.getElementById("nav_search_card").style.opacity = "0";
-      document.getElementById("nav_search_card").style.pointerEvents = "none";
-      document.getElementById('bar1').style.marginLeft ="0px";
-      document.getElementById('bar2').style.marginLeft ="10px";
-      document.getElementById('bar3').style.marginLeft ="0px";
-      document.getElementById("background").style.zIndex = "-100000";
-      document.getElementById("background").style.display = "none";
-      checker_s_c = true;
-    }
-  }
-
   function RevealSearchBar() {
     if(checker_s){
-      document.getElementById("nv_search_input").style.width = "130px";
+      document.getElementById("nv_search_input").style.width = "150px";
       document.getElementById("nv_search_input").style.opacity = "1";
       document.getElementById("nv_search_submit").style.width = "18pt";
       document.getElementById("nv_search_submit").style.opacity = "1";
@@ -150,7 +111,7 @@
       document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon.png' %}";
       checker_c_s = false;
     } else {
-      document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon_black.png' %}";
+        document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon_black.png' %}";
       checker_c_s = true;
     }
   }
@@ -159,7 +120,7 @@
       document.querySelector("#nav_bar_search > img").src="{% static 'search_icon.png' %}";
       checker_c_p = false;
     } else {
-      document.querySelector("#nav_bar_search > img").src="{% static 'search_icon_black.png' %}";
+        document.querySelector("#nav_bar_search > img").src="{% static 'search_icon_black.png' %}";
       checker_c_p = true;
     }
   }
@@ -170,22 +131,13 @@
 
       checker_s_a = false;
     } else {
-      document.querySelector("#nv_search_submit").src="{% static 'search_arrow.png' %}";
+        document.querySelector("#nv_search_submit").src="{% static 'search_arrow.png' %}";
       checker_s_a = true;
     }
   }
-  function myFunction(x) {
-    if (!x.matches) { // If media query matches
-        document.getElementById("nav_search_card").style.opacity = "1";
-    } else {
-      document.getElementById("nav_search_card").style.opacity = "0";
-    }
-}
-
-var x = window.matchMedia("(max-width: 700px)")
-myFunction(x) // Call listener function at run time
-x.addListener(myFunction)
 </script>
+
+
 </body>
 
 </html>
