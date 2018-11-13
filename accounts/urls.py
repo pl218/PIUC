@@ -34,6 +34,6 @@ urlpatterns = [
     path('search_tweets/<slug:input>', views.search_tweets, name='search_tweets'),
     path('TwitterSignIn/<slug:username>', views.TwitterSignIn, name='TwitterSignIn'),
     path('TwitterAuth/', views.TwitterAuth, name='TwitterAuth'),
-    path('add_tweets_search/<slug:input>/<slug:username>', views.add_tweets_search, name='add_tweets_search'),
+    path('add_tweets_search/<str:input>/<slug:username>', views.add_tweets_search, name='add_tweets_search'),
     path('change_check_tweet/<slug:input>/<slug:username>/<slug:type>', views.change_check_tweet, name='change_check_tweet')
 ]

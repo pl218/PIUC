@@ -42,10 +42,23 @@ def register(request):
             user=form.save() #guarda os dados basicos do utilizador (username pass...)
             user.refresh_from_db()
             user.userprofile.ORCID= form.cleaned_data.get('ORCID') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
-            user.userprofile.researchInterests=form.cleaned_data.get('researchInterests')
+            auxInterests = form.cleaned_data.get('researchInterests')
+            user.userprofile.researchInterests=auxInterests
             user.userprofile.afiliation= form.cleaned_data.get('afiliation') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
             user.userprofile.subafiliation=form.cleaned_data.get('subafiliation')
             user.save() #guarda os dados adicionais do perfil na bd
+
+            splitInterests = auxInterests.split(',')
+
+            id = UserModel.objects.get(username=user.username).pk
+
+            for temp in splitInterests:
+                post = Seartweet.objects.create()
+                post.name = temp.replace(" ","")
+                post.check = True
+                post.user_id = id
+                post.save()
+
 
             #Entrar na conta após os registo
             username = user.username
