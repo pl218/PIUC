@@ -321,7 +321,7 @@ label {
   display: inline-block;
 }
 
-#nav_bar > ul {
+#nav_bar > #nav_search_card > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -329,7 +329,7 @@ label {
   float: right;
 }
 
-#nav_bar > ul > li{
+#nav_bar > #nav_search_card > ul > li{
   display: inline-block;
   font-size: 1.5vw;
   font-family: 'Roboto', sans-serif;
@@ -341,7 +341,7 @@ label {
   margin: 0px 2vw;
 }
 
-#nav_bar > ul > li:not(#nav_bar_link_selected):hover{
+#nav_bar > #nav_search_card > ul > li:not(#nav_bar_link_selected):hover{
   cursor: pointer;
   padding-bottom: 20px;
   border-bottom: solid red;
@@ -351,7 +351,7 @@ label {
 
 }
 
-#nav_bar > ul > #nav_bar_link_selected {
+#nav_bar > #nav_search_card > ul > #nav_bar_link_selected {
   cursor: pointer;
   padding-bottom: 20px;
   border-bottom: solid red;
@@ -360,7 +360,7 @@ label {
        border-width: 5px;
 }
 
-#nav_bar_profile, #nav_bar_search {
+#nav_bar_profile, #nav_bar_search, #nav_search_card {
 display: inline-block;
 float: right;
 }
