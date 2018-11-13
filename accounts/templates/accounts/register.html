@@ -6,6 +6,51 @@
 
 {% block body %}
 
+
+<script type="text/javascript">
+
+window.onload = addClass;
+
+function addClass() {
+  document.getElementById("id_username").className = "input_textbox";
+  document.getElementById("id_first_name").className = "input_textbox";
+  document.getElementById("id_last_name").className = "input_textbox";
+  document.getElementById("id_email").className = "input_textbox";
+  document.getElementById("id_ORCID").className = "input_textbox";
+  document.getElementById("id_researchInterests").className = "input_textbox";
+  document.getElementById("id_password1").className = "input_textbox";
+  document.getElementById("id_password2").className = "input_textbox";
+
+  //REMOVES EMPTY SPAN
+//  document.querySelector("p:nth-child(8) > span").remove();
+  //REMOVE EMPY <p>
+//  document.querySelector("form > p:nth-child(10)").remove();
+
+  document.querySelector("#id_password1").parentElement.nextElementSibling.id = "password1_description";
+
+  //PLACES UL INSIDE CORRECT <p> ELEMENT
+  var password_info = document.getElementById("password1_description");
+  document.getElementById("id_password1").nextElementSibling.appendChild(password_info);
+
+  //ADDS IDs TO THE INPUT DESCRIPTONS SO YOU CAN HIDE THEM WITH CSS
+  //document.querySelector("p:nth-child(2) > span").id = "user_description";
+
+//  document.querySelector("p:nth-child(9) > span").id = "password2_description";
+
+//  CHANGES THE LABELS OF THE INPUT BOXES
+document.querySelector('label[for="id_username"]').innerHTML = "Username";
+document.querySelector('label[for="id_first_name"]').innerHTML = "First name";
+document.querySelector('label[for="id_last_name"]').innerHTML = "Last name";
+document.querySelector('label[for="id_email"]').innerHTML = "E-mail";
+document.querySelector('label[for="id_ORCID"]').innerHTML = "ORCID";
+document.querySelector('label[for="id_researchInterests"]').innerHTML = "Research Interests";
+document.querySelector('label[for="id_password1"]').innerHTML = "Password";
+document.querySelector('label[for="id_password2"]').innerHTML = "Repeat Password";
+
+}
+
+</script>
+
 <div class="container">
   <div id="register_form">
     <form method="post">
@@ -13,13 +58,10 @@
       {% csrf_token %}
       {{ form.as_p }}
 
-      <button class="default_button" type="submit" >REGISTER</button>
+      <button id="register_sub_button" type="submit" >REGISTER</button>
       <a href="{% url 'accounts:login' %}" id="login_register_link">Already registered?</a>
-
     </form>
   </div>
 </div>
 
-{% load static %}
-<script src="{% static 'JS/register.js' %}"> </script>
 {% endblock %}

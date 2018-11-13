@@ -1,3 +1,67 @@
+input::-webkit-input-placeholder::before {
+  color:#666;
+  content:"bababababababababa";
+}
+
+body {
+  background-color: white;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  padding:0;
+  border: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+textarea, select, input, button { outline: none; }
+
+label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+/* ++++ MENSAGENS DE ERRO NO LOGIN E RESGISTO +++++ */
+.errorlist {
+  list-style: none;
+  color: #EB3325;
+  padding: 0;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.page_title {
+  margin-top: 48pt;
+  text-align: center;
+  font-weight: bolder;
+  font-family: 'Roboto' sans-serif;
+  font-size: 24pt;
+}
+
+.page_subtittle {
+  margin-top: 12pt;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 12pt;
+}
+
+.signed_container{
+  background: linear-gradient(to left, rgba(0, 0, 255, 0.05), rgba(41, 171, 226, 0.05));
+  padding-bottom: 200px;
+}
+
 #login_form, #register_form {
   display: block;
   margin-left: auto;
@@ -7,6 +71,25 @@
   max-width: 500px;
 }
 
+#id_username, #id_password, .input_textbox{
+  padding: 5px;
+  border-image: linear-gradient(to left, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 5px;
+  left: 0;
+  font-size: 16pt;
+  background-color: white;
+  width: calc(100% - 20px) ;
+  min-width: 250px;
+  height: 25pt;
+  display: block;
+  position: relative;
+  color: grey;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
 
 #logo_on, #logo_off, #logo_change {
   align: center;
@@ -24,6 +107,34 @@
 
 #logo_on, #logo_change:hover #logo_off{
    display:block;
+}
+
+
+#login_sub_button, #register_sub_button, #feed_submit_form > form  > button, #help_submit_button, .default_button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  letter-spacing: 3pt;
+  width: 100%;
+  min-width: 270px;
+  height: calc(20pt + 20px);
+  background: linear-gradient(to left, #29ABE2, #0000FF);
+  font-size: 12pt;
+  color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 1.5s;
+}
+
+
+#login_sub_button:hover, #register_sub_button:hover, #feed_submit_form > form > button:hover, #help_submit_button:hover, .default_button:hover {
+  background: linear-gradient(to left, #0000FF, #29ABE2);
+  cursor: pointer;
+  letter-spacing: 10pt;
+  transition: 1.5s;
+  cursor: pointer;
 }
 
 #login_about_us {
@@ -97,6 +208,28 @@
     float: right;
 }
 
+/*+++++++++++ DEFAULT LINK TEXT HOVER ++++++++++++ */
+#register_login_link:hover, #login_register_link:hover, #reset_password_link:hover, #logout_sign_in:hover, #help_reset_button:hover, .default_text_hover:hover{
+  background: linear-gradient(to left, #29ABE2, #0000FF);
+  -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  transition: 0.5s;
+}
+
+.helptext {
+  position: relative;
+  height: 0;
+  overflow: visible;
+  float: left;
+  display: block;
+  top: calc(-20pt - 40px);
+  left: calc(100% + 20px);
+  color: grey;
+  opacity: 0;
+  transition: 0.5s;
+}
+
 #password1_description {
   list-style: none;
   margin: 0;
@@ -142,8 +275,7 @@
 
 #proflie_pic {
   border-radius: 50%;
-  width: 30vh;
-  height: 30vh;
+  width: 30%;
   min-width: 150px;
   max-width: 300px;
   display: inline-block;
@@ -188,31 +320,28 @@
   height: 100px;
   display: inline-block;
 }
-#nav_search_card{
+
+#nav_bar > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: inline-block;
   float: right;
 }
 
-#nav_bar_links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-}
-
-#nav_bar_links > li{
+#nav_bar > ul > li{
   display: inline-block;
-  font-size: 20px;
+  font-size: 1.5vw;
   font-family: 'Roboto', sans-serif;
   font-weight: bolder;
-  padding-top: calc(126px - 20px);
+  padding-top: calc(126px - 1.5vw);
   padding-bottom: 25px;
   padding-left: 1vw;
   padding-right: 1vw;
   margin: 0px 2vw;
 }
 
-#nav_bar_links > li:not(#nav_bar_link_selected):hover{
+#nav_bar > ul > li:not(#nav_bar_link_selected):hover{
   cursor: pointer;
   padding-bottom: 20px;
   border-bottom: solid red;
@@ -222,7 +351,7 @@
 
 }
 
-#nav_bar_links > #nav_bar_link_selected {
+#nav_bar > ul > #nav_bar_link_selected {
   cursor: pointer;
   padding-bottom: 20px;
   border-bottom: solid red;
@@ -243,10 +372,10 @@ float: right;
 #nav_bar_profile > img, #nav_bar_search > img {
   display: inline-block;
   float: right;
-  height: 20px;
-  width: 20px;
+  height: 1.5vw;
+  width: 1.5vw;
   margin: 0px 2vw;
-  margin-top: calc(125px - 20px);
+  margin-top: calc(125px - 1.5vw);
   margin-bottom: 25px;
   cursor: pointer;
 }
@@ -259,15 +388,11 @@ float: right;
   opacity: 0;
   transition: top 1s, opacity 1s;
   pointer-events: none;
-  z-index: 1000;
 }
 
 #nv_profile_card > a > img {
-  border: solid #489CE0 2px;
   border-radius: 50%;
   height: 150px;
-  width: 150px;
-  overflow: hidden;
   margin: 25px 75px;
   margin-bottom: 10px;
 
@@ -315,10 +440,10 @@ float: right;
 
 
 
-#nv_search_input, #nv_search_input1 {
+#nv_search_input {
   margin: 0px 5px;
   margin-left: 2vw;
-  margin-top: calc(130px - 18pt);
+  margin-top: calc(125px - 18pt);
   margin-bottom: 25px;
   font-family: 'nunito', sans-serif;
   font-size: 12pt;
@@ -332,16 +457,8 @@ float: right;
   transition: 1s;
 }
 
-#nav_bar_links > #nv_search_input1{
-  display: none;
-  width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
 #nv_search_submit{
-  margin-top: calc(130px - 18pt);
+  margin-top: calc(125px - 18pt);
   margin-bottom: 25px;
   padding: 0;
   height: 18pt;
@@ -350,9 +467,6 @@ float: right;
   float: right;
   transition: 1s;
   cursor: pointer;
-  position: absolute;
-  margin-right: 10px;
-  right: calc(8vw + 90px);
 }
 
 #feed_submit {
@@ -417,43 +531,64 @@ float: right;
   font-weight: light;
 }
 
+.feed_post {
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+  border: solid red 10px;
+  padding: 2vw;
+  background-color: white;
+  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 1px;
+}
+
+.post_title {
+  font-size: 24pt;
+  font-family: 'Roboto',sans-serif;
+  font-weight: bold;
+  margin-bottom: 0;
+  background-color: #E0E9F8;
+  display: inline-block;
+  padding: 5pt;
+}
+
 /* +++++ BOTAO DE FAVORITOS NO FEED +++++ */
 .fav_off, .fav_on {
-  width: 24pt;
-  height: 24pt;
+  width: 20pt;
+  height: 20pt;
   display: inline-block;
   position: relative;
   bottom: 0;
-  font-size: 10pt;
-
+  margin-left: 50px;
 }
 
 .fav_off {
-  color: grey;
+  background-color: grey;
 }
 
 .fav_on {
-  background: linear-gradient(0.50turn, #29ABE2, #0000FF);
-    -webkit-background:  linear-gradient(0.50turn, #29ABE2, #0000FF);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-}
-.fav_off:hover{
-  background: linear-gradient(0.50turn, #29ABE2, #0000FF);
-    -webkit-background:  linear-gradient(0.50turn, #29ABE2, #0000FF);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+  background-color: blue;
 }
 
-.fav_on:hover{
-
-  background: linear-gradient(0.50turn, #666666, #CCCCCC);
-    -webkit-background:  linear-gradient(0.50turn, #666666, #CCCCCC);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+.post_text{
+    font-family: 'nunito',sans-serif;
+    font-size: 12pt;
+    font-weight: lighter;
+    width: 80%;
+    margin-top: 0;
+    background-color: #CEDFE7;
+    padding: 10px;
+    margin: 12pt 0;
 }
-/* ++++++++++++++++++++ */
 
+.post_user{
+  font-family: 'Roboto',sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  background-color: #E0E9F8;
+  padding: 10px;
+}
 
 #redirect_profile:hover {
   background: linear-gradient(to left, #29ABE2, #0000FF);
@@ -485,6 +620,33 @@ centerText{
   margin-top: 70px;
 }
 
+/* HELP PAGE */
+.page_white_cont {
+  width: 50%;
+  margin: auto;
+  margin-top: 25px;
+  border: solid red 10px;
+  padding: 2vw;
+  background-color: white;
+  border-image: linear-gradient(to right, #29ABE2 0%, #0000FF 100%);
+       border-image-slice: 1;
+       border-width: 1px;
+}
+
+.blue_input {
+  width: calc(100% - 10pt);
+  font-size: 12pt;
+  color: black;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6pt;
+  margin-bottom: 12pt;
+  border: none;
+  background-color: #E0E9F8;
+  padding: 5pt;
+}
+
 #help_submit_button {
   height: calc(16pt + 20px);
   width: 20%;
@@ -509,6 +671,8 @@ centerText{
   border: red;
 }
 
+
+
 /* RESET PASSWORD */
 #reset_email_p {
   margin-top: 50px;
@@ -516,85 +680,35 @@ centerText{
 
 #reset_password_desc {
   padding-top: 20px;
-}
-
-#reset_password_done {
-  width: 50%;
-  margin: auto;
-  margin-top: 25px;
-}
-
-.rp_container {
   width: 30%;
   margin: auto;
 }
 
-#id_new_password1:focus + .helptext{
-  display: block;
-  opacity: 1;
-  float: left;
-  width: 100%;
-  transition: 1s;
+#reset_email_p > .input_textbox {
+  width: 30%;
+  font-size: 10pt;
+  border-width: 2px;
+  height: 14pt;
 }
 
-#rp_complete_info{
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  float: right;
+#reset_email_p > label {
+  margin-top: 100px;
+  width: calc(30% + 14px);
+  margin: auto;
+  display: block;
 }
+
+#reset_password_button {
+  font-size: 10pt;
+  width: calc(30% + 14px);
+  min-width: 0;
+}
+
 
 /* PROFILE EDIT */
 #profile_sub_button {
   width: 20%;
 }
-
-#profile_pic_submit {
-  border: none;
-}
-
-/* BOOKMARKS */
-
-#bookmark_sumbit_f > .page_subtittle {
-  margin-top: 0;
-}
-
-#bookmark_sumbit_f > form > p > label {
-  font-size: 12pt;
-}
-
-#bookmark_sumbit_f > form > button {
-  font-size: 10pt;
-  width: 10%;
-  min-width: 200px;
-  height: calc(20pt + 5px);
-}
-
-#bookmark_sumbit_f > form {
-  max-height: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s ease;
-}
-
-.bookmark_name {
-  font-size: 18pt;
-  font-weight: bolder;
-}
-
-.bookmark_url {
-  font-size: 14pt;
-  margin: 10pt 0;
-  padding-left: 10pt;
-  border-left: solid #E0E9F8 5px;
-}
-
-.bookmark_keyword {
-  font-size: 10pt;
-  text-align: right;
-}
-#hamburger{
-  display: none;
 
 .column1 {
   float: left;
