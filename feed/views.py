@@ -2,11 +2,14 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from django.conf import settings
 from feed.forms import FeedForm
-from feed.models import Post
+from feed.models import Post, Seartweet
 from django.contrib.auth.models import User as UserModel
 import praw
 from django.utils.datastructures import MultiValueDictKeyError
 from twython import Twython
+from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
+
+enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
 
 class FeedView(TemplateView):
     template_name= 'feed/feed_page.html'
@@ -32,8 +35,24 @@ class FeedView(TemplateView):
                 user.save()
 
         form=FeedForm()
-        posts= Post.objects.all().order_by('-date')
-        return render(request,self.template_name,{'form': form,'posts': posts,'loggedReddit':loggedReddit,'RedditPosts':RedditPosts})
+        user = request.user
+        posts= Seartweet.objects.filter(user_id=user.id)
+
+        auxRule = ''
+        auxCount = 1
+        for post in posts:
+            if 'True' in str(post.check):
+                if auxCount == 1:
+                    auxRule = post.name
+                    auxCount = 2
+                else:
+                    auxRule = auxRule + ' OR ' + post.name
+
+        tweets = None
+        if(auxRule != ''):
+            rule = gen_rule_payload(auxRule, results_per_call=100)
+            tweets = collect_results(rule, max_results=100, result_stream_args=enterprise_search_args)
+        return render(request,self.template_name,{'form': form,'posts': posts, 'tweets': tweets, 'loggedReddit':loggedReddit,'RedditPosts':RedditPosts})
 
     def post(self, request):
         form= FeedForm(request.POST)
@@ -43,7 +62,7 @@ class FeedView(TemplateView):
             return redirect('/feed/mainpage')
 
         twitter = Twython(settings.TOKEN, settings.SECRET, user.userprofile.token, user.userprofile.token_secret)
-           
+
         if form.is_valid():
             post=form.save(commit=False)
             post.user= request.user
@@ -62,7 +81,7 @@ class FeedView(TemplateView):
         else:
             return redirect('/feed/mainpage')
 
-def checkReddit(request):
+    def checkReddit(request):
         code = request.GET['code']
         reddit = praw.Reddit(client_id='rauAoeTRAaxrCQ',
                          client_secret='Web-2V_CRQJAKXYQY0Qqst1OIRw',
@@ -77,10 +96,6 @@ def checkReddit(request):
 
 
 
-def LoginReddit(request):
-        reddit = praw.Reddit(client_id='rauAoeTRAaxrCQ',
-                         client_secret='Web-2V_CRQJAKXYQY0Qqst1OIRw',
-                         redirect_uri='http://127.0.0.1:8000/feed/checkReddit',
-                         user_agent='testing')
-        return redirect(reddit.auth.url(['identity',
-                  'mysubreddits', 'read'], '...', 'permanent'))
+    def LoginReddit(request):
+        reddit = praw.Reddit(client_id='rauAoeTRAaxrCQ', client_secret='Web-2V_CRQJAKXYQY0Qqst1OIRw', redirect_uri='http://127.0.0.1:8000/feed/checkReddit', user_agent='testing')
+        return redirect(reddit.auth.url(['identity','mysubreddits', 'read'], '...', 'permanent'))

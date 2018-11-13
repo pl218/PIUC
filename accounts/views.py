@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm, BookmarksForm
 from django.contrib.auth.models import User as UserModel
@@ -21,7 +22,7 @@ from django.http import HttpResponseRedirect
 from django import forms
 from django.conf import settings
 from feed.forms import FeedForm
-from feed.models import Post
+from feed.models import Post, Seartweet
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
@@ -59,11 +60,8 @@ def register(request):
 def profile(request, username):
 
     user = UserModel.objects.get(username=username)
+    posts = None
     idd = user.id
-    posts = []
-    for post in Post.objects.all():
-        if post.user_id == idd:
-            posts.append(post)
     #return render(request, '<app_name>/user_profile.html', {"user":user})
     return render(request,'accounts/profile.html',{'user': user, 'posts': posts})
 
@@ -102,6 +100,7 @@ def favorite(request,username,id):
     posts = Post.objects.all().order_by('-date')
     user = UserModel.objects.get(username=username)
     post = Post.objects.get(id=id)
+
     if post in user.userprofile.favorites.all():
         user.userprofile.favorites.remove(post)
     else:
@@ -110,6 +109,35 @@ def favorite(request,username,id):
     user.save()
 
     return render(request,'feed/feed_page.html',{'user': user,'posts': posts})
+
+
+
+def favoriteTwitter(request,auxPage,username,name,id,created_at,all_text):
+    posts = Post.objects.all().order_by('-date')
+    user = UserModel.objects.get(username=username)
+
+    try:
+        post = Post.objects.get(idpost=id)
+    except Post.DoesNotExist:
+        post = Post.objects.create()
+        post.idpost = id
+        post.title = name.replace("-"," ")
+        post.post = all_text.replace("-"," ")
+        post.created_at = created_at
+        post.save();
+
+    if post in user.userprofile.favorites.all():
+        user.userprofile.favorites.remove(post)
+    else:
+        user.userprofile.favorites.add(post)
+
+    user.save()
+
+    if auxPage == '1':
+        return redirect('/feed/favorites/'+user.username)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 def change_password(request):
     if request.method == 'POST':
@@ -324,7 +352,7 @@ def BookmarksView(request,username):
             post.save();
             return redirect('/accounts/bookmarks/'+username);
         return render(request,'accounts/bookmarks.html',{'form':form,'data':data})
-        
+
 def TwitterSignIn(request,username):
     user = UserModel.objects.get(username=username)
     auth = twitter.get_authentication_tokens(callback_url="http://127.0.0.1:8000/accounts/TwitterAuth?username="+username)
@@ -346,3 +374,30 @@ def TwitterAuth(request):
     user.userprofile.Twitter_SignedIn = True
     user.save()
     return redirect('/feed/mainpage')
+
+def add_tweets_search(request, input, username):
+    posts = Seartweet.objects.all()
+    id = UserModel.objects.get(username=username).pk
+
+    try:
+        post = Seartweet.objects.get(name=input, user_id=id)
+    except Seartweet.DoesNotExist:
+        post = Seartweet.objects.create()
+        post.name = input
+        post.check = True
+        post.user_id = id
+        post.save()
+
+    return redirect('/accounts/feed/mainpage')
+
+def change_check_tweet(request, input, username, type):
+    id = UserModel.objects.get(username=username).pk
+    post = Seartweet.objects.get(name=input, user_id=id)
+
+    if type == 'false':
+        post.check = 'False'
+    else:
+        post.check = 'True'
+    post.save()
+
+    return redirect('/accounts/feed/mainpage')

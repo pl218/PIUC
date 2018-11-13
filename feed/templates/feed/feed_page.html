@@ -3,75 +3,99 @@
 
 {% block body %}
 
+
 <div class="signed_container">
-{% if user.userprofile.Twitter_SignedIn%}
-  <div id="feed_submit">
-    <p> POST ON TWEET </p>
-  </div>
-  <div id="feed_submit_form">
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">POST</button>
-    </form>
-  </div>
-{% else %}
-  <div id="feed_submit">
-    <a href="{% url 'accounts:TwitterSignIn' user.get_username %}">SIGN IN ON TWITTER TO POST</a>
-  </div>
-{% endif %}
-  {% for post in posts %}
-  <div class="feed_post">
-
-    <div class="post_title">
-      <span>
-        {{ post.title }}
-      </span>
-      {% if post in user.userprofile.favorites.all %}
-      <a href="{% url 'accounts:favorite' user.get_username post.id %}">
-        <i class="fa fa-star fav_on"  aria-hidden="true" style = "font-size:17pt; line-height: 24pt; text-align: center"></i>
-      </a>
-      {% else %}
-      <a href="{% url 'accounts:favorite' user.get_username post.id %}">
-        <i class="fa fa-star fav_off" aria-hidden="true" style = "font-size:17pt; line-height: 24pt; text-align: center"></i>
-      </a>
-      {% endif %}
+  {% if user.userprofile.Twitter_SignedIn%}
+    <div id="feed_submit">
+      <p> POST ON TWEET </p>
+    <div id="feed_submit">
+      <p> SUBMIT NEW </p>
     </div>
-
-    <div class="post_text">
-      <p>
-        {{ post.post }}
-      </p>
+    <div id="feed_submit_form">
+      <form method="post">
+        <button type="submit">POST</button>
+      </form>
     </div>
-    <div class="post_user">
-      <p> Posted by <a href="{% url 'accounts:profile' post.user.get_username %}" id="redirect_profile">{{ post.user.get_full_name }}</a> ORCID:{{ post.user.userprofile.ORCID }} {{ post.date }} </p>
+  {% else %}
+    <div id="feed_submit">
+      <a href="{% url 'accounts:TwitterSignIn' user.get_username %}">SIGN IN ON TWITTER TO POST</a>
     </div>
+  {% endif %}
 
+  <div class = "row">
+    <div class = "column1">
+      <p>Pesquisas Twitter</p>
+      {% for seartweet in posts %}
+        {% if seartweet.check == 0 %}
+          <div>
+            <input type="checkbox" name="feature" value="{{seartweet.name}}" onClick='handleClick(this);'/> {{seartweet.name}}
+          </div>
+        {% else %}
+          <div>
+            <input type="checkbox" name="feature" value="{{seartweet.name}}" checked onClick='handleClick(this);'/> {{seartweet.name}}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <input id="tweet_search_add"  type="text" placeholder="Add new Search Tweet" value="">
+      <button onClick="oi()">
+        Send
+      </button>
+
+    </div>
+    <div class = "column2">
+      {% for tweet in tweets %}
+        {% if tweet.lang == 'en' or tweet.lang == 'pt' %}
+          <div class="feed_post">
+            <div class="post_title">
+              <span>
+                {{tweet.user.name}}
+              </span>
+              {% if tweet in user.userprofile.favorites.all %}
+              <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
+                <div class="fav_on"> </div>
+              </a>
+              {% else %}
+              <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
+                <div class="fav_off"> </div>
+              </a>
+              {% endif %}
+            </div>
+            <div class="post_text">
+              <a href="https://twitter.com/{{tweet.screen_name}}/status/{{tweet.id}}" target="_blank">
+                <p>{{tweet.lang}}</p>
+                <p>{{tweet.created_at}}</p>
+              	<p>{{tweet.all_text}}</p>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor%}
+    </div>
   </div>
-  {% endfor %}
   {% if loggedReddit %}
-        {% for submissions in RedditPosts %}
-          <div class="feed_post_reddit">
-          Subreddit Name
-          {{ submissions.subreddit}}
-          <br>
-          TITLE
-          {{submissions.title}}
-          <br>
-          Post
-          {{ submissions.selftext}}
-          <br>
-          Imagem/videos post
-          {{submissions.url}}
-          <br>
-          Link
-          www.reddit.com{{ submissions.permalink}}
-          <br>
-          Author
-          {{ submissions.author }}
-          <br>
-        </div>
-        {% endfor %}
+    {% for submissions in RedditPosts %}
+      <div class="feed_post_reddit">
+      Subreddit Name
+      {{ submissions.subreddit}}
+      <br>
+      TITLE
+      {{submissions.title}}
+      <br>
+      Post
+      {{ submissions.selftext}}
+      <br>
+      Imagem/videos post
+      {{submissions.url}}
+      <br>
+      Link
+      www.reddit.com{{ submissions.permalink}}
+      <br>
+      Author
+      {{ submissions.author }}
+      <br>
+    </div>
+    {% endfor %}
   {% else %}
       Login to show reddit posts!!!
   {% endif %}
@@ -80,14 +104,14 @@
 
 <script type="text/javascript">
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
-  document.querySelector("#nav_bar_links > li:nth-child(2)").id = "nav_bar_link_selected";
+  document.querySelector("#nav_bar_links > li:nth-child(1)").id = "nav_bar_link_selected";
 
-  /////SUBMIT POST
   document.getElementById("feed_submit").addEventListener("click", RevealSubmit);
 
   var checker_submit = true;
+
   function RevealSubmit() {
-    console.log(checker_submit);
+  //  console.log(checker_submit);
     if(checker_submit){
       document.getElementById("feed_submit_form").style.display = "inline-block";
       checker_submit = false;
@@ -95,6 +119,17 @@
       document.getElementById("feed_submit_form").style.display = "none";
       checker_submit = true;
     }
+  }
+
+  function oi() {
+    var input = document.getElementById("tweet_search_add").value;
+    window.location.href = "../../accounts/add_tweets_search/" + input + "/{{user.get_username}}";
+  }
+
+  function handleClick(cb) {
+
+    window.location.href = "../../accounts/change_check_tweet/" + cb.value + "/{{user.get_username}}/" + cb.checked;
+    //print("Clicked, new value = " + cb.checked);
   }
 </script>
 

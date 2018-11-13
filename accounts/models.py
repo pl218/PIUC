@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from feed.models import Post
+from feed.models import Post, Seartweet
 
 
 # Create your models here.
@@ -17,6 +17,7 @@ class UserProfile(models.Model):
     favorites = models.ManyToManyField(Post)
     afiliation=models.CharField(max_length=500, default='')
     subafiliation=models.CharField(max_length=500, default='')
+    tweets = models.ManyToManyField(Seartweet)
     profilePic=models.ImageField(default='profile_pics/profile_pic_placeholder.jpg',upload_to='profile_pics/')
     redditRefreshToken=models.CharField(max_length=200,null=True,default=None)
     token = models.CharField(max_length=200, default='') #Twitter auth
