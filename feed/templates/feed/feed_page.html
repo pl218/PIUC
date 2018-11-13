@@ -53,11 +53,11 @@
               </span>
               {% if tweet in user.userprofile.favorites.all %}
               <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
-                <div class="fav_on"> </div>
+                <i class="fa fa-star fav_on" aria-hidden="true"></i>
               </a>
               {% else %}
               <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
-                <div class="fav_off"> </div>
+                  <i class="fa fa-star fav_off" aria-hidden="true"></i>
               </a>
               {% endif %}
             </div>
