@@ -11,6 +11,8 @@ class RegistrationForm(UserCreationForm):
     email= forms.EmailField(required=True)
     ORCID= forms.CharField(max_length=30, required=True)
     researchInterests=forms.CharField(max_length=200,required=True)
+    afiliation=forms.CharField(max_length=200,required=True)
+    subafiliation=forms.CharField(max_length=200,required=True)
 
     class Meta:
         model = User
@@ -21,6 +23,8 @@ class RegistrationForm(UserCreationForm):
             'email',
             'ORCID',
             'researchInterests',
+            'afiliation',
+            'subafiliation',
             'password1',
             'password2',
         )
@@ -87,6 +91,8 @@ class EditProfileForm(ModelForm):
     city=forms.CharField(max_length=30,required=False)
     website=forms.URLField(required=False)
     researchInterests=forms.CharField(max_length=200,required=False)
+    afiliation=forms.CharField(max_length=200,required=True)
+    subafiliation=forms.CharField(max_length=200,required=True)
     class Meta:
         model = UserProfile
         fields =(
@@ -94,6 +100,8 @@ class EditProfileForm(ModelForm):
             'city',
             'website',
             'researchInterests',
+            'afiliation',
+            'subafiliation',
             'profilePic',
         )
 

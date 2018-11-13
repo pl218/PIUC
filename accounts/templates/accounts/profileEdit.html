@@ -1,6 +1,6 @@
 {% extends 'base_signed.html' %}
 
-  <title>Logout</title>
+  <title>Edit profile</title>
 
 {% block body %}
 
@@ -11,23 +11,40 @@ window.onload = addClass;
 
 function addClass() {
 
+  document.getElementById("id_first_name").className = "blue_input";
+ document.getElementById("id_last_name").className = "blue_input";
 
-    document.getElementById("id_email").className = "blue_input";
-    document.getElementById("id_password").className = "blue_input";
-    document.getElementById("id_ORCID").className = "blue_input";
-    document.getElementById("id_researchInterests").className = "blue_input";
+  document.getElementById("id_email").className = "blue_input";
+  document.getElementById("id_bio").className = "blue_input";
+  document.getElementById("id_city").className = "blue_input";
+  document.getElementById("id_website").className = "blue_input";
+  document.getElementById("id_researchInterests").className = "blue_input";
+  document.getElementById("id_afiliation").className = "blue_input";
+  document.getElementById("id_subafiliation").className = "blue_input";
 
-    document.querySelector('label[for="id_email"]').innerHTML = "E-mail";
-    document.querySelector('label[for="id_password"]').innerHTML = "Password";
-    document.querySelector('label[for="id_ORCID"]').innerHTML = "ORCID";
-    document.querySelector('label[for="id_researchInterests"]').innerHTML = "Research Interests";
-    document.querySelector('label[for="id_email"]').className = "help_form_label"
-    document.querySelector('label[for="id_password"]').className = "help_form_label"
-    document.querySelector('label[for="id_ORCID"]').className = "help_form_label"
-    document.querySelector('label[for="id_researchInterests"]').className = "help_form_label"
+  //FORM NEEDS TO CHANGE
+  document.querySelector("#id_profilePic").previousElementSibling.id = "wtf";
+  document.querySelector("#wtf").previousElementSibling.className = "blue_input";
+
+  document.getElementById("id_profilePic").className = "blue_input";
+  document.getElementById("id_profilePic").id = "profile_pic_submit";
+
+  document.querySelector('label[for="id_first_name"]').innerHTML = "First Name";
+  document.querySelector('label[for="id_last_name"]').innerHTML = "Last Name";
+  document.querySelector('label[for="id_email"]').innerHTML = "Email";
+  document.querySelector('label[for="id_bio"]').innerHTML = "Biography";
+  document.querySelector('label[for="id_city"]').innerHTML = "City";
+  document.querySelector('label[for="id_website"]').innerHTML = "Website";
+  document.querySelector('label[for="id_researchInterests"]').innerHTML = "Research Interests";
+  document.querySelector('label[for="id_afiliation"]').innerHTML = "Afiliação";
+  document.querySelector('label[for="id_subafiliation"]').innerHTML = "Sub-afiliação";
+  document.querySelector('label[for="id_profilePic"]').innerHTML = "Profile picture";
 
 
+  //THE <p> FROM Last name already has a class?????
+  document.getElementById("id_last_name").parentElement.className = " ";
   }
+
 </script>
   <div class="signed_container">
     <br>
@@ -38,7 +55,7 @@ function addClass() {
         {% csrf_token %}
         {{ formUser.as_p }}
         {{ formProfile.as_p }}
-        <button class="default_button" id="profile_sub_button" type="submit">Submit</button>
+        <button class="default_button" id="profile_sub_button" type="submit">SUBMIT</button>
       </form>
     </div>
   </div>
