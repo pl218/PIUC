@@ -1,7 +1,6 @@
-
 from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm, BookmarksForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as UserModel
 from django.contrib.auth.forms import (UserChangeForm, SetPasswordForm)
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.views import (PasswordContextMixin)
@@ -20,18 +19,20 @@ from django.views.generic.base import TemplateView
 from django.shortcuts import resolve_url
 from django.http import HttpResponseRedirect
 from django import forms
+from django.conf import settings
 from feed.forms import FeedForm
-from feed.models import Post, Seartweet
+from feed.models import Post
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
 from accounts.models import BookmarksModel
-
+from twython import Twython, TwythonError
 # Create your views here.
 #def loginPage(request):
 #    return render(request, 'accounts/login.html')
 
 enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
+twitter = Twython(settings.TOKEN, settings.SECRET)
 
 def register(request):
     if request.method == 'POST': #POST -> cliente envia info para o server
@@ -41,6 +42,8 @@ def register(request):
             user.refresh_from_db()
             user.userprofile.ORCID= form.cleaned_data.get('ORCID') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
             user.userprofile.researchInterests=form.cleaned_data.get('researchInterests')
+            user.userprofile.afiliation= form.cleaned_data.get('afiliation') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
+            user.userprofile.subafiliation=form.cleaned_data.get('subafiliation')
             user.save() #guarda os dados adicionais do perfil na bd
 
             #Entrar na conta após os registo
@@ -55,9 +58,12 @@ def register(request):
 
 def profile(request, username):
 
-    user = User.objects.get(username=username)
-    posts = None
+    user = UserModel.objects.get(username=username)
     idd = user.id
+    posts = []
+    for post in Post.objects.all():
+        if post.user_id == idd:
+            posts.append(post)
     #return render(request, '<app_name>/user_profile.html', {"user":user})
     return render(request,'accounts/profile.html',{'user': user, 'posts': posts})
 
@@ -66,7 +72,7 @@ def logout(request):
 
 def search(request, input):
     posts = Post.objects.filter(post__contains = input );
-    users = User.objects.filter(username__contains = input);
+    users = UserModel.objects.filter(username__contains = input);
     return render(request,'accounts/search.html', {'posts': posts, 'users': users})
 
 def help(request):
@@ -74,7 +80,7 @@ def help(request):
     return render(request,'accounts/help.html')
 
 def edit_profile(request,username):
-    user= User.objects.get(username=username)
+    user= UserModel.objects.get(username=username)
     if request.method == 'POST':
         print(request.FILES)
         formProfile=EditProfileForm(request.POST,request.FILES,instance=request.user.userprofile)
@@ -94,9 +100,8 @@ def edit_profile(request,username):
 
 def favorite(request,username,id):
     posts = Post.objects.all().order_by('-date')
-    user = User.objects.get(username=username)
+    user = UserModel.objects.get(username=username)
     post = Post.objects.get(id=id)
-
     if post in user.userprofile.favorites.all():
         user.userprofile.favorites.remove(post)
     else:
@@ -105,35 +110,6 @@ def favorite(request,username,id):
     user.save()
 
     return render(request,'feed/feed_page.html',{'user': user,'posts': posts})
-
-
-
-def favoriteTwitter(request,auxPage,username,name,id,created_at,all_text):
-    posts = Post.objects.all().order_by('-date')
-    user = User.objects.get(username=username)
-
-    try:
-        post = Post.objects.get(idpost=id)
-    except Post.DoesNotExist:
-        post = Post.objects.create()
-        post.idpost = id
-        post.title = name.replace("-"," ")
-        post.post = all_text.replace("-"," ")
-        post.created_at = created_at
-        post.save();
-
-    if post in user.userprofile.favorites.all():
-        user.userprofile.favorites.remove(post)
-    else:
-        user.userprofile.favorites.add(post)
-
-    user.save()
-
-    if auxPage == '1':
-        return redirect('/feed/favorites/'+user.username)
-
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
 
 def change_password(request):
     if request.method == 'POST':
@@ -198,7 +174,7 @@ class PasswordResetForm(forms.Form):
         """
         email = self.cleaned_data["email"]
         try:
-            user = User.objects.get(email=email)
+            user = UserModel.objects.get(email=email)
             context = {
                 'email': email,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
@@ -299,7 +275,7 @@ class PasswordResetConfirmView(PasswordContextMixin, FormView):
         UserModel = get_user_model()
         uid = urlsafe_base64_decode(uidb64).decode()
         #user = UserModel._default_manager.get(pk=uid)
-        user = User.objects.get(pk=uid)
+        user = UserModel.objects.get(pk=uid)
         print(user)
         #except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist, ValidationError):
         #    user = None
@@ -335,7 +311,7 @@ def search_tweets(request, input):
     return render(request,'accounts/search_tweets.html', {'tweets': tweets})
 
 def BookmarksView(request,username):
-    id=User.objects.get(username=username).pk
+    id=UserModel.objects.get(username=username).pk
     data= BookmarksModel.objects.filter(user=id);
     if request.method=='GET':
         form=BookmarksForm();
@@ -348,30 +324,25 @@ def BookmarksView(request,username):
             post.save();
             return redirect('/accounts/bookmarks/'+username);
         return render(request,'accounts/bookmarks.html',{'form':form,'data':data})
+        
+def TwitterSignIn(request,username):
+    user = UserModel.objects.get(username=username)
+    auth = twitter.get_authentication_tokens(callback_url="http://127.0.0.1:8000/accounts/TwitterAuth?username="+username)
+    user.userprofile.token = auth['oauth_token']
+    user.userprofile.token_secret = auth['oauth_token_secret']
+    user.save()
+    url = 'https://api.twitter.com/oauth/authorize?oauth_token=' + auth['oauth_token']
+    return redirect(url)
 
-def add_tweets_search(request, input, username):
-    posts = Seartweet.objects.all()
-    id = User.objects.get(username=username).pk
+def TwitterAuth(request):
+    oauth_verifier = request.GET['oauth_verifier']
+    username = request.GET['username']
+    user = UserModel.objects.get(username=username)
+    twitter = Twython(settings.TOKEN, settings.SECRET, user.userprofile.token, user.userprofile.token_secret)
 
-    try:
-        post = Seartweet.objects.get(name=input, user_id=id)
-    except Seartweet.DoesNotExist:
-        post = Seartweet.objects.create()
-        post.name = input
-        post.check = True
-        post.user_id = id
-        post.save()
-
-    return redirect('/accounts/feed/mainpage')
-
-def change_check_tweet(request, input, username, type):
-    id = User.objects.get(username=username).pk
-    post = Seartweet.objects.get(name=input, user_id=id)
-
-    if type == 'false':
-        post.check = 'False'
-    else:
-        post.check = 'True'
-    post.save()
-
-    return redirect('/accounts/feed/mainpage')
+    final_step = twitter.get_authorized_tokens(oauth_verifier)
+    user.userprofile.token = final_step['oauth_token']
+    user.userprofile.token_secret = final_step['oauth_token_secret']
+    user.userprofile.Twitter_SignedIn = True
+    user.save()
+    return redirect('/feed/mainpage')

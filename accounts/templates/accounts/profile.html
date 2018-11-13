@@ -18,6 +18,10 @@
         <li class="blue_input">{{ user.userprofile.researchInterests }} </li>
         <li class="user_desc"> ORCID</li>
         <li class="blue_input">{{ user.userprofile.ORCID }} </li>
+        <li class="user_desc"> Afiliação</li>
+        <li class="blue_input">{{ user.userprofile.afiliation }} </li>
+        <li class="user_desc"> Sub-Afiliação</li>
+        <li class="blue_input">{{ user.userprofile.subafiliation }} </li>
         <li class="user_desc">City </li>
         <li class="blue_input">{{ user.userprofile.city }} </li>
         <li class="user_desc"> BIO</li>
@@ -30,6 +34,13 @@
       </ul>
     </div>
     </div>
+
+    {% for post in posts %}
+    <div class="page_white_cont">
+      <p class="post_title"> {{ post.title }} </p>
+      <p class="post_text"> {{ post.post }} </p>
+        </div>
+    {% endfor%}
 
 </div>
 {% endblock %}

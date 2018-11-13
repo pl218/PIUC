@@ -1,0 +1,126 @@
+
+@media only screen and (max-width: 750px){
+  #nav_bar_logo{
+    margin: 25px 0;
+    position: absolute;
+    height: 70px;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #nav_search_card {
+    float: none;
+    margin-left: 50px;
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width:935px) {
+  #nv_search_input{
+    margin: 0;
+    position: absolute;
+    top: calc(135px + (18pt - 6px));
+    right: calc(4vw + 90px);
+  }
+  #nv_search_submit{
+    margin: 0;
+    position: absolute;
+    top: calc(135px + (18pt - 6px));
+    right: calc(4.5vw + 90px);
+    z-index: 1;
+    transition: none;
+  }
+
+}
+
+
+
+/* ------- MOBILE -------- */
+
+
+
+@media only screen and (max-width: 500px){
+#hamburger{
+  display:block;
+  position: absolute;
+  top:20px;
+  left: 20px;
+  z-index: 1000;
+
+}
+#bar1, #bar2, #bar3{
+  width: 17.5px;
+   height: 3px;
+   margin: 6px 0;
+   background: linear-gradient(to left,#29ABE2, #0000FF);
+   transition: 1s;
+
+}
+
+#bar2{
+  margin-left: 10px;
+  background: linear-gradient(to right,#29ABE2, #0000FF);
+}
+
+  #nav_search_card {
+    list-style: none;
+    margin-bottom: 25px;
+    padding: 0;
+    position: absolute;
+    margin: 0;
+    top:0;
+    left: -100px;
+    background: white;
+    opacity: 0;
+    transition: 1s;
+    z-index: 1000;
+    pointer-events: none;
+
+  }
+ #nav_search_card > ul > li{
+    font-family: 'nunito', sans-serif;
+    font-size: 12pt;
+    margin: 2pt 25px;
+    text-align: center;
+    display: block;
+  }
+
+  #nav_bar_links{
+    width: 80vw;
+    height: 100vh;
+  }
+
+  #background{
+    position: absolute;
+    top:0;
+    opacity: 0.5;
+    width: 100vw;
+    height:100vh;
+    display: none;
+  }
+#nav_bar_links > li >  #nv_search_input1{
+    display: block;
+    width: 80%;
+    opacity: 1;
+      border-image: transparent;
+      margin: 0 25px 0 0;
+      margin-top: 25px;
+      margin-bottom: 25px;
+  }
+  #nav_search_card > ul >#pilas:hover, #nav_search_card > ul >#pilas{
+    border-image: transparent;
+    border-bottom: 0;
+    padding: 0;
+    margin: 0;
+    cursor: none;
+  }
+  #nav_bar_search, #nv_search_submit{
+    display: none;
+  }
+
+  .feed_post_reddit, .feed_post, .page_white_cont{
+    width:80%;
+    margin: 25px auto;
+    transform: none;
+  }
+}
