@@ -1,22 +1,58 @@
 {% extends 'base_signed.html' %}
 
-  <title>Bookmarks</title>
+<title>Bookmarks</title>
 
-  {% block body %}
-    <div class="container">
-        <h1>BookMarks</h1>
-        <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit">Submit</button>
-        </form>
-    </div>
-        {% for marks in data %}
-            {{ marks.urlName}}
-            <a href={{ marks.url }} id ="redirect_bookmark">
-            {{ marks.url }}
-            {{ marks.keyword }}
-            <br>
-        {% endfor %}
+{% block body %}
+<div class="signed_container">
+  <br>
+  <!-- <p class="page_title">BookMarks</p> -->
 
+  <div id="bookmark_sumbit_f" class="page_white_cont">
+    <p class="page_subtittle default_text_hover">Submit new bookmark</p>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="default_button" type="submit">SUBMIT</button>
+    </form>
+  </div>
+
+  {% for marks in data %}
+  <div id="bookmark_link" class="page_white_cont">
+    <p class="bookmark_name">  {{ marks.urlName}} </p>
+    <p class="bookmark_url"> <a target="_blank" href={{ marks.url }} id ="redirect_bookmark"> {{ marks.url }} </a>  </p>
+    <p class="bookmark_keyword"> <b> Keywords: </b> {{ marks.keyword }} </p>
+  </div>
+  {% endfor %}
+</div>
+
+<script type="text/javascript">
+
+document.querySelector("#nav_bar_links > li:nth-child(4)").id = "nav_bar_link_selected";
+
+document.getElementById("id_urlName").className = "blue_input";
+document.getElementById("id_url").className = "blue_input";
+document.getElementById("id_keyword").className = "blue_input";
+document.querySelector('label[for="id_urlName"]').innerHTML = "Url Name";
+document.querySelector('label[for="id_url"]').innerHTML = "Url";
+document.querySelector('label[for="id_keyword"]').innerHTML = "Keyword";
+
+document.querySelector("#bookmark_sumbit_f > .page_subtittle").addEventListener("click", RevealBookmark_form);
+
+var bf = true;
+
+function RevealBookmark_form() {
+  if(bf) {
+    document.querySelector("#bookmark_sumbit_f > form").style.pointerEvents = "all";
+    document.querySelector("#bookmark_sumbit_f > form").style.maxHeight = "6000px";
+    document.querySelector("#bookmark_sumbit_f > form").style.opacity = "1";
+    bf = false;
+  } else {
+    document.querySelector("#bookmark_sumbit_f > form").style.pointerEvents = "none";
+    document.querySelector("#bookmark_sumbit_f > form").style.maxHeight = "0";
+    document.querySelector("#bookmark_sumbit_f > form").style.opacity = "0";
+    bf = true;
+  }
+}
+
+</script>
   {% endblock %}

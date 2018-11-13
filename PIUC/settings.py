@@ -143,3 +143,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'piuc.resetpass@gmail.com'
 EMAIL_HOST_PASSWORD = 'PIUCjafoste'
 EMAIL_PORT = 587
+
+TOKEN = 'xmHq6NeE2O9VQQ9206IZlX11m'
+SECRET = 'Em2lG4R7Fm3Q1WfNSXTwoPkDBG5TfXh3okCj5Ju7PE30Utbmj0'

@@ -4,10 +4,10 @@
 
 {% block body %}
 
-
 <div class="signed_container">
- <div id="feed_submit">
-    <p> SUBMIT NEW </p>
+{% if user.userprofile.Twitter_SignedIn%}
+  <div id="feed_submit">
+    <p> POST ON TWEET </p>
   </div>
   <div id="feed_submit_form">
     <form method="post">
@@ -68,20 +68,46 @@
       {% endfor%}
     </div>
   </div>
-
+  {% endfor %}
+  {% if loggedReddit %}
+        {% for submissions in RedditPosts %}
+          <div class="feed_post_reddit">
+          Subreddit Name
+          {{ submissions.subreddit}}
+          <br>
+          TITLE
+          {{submissions.title}}
+          <br>
+          Post
+          {{ submissions.selftext}}
+          <br>
+          Imagem/videos post
+          {{submissions.url}}
+          <br>
+          Link
+          www.reddit.com{{ submissions.permalink}}
+          <br>
+          Author
+          {{ submissions.author }}
+          <br>
+        </div>
+        {% endfor %}
+  {% else %}
+      Login to show reddit posts!!!
+  {% endif %}
 </div>
-
+<a href="loginReddit">Login Reddit</a>
 
 <script type="text/javascript">
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
-  document.querySelector("#nav_bar_links > li:nth-child(1)").id = "nav_bar_link_selected";
+  document.querySelector("#nav_bar_links > li:nth-child(2)").id = "nav_bar_link_selected";
 
+  /////SUBMIT POST
   document.getElementById("feed_submit").addEventListener("click", RevealSubmit);
 
   var checker_submit = true;
-
   function RevealSubmit() {
-  //  console.log(checker_submit);
+    console.log(checker_submit);
     if(checker_submit){
       document.getElementById("feed_submit_form").style.display = "inline-block";
       checker_submit = false;
