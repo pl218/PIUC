@@ -86,10 +86,10 @@
       {{ submissions.selftext}}
       <br>
       Imagem/videos post
-      {{submissions.url}}
+        <img style="max-width: 600px" src="{{submissions.url}}">
       <br>
       Link
-      www.reddit.com{{ submissions.permalink}}
+    <a class="default_text_hover" href="https://www.reddit.com{{ submissions.permalink}}" target="_blank"> www.reddit.com{{ submissions.permalink}}</a>
       <br>
       Author
       {{ submissions.author }}
