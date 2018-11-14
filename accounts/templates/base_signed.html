@@ -177,8 +177,10 @@
   function myFunction(x) {
     if (!x.matches) { // If media query matches
         document.getElementById("nav_search_card").style.opacity = "1";
+        document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon_black.png' %}";
     } else {
       document.getElementById("nav_search_card").style.opacity = "0";
+      document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon.png' %}";
     }
 }
 
