@@ -30,7 +30,7 @@
   color:white;
   background: linear-gradient(to left, #29ABE2, #0000FF);
   width: 100%;
-  padding: 20px;
+  padding-top: 20px;
   margin-top: 100px;
   padding-bottom: 100px;
 }
@@ -38,7 +38,7 @@
 #login_about_us > h1 {
   position: relative;
   width: 30%;
-  left: calc(35% - 20px);
+  margin: 20px auto;
   min-width: 270px;
  font-family: 'Roboto', sans-serif;
   font-weight: bold;
@@ -50,7 +50,7 @@
   text-align: justify;
   font-family: 'Nunito', sans-serif;
   width: 30%;
-  left: calc(35% - 20px);
+  margin: 0 auto;
   min-width: 270px;
 }
 

@@ -80,7 +80,7 @@
  #nav_search_card > ul > li{
     font-family: 'nunito', sans-serif;
     font-size: 12pt;
-    margin: 2pt 25px;
+    margin: 2pt 70px;
     text-align: center;
     display: block;
   }
@@ -126,5 +126,13 @@
 
   #nav_bar > #nav_search_card > #nav_bar_links > #pilas {
     display: inline-block;
+  }
+
+  #nav_bar_profile > img{
+    position: absolute;
+    margin: 0;
+    top:20px;
+    right:20px;
+
   }
 }

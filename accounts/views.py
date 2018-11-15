@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm, BookmarksForm
+from django.contrib.auth import logout
 from django.contrib.auth.models import User as UserModel
 from django.contrib.auth.forms import (UserChangeForm, SetPasswordForm)
 from django.contrib.auth import authenticate, login, get_user_model
@@ -78,7 +79,8 @@ def profile(request, username):
     #return render(request, '<app_name>/user_profile.html', {"user":user})
     return render(request,'accounts/profile.html',{'user': user, 'posts': posts})
 
-def logout(request):
+def User_logout(request):
+    logout(request)
     return render(request,'accounts/logout.html')
 
 def search(request, input):
