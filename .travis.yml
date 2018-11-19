@@ -5,3 +5,9 @@ install:
       - pip install Django #requirements.txt
 script:
   - python manage.py test
+addons:
+  sonarcloud:
+    organization: "piuc"
+script:
+  # other script steps might be done before running the actual analysis
+  - sonar-scanner

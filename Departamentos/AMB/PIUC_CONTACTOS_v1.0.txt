@@ -1,0 +1,53 @@
+﻿PL2_ES2018
+Faculdade de Ciências e Tecnologia da Universidade de Coimbra
+Cadeira de Engenharia de Software 2018/2019
+Docente Mário Alberto da Costa Zenha Rela
+
+
+
+GESTORES DE PROJECTO
+
+Duarte Carvalho - duarte38carvalho@gmail.com - 911194643 - 2016238638
+Catarina Moreira - catarinat222@gmail.com - 965375628 - 2016232565
+Henrique Ferrer - hvrbferrer@gmail.com - 910368976 - 2016250818 
+
+
+TESTES
+José Pereira - pereiramatiias@gmail.com - 915 172 406 - 2014202020
+José Martinho - jose.m.oliveiramartinho@gmail.com - 934268653 - 2016226681
+Gonçalo Sousa - goncalooliveirasousa@gmail.com - 933492350 - 2016244072
+Damian Krawczyk - damian.krawczyk07@gmail.com - +48 662236149 - 2018261113
+Catarina Proença - catarinaproenca6@gmail.com - 968242597 - 2016232360
+
+
+IMPLEMENTAÇÃO
+Inês Amaro - ines.amaro.316@gmail.com - 912564520 - 2016226582
+André Santos - andrre_ls@hotmail.com - 917137467 - 2016234481
+Miguel Letra - migueljletra@gmail.com- 964579929 - 2016226022
+Rafael Neves - rafaelalexandrerodriguesneves@gmail.com - 969884851 - 2016250690
+Pedro Nunes - nunespedro2323@gmail.com - 968726049 - 2014195774
+Luis Rocha - luis.fcrocha9@gmail.com - 916362177 - 2016219098
+
+
+QUALIDADE
+Eduardo Vicente - eduardodaniel.vicente@gmail.com 966869775 - 2016231711
+Rui Rocha - rui.miguel.rocha21@gmail.com - 913330253 - 2010135453
+Rafaela Rodrigues - rafaalex_rodrigues@hotmail.com - 919841947 - 2016217950
+João Pedro Rodrigues - joaopedro.aluno@gmail.com - 918937386 - 2016225773
+Carlícia Marques - carliciamarques97@gmail.com - 931788503 - 2016248547
+Ana Luísa Coelho - anita.rainha97@gmail.com - 919231178 - 2015231777
+
+
+AMBIENTE
+Inês Moreira - inesvanbrabant@gmail.com - 916166169 - 2004101168
+Rita Garrido Gabriel - ritagarrido@hotmail.com - 2003118612
+João Carvalho - joaomcarvalho@sapo.pt - 910013550 - 2001027493
+Yussara Monteiro - yussarasophia@hotmail.com - 964224062 - 2015261725
+Michael Ortet - tavareslaudelino20@gmail.com - 927689148 -2016247807
+
+
+REQUISITOS
+Sofia Torres - sofiatgfp1239@gmail.com - 933400131 - 2016208214
+João Almeida - joaofilipeferreiraalmeida@gmail.com - 939811910 - 2016242976
+Yusleivy Vivas - y.u.s100@hotmail.com - 965019806 - 2016245268
+Francisco Teixeira - francisco.b.teixeira@gmail.com - 964077548 - 2016243225
