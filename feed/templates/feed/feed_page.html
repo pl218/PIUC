@@ -6,98 +6,91 @@
 
 <div class="signed_container">
   {% if user.userprofile.Twitter_SignedIn%}
-    <div id="feed_submit">
-      <p> POST ON TWITTER </p>
-    </div>
-    <div id="feed_submit_form">
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">POST</button>
-      </form>
-    </div>
-    {% else %}
-    <div id="feed_submit">
-      <a href="{% url 'accounts:TwitterSignIn' user.get_username %}">SIGN IN ON TWITTER TO POST</a>
-    </div>
-    {% endif %}
+  <div id="feed_submit">
+    <p> POST ON TWITTER </p>
+  </div>
+  <div id="feed_submit_form">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">POST</button>
+    </form>
+  </div>
+  {% else %}
+  <div id="feed_submit">
+    <a href="{% url 'accounts:TwitterSignIn' user.get_username %}">SIGN IN ON TWITTER TO POST</a>
+  </div>
+  {% endif %}
 
-    <div class = "row">
-      <div class = "column1">
-        <p>Pesquisas Twitter</p>
-        {% for seartweet in posts %}
-        {% if seartweet.check == 0 %}
-        <div>
-          <input type="checkbox" name="feature" value="{{seartweet.name}}" onClick='handleClick(this);'/> {{seartweet.name}}
-        </div>
-        {% else %}
-        <div>
-          <input type="checkbox" name="feature" value="{{seartweet.name}}" checked onClick='handleClick(this);'/> {{seartweet.name}}
-        </div>
-        {% endif %}
-        {% endfor %}
-
-        <input id="tweet_search_add"  type="text" placeholder="Add new Search Tweet" value="">
-        <button onClick="oi()">
-          Send
-        </button>
-
+  <div class = "row">
+    <div class = "column1">
+      <p>Pesquisas Twitter</p>
+      {% for seartweet in posts %}
+      {% if seartweet.check == 0 %}
+      <div>
+        <input type="checkbox" name="feature" value="{{seartweet.name}}" onClick='handleClick(this);'/> {{seartweet.name}}
       </div>
-      <div class = "column2">
-        {% for tweet in tweets %}
-        {% if tweet.lang == 'en' or tweet.lang == 'pt' %}
-        <div class="feed_post">
-          <div class="post_title">
-            <span>
-              {{tweet.user.name}}
-            </span>
-            {% if tweet in user.userprofile.favorites.all %}
-            <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
-              <i class="fa fa-star fav_on" aria-hidden="true"></i>
-            </a>
-            {% else %}
-            <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
-              <i class="fa fa-star fav_off" aria-hidden="true"></i>
-            </a>
-            {% endif %}
-          </div>
-          <div class="post_text">
-            <a href="https://twitter.com/{{tweet.screen_name}}/status/{{tweet.id}}" target="_blank">
-              <p>{{tweet.lang}}</p>
-              <p>{{tweet.created_at}}</p>
-              <p>{{tweet.all_text}}</p>
-            </a>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor%}
+      {% else %}
+      <div>
+        <input type="checkbox" name="feature" value="{{seartweet.name}}" checked onClick='handleClick(this);'/> {{seartweet.name}}
       </div>
-    </div>
-    {% if loggedReddit %}
-    {% for submissions in RedditPosts %}
-    <a href="https://www.reddit.com{{ submissions.permalink}}" target="_blank">
-      <div class="feed_post_reddit">
-        Subreddit Name
-        {{ submissions.subreddit}}
-        <br>
-        TITLE
-        {{submissions.title}}
-        <br>
-        Post
-        {{ submissions.selftext}}
-        <br>
-        Imagem/videos post
-        <img style="max-width: 600px" src="{{submissions.url}}">
-        <br>
-        Link
-        <a class="default_text_hover" href="https://www.reddit.com{{ submissions.permalink}}" target="_blank"> www.reddit.com{{ submissions.permalink}}</a>
-        <br>
-        Author
-        {{ submissions.author }}
-        <br>
+      {% endif %}
+      {% endfor %}
 
+      <input id="tweet_search_add"  type="text" placeholder="Add new Search Tweet" value="">
+      <button onClick="oi()">
+        Send
+      </button>
+
+    </div>
+    <div class = "column2">
+      {% for tweet in tweets %}
+      {% if tweet.lang == 'en' or tweet.lang == 'pt' %}
+      <div class="feed_post">
+        <div class="post_title">
+          <span>
+            {{tweet.user.name}}
+          </span>
+          {% if tweet in user.userprofile.favorites.all %}
+          <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
+            <i class="fa fa-star fav_on" aria-hidden="true"></i>
+          </a>
+          {% else %}
+          <a href="{% url 'accounts:favoriteTwitter' '2' user.get_username tweet.id tweet.screen_name|slugify tweet.created_at tweet.all_text|slugify %}">
+            <i class="fa fa-star fav_off" aria-hidden="true"></i>
+          </a>
+          {% endif %}
+        </div>
+        <div class="post_text">
+          <a href="https://twitter.com/{{tweet.screen_name}}/status/{{tweet.id}}" target="_blank">
+            <p>{{tweet.lang}}</p>
+            <p>{{tweet.created_at}}</p>
+            <p>{{tweet.all_text}}</p>
+          </a>
+        </div>
       </div>
-    </a>
+      {% endif %}
+      {% endfor%}
+    </div>
+  </div>
+  {% if loggedReddit %}
+  {% for submissions in RedditPosts %}
+  <div class="feed_post_reddit">
+    <div class="post_title_reddit">
+      <a title="Original Post" class="default_text_hover" href="https://www.reddit.com{{ submissions.permalink}}" target="_blank">  {{submissions.title}}</a>
+    </div>
+
+    <div class="post_text_reddit">
+      {{ submissions.selftext}}
+      <img style="max-width: 600px" src="{{submissions.url}}">
+    </div>
+    <div class="post_user_reddit">
+    <!-- <a class="default_text_hover" href="https://www.reddit.com{{ submissions.permalink}}" target="_blank"> www.reddit.com{{ submissions.permalink}}</a>-->
+   Posted by <a class="default_text_hover" href="https://www.reddit.com/user/{{ submissions.author }}" target="_blank">{{ submissions.author }}</a> in <a class="default_text_hover" href="https://www.reddit.com/r/{{ submissions.subreddit}}" target="_blank">/r/{{ submissions.subreddit}}</a>
+    </div>
+
+
+  </div>
     {% endfor %}
   {% else %}
       Login to show reddit posts!!!
