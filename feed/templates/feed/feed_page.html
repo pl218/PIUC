@@ -81,8 +81,17 @@
     </div>
 
     <div class="post_text_reddit">
-      {{ submissions.selftext}}
-      <img style="max-width: 600px" src="{{submissions.url}}">
+
+    {{submissions.selftext}}
+
+    <script>
+    var t='{{submissions.url}}';
+
+    if(t.match(/\.(jpeg|jpg|gif|png|gifv)$/)!=null){
+      document.write("<img style='max-width: 600px' src='{{submissions.url}}'>");
+    }
+    </script>
+
     </div>
     <div class="post_user_reddit">
     <!-- <a class="default_text_hover" href="https://www.reddit.com{{ submissions.permalink}}" target="_blank"> www.reddit.com{{ submissions.permalink}}</a>-->
