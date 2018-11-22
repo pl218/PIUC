@@ -53,10 +53,10 @@ class FeedView(TemplateView):
         for post in posts:
             if 'True' in str(post.check):
                 if auxCount == 1:
-                    auxRule = post.name
+                    auxRule = '#' + post.name
                     auxCount = 2
                 else:
-                    auxRule = auxRule + ' OR ' + post.name
+                    auxRule = auxRule + ' OR ' + '#'+post.name
 
         tweets = None
         if(auxRule != ''):
