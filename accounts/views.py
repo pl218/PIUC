@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from accounts.forms import RegistrationForm, EditProfileForm, EditUserForm, BookmarksForm
+from accounts.forms import RegistrationOrcid, RegistrationForm, EditProfileForm, EditUserForm, BookmarksForm
 from django.contrib.auth import logout
 from django.contrib.auth.models import User as UserModel
 from django.contrib.auth.forms import (UserChangeForm, SetPasswordForm)
@@ -29,14 +29,76 @@ from django.views.decorators.cache import never_cache
 from searchtweets import ResultStream, gen_rule_payload, load_credentials, collect_results
 from accounts.models import BookmarksModel
 from twython import Twython, TwythonError
-# Create your views here.
-#def loginPage(request):
-#    return render(request, 'accounts/login.html')
+from .constants import ORCID_PUBLIC_BASE_URL
+from .utils import dictmapper, MappingRule as to
+from django.core.mail import send_mail
+import requests
+import orcid
+import json
 
 enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
 twitter = Twython(settings.TOKEN, settings.SECRET)
 
-def register(request):
+BASE_HEADERS = {'Accept':'application/orcid+json'}
+
+BIO_PATH = ['orcid-profile','orcid-bio']
+PERSONAL_DETAILS_PATH = BIO_PATH + ['personal-details']
+
+def _parse_keywords(d):
+    # XXX yes, splitting on commas is bad- but a bug in ORCID
+    # (https://github.com/ORCID/ORCID-Parent/issues/27) makes this the  best
+    # way. will fix when they do
+    if d is not None:
+        return d.get('keyword',[{}])[0].get('value','').split(',')
+    return []
+
+def _parse_researcher_urls(l):
+    if l is not None:
+        return [Website(d) for d in l]
+    return []
+
+AuthorBase = dictmapper('AuthorBase', {
+    'orcid':['orcid-profile','orcid','value'],
+    'family_name':PERSONAL_DETAILS_PATH + ['family-name','value'],
+    'given_name':PERSONAL_DETAILS_PATH + ['given-names','value'],
+    'email':PERSONAL_DETAILS_PATH + ['emails','email'],
+    'biography':BIO_PATH + ['biography',],
+    'keywords':to(BIO_PATH + ['keywords'], _parse_keywords),
+    'researcher_urls':to(BIO_PATH + ['researcher-urls','researcher-url'],
+                         _parse_researcher_urls),
+})
+
+class Authorr(AuthorBase):
+    _loaded_works = None
+
+    def _load_works(self):
+        resp = requests.get(ORCID_PUBLIC_BASE_URL + self.orcid
+                            + '/orcid-works', headers = BASE_HEADERS)
+        self._loaded_works = Works(resp.json())
+
+    @property
+    def publications(self):
+        if self._loaded_works is None:
+            self._load_works()
+        return self._loaded_works.publications
+
+    def __repr__(self):
+        return "<%s %s %s, ORCID %s>" % (type(self).__name__, self.given_name,
+                                         self.family_name, self.orcid)
+
+
+def registerORCID(request):
+    if request.method == 'POST': #POST -> cliente envia info para o server
+        form=RegistrationOrcid(request.POST)
+        if form.is_valid(): #caso todos os dados recebidos sejam válidos
+            orcidUser = form.cleaned_data.get('ORCID')
+            return redirect(reverse('accounts:register', kwargs={'orcid':orcidUser}))
+    else:
+        form = RegistrationOrcid()
+    #pedro = getAuthor('0000-0002-9113-6258')
+    return render(request,'accounts/registerORCID.html',{'form':form})
+
+def register(request, orcid):
     if request.method == 'POST': #POST -> cliente envia info para o server
         form=RegistrationForm(request.POST)
         if form.is_valid(): #caso todos os dados recebidos sejam válidos
@@ -68,7 +130,29 @@ def register(request):
             login(request,user)
             return redirect('/accounts/profile/'+username)
     else:
-        form=RegistrationForm()
+        resp = requests.get(ORCID_PUBLIC_BASE_URL + orcid,
+                            headers=BASE_HEADERS)
+        data = resp.json()
+
+        if 'response-code' not in data:
+            email = ''
+            for i in data['person']['emails']['email']:
+                if i['primary'] == 1:
+                    email = i['email']
+                    break
+
+            interests = ''
+            aux = 0
+            for i in data['person']['keywords']['keyword']:
+                if aux == 0:
+                    interests = i['content']
+                    aux = aux + 1
+                else:
+                    interests = interests + ',' + i['content']
+            form=RegistrationForm(initial={'ORCID': orcid, 'email': email, 'first_name': data['person']['name']['given-names']['value'], 'last_name': data['person']['name']['family-name']['value'], 'researchInterests': interests})
+        else:
+            form=RegistrationForm(initial={'ORCID': data['user-message']})
+
     return render(request,'accounts/register.html',{'form':form})
 
 def profile(request, username):

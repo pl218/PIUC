@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Register</title>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+  <div id="register_form">
+    <form method="post">
+
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button class="default_button" type="submit" >REGISTER WITH ORCID</button>
+      <a href="{% url 'accounts:login' %}" id="login_register_link">Already registered?</a>
+
+    </form>
+  </div>
+</div>
+
+{% load static %}
+<script src="{% static 'JS/register.js' %}"> </script>
+{% endblock %}

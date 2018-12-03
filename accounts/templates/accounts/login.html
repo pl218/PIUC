@@ -10,7 +10,7 @@
           {{ form.as_p }}
       <button class="default_button" type="submit">LOGIN</button>
       <div id="login_link">
-        <a href="{% url 'accounts:register' %}" id="register_login_link">Create account?</a>
+        <a href="{% url 'accounts:registerORCID' %}" id="register_login_link">Create account?</a>
         <a href="{% url 'accounts:reset_password' %}" id="reset_password_link">Forgot password?</a>
       </div>
     </form>

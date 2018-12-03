@@ -5,6 +5,22 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.forms import ModelForm
 import re
 
+class RegistrationOrcid(ModelForm):
+    ORCID = forms.CharField(max_length=30, required=True)
+    class Meta:
+        model = User
+        fields = (
+            'ORCID',
+        )
+    def clean_ORCID(self): #Verifica se o ORCID é válido
+        ORCID=self.cleaned_data['ORCID']
+        regex=re.compile('(\d{4})-(\d{4})-(\d{4})-(\d{3}[0-9X])$')
+        if regex.search(ORCID) is None:
+            raise forms.ValidationError('Please use a valid ORCID! Ex: 0001-0003-0002-0009')
+        if UserProfile.objects.filter(ORCID=ORCID).exists():
+            raise forms.ValidationError('ORCID already used!')
+        return ORCID
+
 class RegistrationForm(UserCreationForm):
     first_name=forms.CharField(max_length=30, required=True)
     last_name=forms.CharField(max_length=30, required=True)
