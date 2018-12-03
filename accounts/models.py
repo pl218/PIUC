@@ -16,7 +16,7 @@ class UserProfile(models.Model):
     confirmed_email=models.BooleanField(default=False)
     favorites = models.ManyToManyField(Post)
     afiliation=models.CharField(max_length=500, default='')
-    subafiliation=models.CharField(max_length=500, default='')
+    researchUnit=models.CharField(max_length=500, default='')
     tweets = models.ManyToManyField(Seartweet)
     profilePic=models.ImageField(default='profile_pics/profile_pic_placeholder.jpg',upload_to='profile_pics/')
     redditRefreshToken=models.CharField(max_length=200,null=True,default=None)

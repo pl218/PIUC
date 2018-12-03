@@ -46,7 +46,7 @@ def register(request):
             auxInterests = form.cleaned_data.get('researchInterests')
             user.userprofile.researchInterests=auxInterests
             user.userprofile.afiliation= form.cleaned_data.get('afiliation') # cleaned_data para prevenir caso o utilizador introduza dados que possam prejudicar o website
-            user.userprofile.subafiliation=form.cleaned_data.get('subafiliation')
+            user.userprofile.researchUnit=form.cleaned_data.get('researchUnit')
             user.save() #guarda os dados adicionais do perfil na bd
 
             splitInterests = auxInterests.split(',')

@@ -12,7 +12,7 @@ class RegistrationForm(UserCreationForm):
     ORCID= forms.CharField(max_length=30, required=True)
     researchInterests=forms.CharField(max_length=200,required=True)
     afiliation=forms.CharField(max_length=200,required=True)
-    subafiliation=forms.CharField(max_length=200,required=True)
+    researchUnit=forms.CharField(max_length=200,required=True)
 
     class Meta:
         model = User
@@ -24,7 +24,7 @@ class RegistrationForm(UserCreationForm):
             'ORCID',
             'researchInterests',
             'afiliation',
-            'subafiliation',
+            'researchUnit',
             'password1',
             'password2',
         )
@@ -92,7 +92,7 @@ class EditProfileForm(ModelForm):
     website=forms.URLField(required=False)
     researchInterests=forms.CharField(max_length=200,required=False)
     afiliation=forms.CharField(max_length=200,required=True)
-    subafiliation=forms.CharField(max_length=200,required=True)
+    researchUnit=forms.CharField(max_length=200,required=True)
     class Meta:
         model = UserProfile
         fields =(
@@ -101,7 +101,7 @@ class EditProfileForm(ModelForm):
             'website',
             'researchInterests',
             'afiliation',
-            'subafiliation',
+            'researchUnit',
             'profilePic',
         )
 

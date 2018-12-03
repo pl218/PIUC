@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.RenameField(
             model_name='userprofile',
             old_name='subafiliacao',
-            new_name='subafiliation',
+            new_name='researchUnit',
         ),
     ]
