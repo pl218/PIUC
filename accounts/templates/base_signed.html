@@ -47,8 +47,8 @@
         <div id="nav_search_card">
                 <ul id="nav_bar_links">
                   <li id="pilas"> <input id="nv_search_input1"  type="text" placeholder="Search.." value=""></li>
-                  <li onclick="location.href='{% url 'feed:mainpage' %}';">feed</li>
-                  <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">favorites</li>
+                  <li onclick="location.href='{% url 'feed:mainpage' %}';">feed live</li>
+                  <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">feed favorites</li>
                   <li onclick="location.href='{% url 'accounts:bookmarks' user.get_username %}';">bookmarks</li>
                 </ul>
         </div>
