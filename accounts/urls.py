@@ -19,6 +19,8 @@ urlpatterns = [
     path('profile/<slug:username>',views.profile,name='profile'),
     path('profile/edit/<slug:username>',views.edit_profile,name='edit_profile'),
     path('bookmarks/<slug:username>',views.BookmarksView,name='bookmarks'),
+    path('bookmarks/delete/<slug:id>/<slug:username>',views.BookMarksDelete,name='BookMarksDelete'),
+    path('bookmarks/edit/<slug:id>/<slug:username>',views.BookMarksEdit,name='BookMarksEdit'),
     path('logout/',views.User_logout, name='User_logout'),
     path('feed/', include('feed.urls')),
     path('search/<slug:input>',views.search, name='search'),

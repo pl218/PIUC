@@ -33,7 +33,7 @@ from .constants import ORCID_PUBLIC_BASE_URL
 from .utils import dictmapper, MappingRule as to
 from django.core.mail import send_mail
 import requests
-import orcid
+#import orcid
 import json
 
 enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
@@ -449,6 +449,24 @@ def BookmarksView(request,username):
             post=form.save(commit=False)
             post.user= request.user
             post.save();
+            return redirect('/accounts/bookmarks/'+username);
+        return render(request,'accounts/bookmarks.html',{'form':form,'data':data})
+
+def BookMarksDelete(request,id,username):
+    BookmarksModel.objects.filter(id=id).delete()
+    return redirect('/accounts/bookmarks/'+username);
+
+def BookMarksEdit(request,id,username):
+    idUser=UserModel.objects.get(username=username).pk
+    data=BookmarksModel.objects.filter(user=idUser);
+    object= BookmarksModel.objects.get(id=id);
+    if request.method=='GET':
+        form=BookmarksForm(instance=object);
+        return render(request,'accounts/bookmarksEdit.html',{'form': form,'data': data,'id':id})
+    else:
+        form= BookmarksForm(request.POST)
+        if form.is_valid():
+            BookmarksModel.objects.filter(id=id).update(urlName=form.cleaned_data['urlName'],url=form.cleaned_data['url'],keyword=form.cleaned_data['keyword'])
             return redirect('/accounts/bookmarks/'+username);
         return render(request,'accounts/bookmarks.html',{'form':form,'data':data})
 
