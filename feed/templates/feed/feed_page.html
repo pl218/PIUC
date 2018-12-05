@@ -3,6 +3,37 @@
 
 {% block body %}
 
+<div id="filters_container" class="page_white_cont">
+  <p class="page_subtittle default_text_hover">Feed Filters</p>
+  <div id="filters_collapse">
+    <div id = "filters_twitter">
+      <p>Twitter Hashtags</p>
+      {% for seartweet in posts %}
+      {% if seartweet.check == 0 %}
+      <div class="checkbox_cont">
+        <input type="checkbox" name="feature" value="{{seartweet.name}}" onClick='handleClick(this);'/> {{seartweet.name}}
+        <span class="checkmark"></span>
+      </div>
+      {% else %}
+      <div class="checkbox_cont">
+        <input type="checkbox" name="feature" value="{{seartweet.name}}" checked onClick='handleClick(this);'/> {{seartweet.name}}
+        <span class="checkmark"></span>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+      <input id="tweet_search_add"  type="text" placeholder="Add new Search Tweet" value="">
+      <button class="default_text_hover" onClick="oi()">
+        Send
+      </button>
+
+    </div>
+    <div id="sign_reddit">
+      <a href="loginReddit">Login on Reddit to see Reddit posts</a>
+    </div>
+  </div>
+</div>
+
 
 <div class="signed_container">
   {% if user.userprofile.Twitter_SignedIn%}
@@ -23,26 +54,7 @@
   {% endif %}
 
   <div class = "row">
-    <div class = "column1">
-      <p>Pesquisas Twitter</p>
-      {% for seartweet in posts %}
-      {% if seartweet.check == 0 %}
-      <div>
-        <input type="checkbox" name="feature" value="{{seartweet.name}}" onClick='handleClick(this);'/> {{seartweet.name}}
-      </div>
-      {% else %}
-      <div>
-        <input type="checkbox" name="feature" value="{{seartweet.name}}" checked onClick='handleClick(this);'/> {{seartweet.name}}
-      </div>
-      {% endif %}
-      {% endfor %}
 
-      <input id="tweet_search_add"  type="text" placeholder="Add new Search Tweet" value="">
-      <button onClick="oi()">
-        Send
-      </button>
-
-    </div>
     <div class = "column2">
       {% for tweet in tweets %}
       {% if tweet.lang == 'en' or tweet.lang == 'pt' %}
@@ -79,19 +91,14 @@
     <div class="post_title_reddit">
       <a title="Original Post" class="default_text_hover" href="https://www.reddit.com{{ submissions.permalink}}" target="_blank">  {{submissions.title}}</a>
     </div>
-
     <div class="post_text_reddit">
-
     {{submissions.selftext}}
-
     <script>
     var t='{{submissions.url}}';
-
     if(t.match(/\.(jpeg|jpg|gif|png|gifv)$/)!=null){
       document.write("<img style='max-width: 600px' src='{{submissions.url}}'>");
     }
     </script>
-
     </div>
     <div class="post_user_reddit">
     <!-- <a class="default_text_hover" href="https://www.reddit.com{{ submissions.permalink}}" target="_blank"> www.reddit.com{{ submissions.permalink}}</a>-->
@@ -102,16 +109,34 @@
   </div>
     {% endfor %}
   {% else %}
-      Login to show reddit posts!!!
+      <!-- Login to show reddit posts!!! -->
   {% endif %}
 </div>
-<a href="loginReddit">Login Reddit</a>
+
 
 <script type="text/javascript">
   //PUTS THE UNDER BORDER UNDER THE FEED LINK IN THE NAV BAR
   document.querySelector("#nav_bar_links > li:nth-child(2)").id = "nav_bar_link_selected";
-
   document.getElementById("feed_submit").addEventListener("click", RevealSubmit);
+  document.querySelector("#filters_container > p").addEventListener("click", RevealFilters);
+
+  var ff = true;
+
+  function RevealFilters() {
+    if(ff) {
+      document.querySelector("#filters_twitter > p").style.marginTop = "10px";
+      document.getElementById("filters_collapse").style.pointerEvents = "all";
+      document.getElementById("filters_collapse").style.maxHeight = "6000px";
+      document.getElementById("filters_collapse").style.opacity = "1";
+      ff = false;
+    } else {
+            document.querySelector("#filters_twitter > p").style.marginTop = "0px";
+      document.getElementById("filters_collapse").style.pointerEvents = "none";
+      document.getElementById("filters_collapse").style.maxHeight = "0";
+      document.getElementById("filters_collapse").style.opacity = "0";
+      ff = true;
+    }
+  }
 
   var checker_submit = true;
 
@@ -132,7 +157,6 @@
   }
 
   function handleClick(cb) {
-
     window.location.href = "../../accounts/change_check_tweet/" + cb.value + "/{{user.get_username}}/" + cb.checked;
     //print("Clicked, new value = " + cb.checked);
   }

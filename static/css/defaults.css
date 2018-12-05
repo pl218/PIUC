@@ -248,7 +248,7 @@ label {
   width: 100%;
 }
 
-.post_title_reddit > a:hover, .post_user_reddit > a:hover {
+.post_title_reddit > a:hover, .post_user_reddit > a:hover, #sign_reddit:hover {
   background: linear-gradient(to left, #f57f02, #ff281f);
   -webkit-background:  linear-gradient(to left, #29ABE2, #0000FF);
   -webkit-text-fill-color: transparent;

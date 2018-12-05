@@ -599,5 +599,52 @@ centerText{
 
 #nav_search_card > #nav_bar_links > #pilas {
   display: none;
+}
 
+#filters_container {
+  width: 250px;
+  position: fixed;
+  bottom: 50px;
+  z-index: 1000;
+  margin: auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-family: 'Roboto', sans-serif;
+  padding: 15px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+#tweet_search_add {
+  border: 0;
+  padding: 2px 5px;
+  color: black;
+  background-color: #c2d9f1;
+}
+
+#filters_twitter > p {
+  margin-bottom: 3px;
+}
+
+#filters_twitter > div, #filters_twitter > input {
+  margin-left: 10px;
+}
+
+#filters_container > p {
+  margin-top: 0;
+}
+
+#sign_reddit {
+  margin-top: 15px;
+  font-size: 10pt;
+}
+
+#sign_reddit {
+  display: inline-block;
+}
+
+#filters_collapse {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.8s;
 }
