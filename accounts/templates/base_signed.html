@@ -73,8 +73,7 @@
   document.getElementById("background").addEventListener("click", RevealSearchCard);
 
   document.getElementById("nav_bar_search").addEventListener("click", RevealSearchBar);
-  document.querySelector("#nav_bar_profile > img").addEventListener("mouseover", changeProfileLogo);
-  document.querySelector("#nav_bar_profile > img").addEventListener("mouseleave", changeProfileLogo);
+
   document.querySelector("#nav_bar_profile > img").addEventListener("click", changeProfileLogo);
   document.querySelector("#nav_bar_search > img").addEventListener("mouseover", changeSearchLogo);
   document.querySelector("#nav_bar_search > img").addEventListener("mouseleave", changeSearchLogo);
@@ -116,6 +115,7 @@
       document.getElementById("background").style.backgroundColor = "black";
       document.getElementById("background").style.display = "inline";
       document.getElementById("background").style.zIndex = "1";
+      document.body.style.overflow = "hidden";
       checker_s_c = false;
     } else {
       document.getElementById("nav_search_card").style.left = "-100px";
@@ -126,6 +126,7 @@
       document.getElementById('bar3').style.marginLeft ="0px";
       document.getElementById("background").style.zIndex = "-100000";
       document.getElementById("background").style.display = "none";
+      document.body.style.overflow = "visible";
       checker_s_c = true;
     }
   }
@@ -178,15 +179,21 @@
     if (!x.matches) { // If media query matches
         document.getElementById("nav_search_card").style.opacity = "1";
         document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon_black.png' %}";
+        document.querySelector("#nav_bar_profile > img").addEventListener("mouseover", changeProfileLogo);
+        document.querySelector("#nav_bar_profile > img").addEventListener("mouseleave", changeProfileLogo);
     } else {
       document.getElementById("nav_search_card").style.opacity = "0";
       document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon.png' %}";
+      document.querySelector("#nav_bar_profile > img").removeEventListener("mouseover", changeProfileLogo);
+      document.querySelector("#nav_bar_profile > img").removeEventListener("mouseleave", changeProfileLogo);
     }
 }
 
 var x = window.matchMedia("(max-width: 700px)")
 myFunction(x) // Call listener function at run time
-x.addListener(myFunction)
+x.addListener(myFunction);
+
+
 </script>
 </body>
 

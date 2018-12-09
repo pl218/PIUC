@@ -330,6 +330,11 @@ float: right;
     border-width: 2px;
   float: right;
   transition: 1s;
+  margin: 0;
+  position: absolute;
+  top: calc(135px + (18pt - 6px));
+  right: calc(4vw + 90px);
+
 }
 
 #nav_bar_links > #nv_search_input1{
@@ -352,7 +357,12 @@ float: right;
   cursor: pointer;
   position: absolute;
   margin-right: 10px;
-  right: calc(8vw + 90px);
+  right: calc(4.5vw + 90px);
+  top: calc(135px + (18pt - 6px));
+    margin: 0;
+    z-index: 1;
+
+
 }
 
 #feed_submit {
