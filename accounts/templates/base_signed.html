@@ -46,7 +46,7 @@
 
         <div id="nav_search_card">
                 <ul id="nav_bar_links">
-                  <li id="pilas"> <input id="nv_search_input1"  type="text" placeholder="Search.." value=""></li>
+                  <li id="pilas"> <input id="nv_search_input1"  type="text" placeholder="Search.." value=""> <img src="{% static 'search_arrow.png' %}" id="nv_search_submit1"></li>
                   <li onclick="location.href='{% url 'feed:mainpage' %}';">live feed</li>
                   <li onclick="location.href='{% url 'feed:favorites' user.get_username %}';">feed favorites</li>
                   <li onclick="location.href='{% url 'accounts:bookmarks' user.get_username %}';">bookmarks</li>
@@ -181,6 +181,7 @@
         document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon_black.png' %}";
         document.querySelector("#nav_bar_profile > img").addEventListener("mouseover", changeProfileLogo);
         document.querySelector("#nav_bar_profile > img").addEventListener("mouseleave", changeProfileLogo);
+        document.getElementById("nv_profile_card").style.top = "154px";
     } else {
       document.getElementById("nav_search_card").style.opacity = "0";
       document.querySelector("#nav_bar_profile > img").src="{% static 'profile_icon.png' %}";
