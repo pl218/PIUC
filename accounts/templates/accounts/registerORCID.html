@@ -21,5 +21,8 @@
 </div>
 
 {% load static %}
-<script src="{% static 'JS/register.js' %}"> </script>
+<script>
+document.getElementById("id_ORCID").className = "input_textbox";
+document.querySelector('label[for="id_ORCID"]').innerHTML = "ORCID";
+</script>
 {% endblock %}

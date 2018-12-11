@@ -8,6 +8,7 @@
   <div id="filters_collapse">
     <div id = "filters_twitter">
       <p>Twitter Hashtags</p>
+      <div id="scroll_hash">
       {% for seartweet in posts %}
       {% if seartweet.check == 0 %}
       <div class="checkbox_cont">
@@ -21,6 +22,7 @@
       </div>
       {% endif %}
       {% endfor %}
+      </div>
 
       <input id="tweet_search_add"  type="text" placeholder="Add new Search Tweet" value="">
       <button class="default_text_hover" onClick="oi()">
@@ -28,12 +30,21 @@
       </button>
 
     </div>
+
+    <div class="scroll_list">
+      {% if loggedReddit %}
+      <p>Subreddits</p>
+        <ul>
+        {% for subreddits in Subreddits %}
+      <li class="default_text_hover_reddit"><a target="_blank" href="https://www.reddit.com/r/{{subreddits.display_name}}">{{subreddits.display_name}}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
     <div id="sign_reddit">
       <a href="loginReddit">Login on Reddit to see Reddit posts</a>
     </div>
   </div>
 </div>
-
 
 <div class="signed_container">
   {% if user.userprofile.Twitter_SignedIn%}
@@ -85,11 +96,6 @@
       {% endfor%}
     </div>
   </div>
-  {% if loggedReddit %}
-  <p>Your Subreddits:<p><br>
-  {% for subreddits in Subreddits %}
-  <p>{{subreddits.display_name}}</p><br>
-  {% endfor %}
   {% for submissions in RedditPosts %}
   <div class="feed_post_reddit">
     <div class="post_title_reddit">

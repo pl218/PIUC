@@ -640,7 +640,7 @@ centerText{
   margin-bottom: 3px;
 }
 
-#filters_twitter > div, #filters_twitter > input {
+#filters_twitter > div > div, #filters_twitter > div > input {
   margin-left: 10px;
 }
 
@@ -663,6 +663,31 @@ centerText{
   pointer-events: none;
   transition: 0.8s;
 }
+<<<<<<< HEAD
 .edit{
   margin-left: 10px;
 }
+=======
+
+.scroll_list > p {
+  margin-bottom: 3px;
+  margin-top: 12pt;
+}
+
+.scroll_list > ul {
+  list-style: none;
+  height: 100px;
+  overflow: scroll;
+  margin: 0;
+  padding: 0;
+}
+
+.scroll_list > ul {
+  margin-left: 10px;
+}
+
+#scroll_hash {
+  height: 100px;
+  overflow: scroll;
+}
+>>>>>>> 3ba704e1ff8ffda1070db243a06ca67442b6b133
