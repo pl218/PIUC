@@ -16,6 +16,7 @@ class FeedView(TemplateView):
     def get(self, request):
         RedditPosts=[];
         loggedReddit=False
+        mysubreddits=None
         user=UserModel.objects.get(username=request.user)
         if(user.userprofile.redditRefreshToken!=None):
             try:
@@ -25,6 +26,8 @@ class FeedView(TemplateView):
                                         user_agent='testing')
 
                 subscribed = list(reddit.user.subreddits(limit=None))
+                mysubreddits=subscribed.copy()
+                print(mysubreddits)
                 loggedReddit=True
                 conta=0
                 stringSubreddits='+'.join(v.display_name for v in subscribed)
@@ -38,7 +41,6 @@ class FeedView(TemplateView):
                            stringSubreddits='+'.join(v.display_name for v in subscribed)
                            if not subscribed:
                             teste=False
-                print(conta)
             except :
                 print("Chave Errada!")
                 user.userprofile.redditRefreshToken=None
@@ -62,7 +64,7 @@ class FeedView(TemplateView):
         if(auxRule != ''):
             rule = gen_rule_payload(auxRule, results_per_call=100)
             tweets = collect_results(rule, max_results=100, result_stream_args=enterprise_search_args)
-        return render(request,self.template_name,{'form': form,'posts': posts, 'tweets': tweets, 'loggedReddit':loggedReddit,'RedditPosts':RedditPosts})
+        return render(request,self.template_name,{'form': form,'posts': posts, 'tweets': tweets, 'loggedReddit':loggedReddit,'RedditPosts':RedditPosts,'Subreddits':mysubreddits})
 
     def post(self, request):
         form= FeedForm(request.POST)

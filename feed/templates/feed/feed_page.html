@@ -86,6 +86,10 @@
     </div>
   </div>
   {% if loggedReddit %}
+  <p>Your Subreddits:<p><br>
+  {% for subreddits in Subreddits %}
+  <p>{{subreddits.display_name}}</p><br>
+  {% endfor %}
   {% for submissions in RedditPosts %}
   <div class="feed_post_reddit">
     <div class="post_title_reddit">
