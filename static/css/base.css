@@ -599,9 +599,13 @@ centerText{
   border-left: solid #E0E9F8 5px;
 }
 
-.bookmark_keyword {
+.bookmark_keyword,.bookmark_edit {
   font-size: 10pt;
   text-align: right;
+
+}
+.bookmark_edit{
+  margin-top: 5px;
 }
 #hamburger{
   display: none;
@@ -659,6 +663,11 @@ centerText{
   pointer-events: none;
   transition: 0.8s;
 }
+<<<<<<< HEAD
+.edit{
+  margin-left: 10px;
+}
+=======
 
 .scroll_list > p {
   margin-bottom: 3px;
@@ -681,3 +690,4 @@ centerText{
   height: 100px;
   overflow: scroll;
 }
+>>>>>>> 3ba704e1ff8ffda1070db243a06ca67442b6b133

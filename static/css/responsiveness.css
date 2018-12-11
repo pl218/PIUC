@@ -139,4 +139,14 @@
 
     z-index: 0;
   }
+<<<<<<< HEAD
+
+  #nv_search_submit1{
+    width: auto;
+    top:109.31px;
+    left: calc(80vw - 100px);
+
+  }
+=======
+>>>>>>> 3ba704e1ff8ffda1070db243a06ca67442b6b133
 }
