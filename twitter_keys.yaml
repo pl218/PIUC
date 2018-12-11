@@ -1,5 +1,5 @@
 search_tweets_api:
     account_type: premium
     endpoint: https://api.twitter.com/1.1/tweets/search/30day/premium30.json
-    consumer_key: 8Jt5KnOgxRtXHVaFIF4dRGPGf
-    consumer_secret: eGlaEx4AtdEIk5C1LO8bkm7vJbYW0xpTxlzgk2mEDhGEQI0ReF
+    consumer_key: 3O7hdqfvCWq5PLPv5LZKEIpEC
+    consumer_secret: LmsDQopBrWOmVcLSyXZXjYF1oJTX9eAApdftphalsg9UXuLJAt
