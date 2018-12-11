@@ -21,8 +21,8 @@
     <p class="bookmark_name">  {{ marks.urlName}} </p>
     <p class="bookmark_url"> <a target="_blank" href={{ marks.url }} id ="redirect_bookmark"> {{ marks.url }} </a>  </p>
     <p class="bookmark_keyword"> <b> Keywords: </b> {{ marks.keyword }} </p>
-    <a href="{% url 'accounts:BookMarksDelete' marks.id  user%}">Delete</a>
-    <a href="{% url 'accounts:BookMarksEdit' marks.id user%}">Edit</a>
+    <p class="bookmark_edit"><a class="default_text_hover" href="{% url 'accounts:BookMarksDelete' marks.id  user%}">Delete</a>
+    <a class="default_text_hover edit" href="{% url 'accounts:BookMarksEdit' marks.id user%}">Edit</a></p>
   </div>
   {% endfor %}
 </div>

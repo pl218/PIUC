@@ -345,7 +345,7 @@ float: right;
   border: 0;
 }
 
-#nv_search_submit{
+#nv_search_submit, #nv_search_submit1{
   margin-top: calc(130px - 18pt);
   margin-bottom: 25px;
   padding: 0;
@@ -599,9 +599,13 @@ centerText{
   border-left: solid #E0E9F8 5px;
 }
 
-.bookmark_keyword {
+.bookmark_keyword,.bookmark_edit {
   font-size: 10pt;
   text-align: right;
+
+}
+.bookmark_edit{
+  margin-top: 5px;
 }
 #hamburger{
   display: none;
@@ -622,6 +626,7 @@ centerText{
   font-family: 'Roboto', sans-serif;
   padding: 15px;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+
 }
 
 #tweet_search_add {
@@ -657,4 +662,7 @@ centerText{
   opacity: 0;
   pointer-events: none;
   transition: 0.8s;
+}
+.edit{
+  margin-left: 10px;
 }

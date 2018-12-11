@@ -97,7 +97,7 @@
   }
   #nav_bar_links > li >  #nv_search_input1{
     display: block;
-    width: 80%;
+    width: calc(80vw - 140px);
     opacity: 1;
     border-image: transparent;
     margin: 2pt 70px;
@@ -133,6 +133,17 @@
     margin: 0;
     top:20px;
     right:20px;
+
+  }
+  #filters_container{
+
+    z-index: 0;
+  }
+
+  #nv_search_submit1{
+    width: auto;
+    top:109.31px;
+    left: calc(80vw - 100px);
 
   }
 }
