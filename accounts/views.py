@@ -472,7 +472,7 @@ def BookMarksEdit(request,id,username):
 
 def TwitterSignIn(request,username):
     user = UserModel.objects.get(username=username)
-    auth = twitter.get_authentication_tokens(callback_url="http://127.0.0.1:8000/accounts/TwitterAuth?username="+username)
+    auth = twitter.get_authentication_tokens(callback_url="http://piuclei.pythonanywhere.com/accounts/TwitterAuth?username="+username)
     user.userprofile.token = auth['oauth_token']
     user.userprofile.token_secret = auth['oauth_token_secret']
     user.save()
