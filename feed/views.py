@@ -109,5 +109,5 @@ class FeedView(TemplateView):
 
 
     def LoginReddit(request):
-        reddit = praw.Reddit(client_id='rauAoeTRAaxrCQ', client_secret='Web-2V_CRQJAKXYQY0Qqst1OIRw', redirect_uri='http://127.0.0.1:8000/feed/checkReddit', user_agent='testing')
+        reddit = praw.Reddit(client_id='rauAoeTRAaxrCQ', client_secret='Web-2V_CRQJAKXYQY0Qqst1OIRw', redirect_uri='http://piuclie.pythonanywhere.com/feed/checkReddit', user_agent='testing')
         return redirect(reddit.auth.url(['identity','mysubreddits', 'read'], '...', 'permanent'))
