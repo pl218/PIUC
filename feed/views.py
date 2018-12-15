@@ -97,7 +97,7 @@ class FeedView(TemplateView):
         code = request.GET['code']
         reddit = praw.Reddit(client_id='rauAoeTRAaxrCQ',
                          client_secret='Web-2V_CRQJAKXYQY0Qqst1OIRw',
-                         redirect_uri='http://127.0.0.1:8000/feed/checkReddit',
+                         redirect_uri='http://piuclie.pythonanywhere.com/feed/checkReddit',
                          user_agent='testing')
         token=reddit.auth.authorize(code)
         user=UserModel.objects.get(username=request.user)
