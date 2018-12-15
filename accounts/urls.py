@@ -16,6 +16,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name= "accounts/login.html"), name='login'),
     path('register/<str:orcid>', views.register, name='register'),
     path('registerORCID/', views.registerORCID, name='registerORCID'),
+    path('registerORCIDGet/', views.registerORCIDGet, name='registerORCIDGet'),
     path('profile/<slug:username>',views.profile,name='profile'),
     path('profile/edit/<slug:username>',views.edit_profile,name='edit_profile'),
     path('bookmarks/<slug:username>',views.BookmarksView,name='bookmarks'),

@@ -33,11 +33,14 @@ from .constants import ORCID_PUBLIC_BASE_URL
 from .utils import dictmapper, MappingRule as to
 from django.core.mail import send_mail
 import requests
+import orcid
 #import orcid
+import http.client
 import json
 
 enterprise_search_args = load_credentials('twitter_keys.yaml', yaml_key='search_tweets_api', env_overwrite=False)
 twitter = Twython(settings.TOKEN, settings.SECRET)
+apiORCID = orcid.MemberAPI('APP-XASWO2T1JC35GW2K', '448e3fa2-2019-43ce-b8dc-eadec844c7cc', sandbox=False)
 
 BASE_HEADERS = {'Accept':'application/orcid+json'}
 
@@ -88,15 +91,9 @@ class Authorr(AuthorBase):
 
 
 def registerORCID(request):
-    if request.method == 'POST': #POST -> cliente envia info para o server
-        form=RegistrationOrcid(request.POST)
-        if form.is_valid(): #caso todos os dados recebidos sejam válidos
-            orcidUser = form.cleaned_data.get('ORCID')
-            return redirect(reverse('accounts:register', kwargs={'orcid':orcidUser}))
-    else:
-        form = RegistrationOrcid()
-    #pedro = getAuthor('0000-0002-9113-6258')
-    return render(request,'accounts/registerORCID.html',{'form':form})
+    url = apiORCID.get_login_url('/authenticate','http://127.0.0.1:8000/accounts/registerORCIDGet/');
+
+    return redirect(url)
 
 def register(request, orcid):
     if request.method == 'POST': #POST -> cliente envia info para o server
@@ -154,6 +151,34 @@ def register(request, orcid):
             form=RegistrationForm(initial={'ORCID': data['user-message']})
 
     return render(request,'accounts/register.html',{'form':form})
+
+
+def registerORCIDGet(request):
+    code = request.GET['code']
+    apiORC = orcid.PublicAPI('APP-XASWO2T1JC35GW2K', '448e3fa2-2019-43ce-b8dc-eadec844c7cc', sandbox=False)
+
+    token = apiORCID.get_token_from_authorization_code(code, 'http://127.0.0.1:8000/accounts/registerORCIDGet/&code=')
+
+    # url_aux = 'http://piuclei.pythonanywhere.com/accounts/registerORCIDGet/&authorization_code='+code
+    #
+    # headers = {
+    #     'Accept': 'application/json',
+    # }
+    #
+    # data = {'client_id': 'APP-XASWO2T1JC35GW2K','client_secret': '448e3fa2-2019-43ce-b8dc-eadec844c7cc' ,
+    #     'grant_type': 'authorization_code', 'redirect_uri': url_aux,}
+    #
+    # response = requests.post('https://orcid.org/oauth/token', headers=headers, data=data)
+
+    send_mail(
+        'response.text',
+        token,
+        'from@example.com',
+        ['nunespedro2323@gmail.com'],
+        fail_silently=False,
+    )
+
+    return redirect('admin/')
 
 def profile(request, username):
 
@@ -472,7 +497,7 @@ def BookMarksEdit(request,id,username):
 
 def TwitterSignIn(request,username):
     user = UserModel.objects.get(username=username)
-    auth = twitter.get_authentication_tokens(callback_url="http://127.0.0.1:8000/accounts/TwitterAuth?username="+username)
+    auth = twitter.get_authentication_tokens(callback_url="http://piuclei.pythonanywhere.com/accounts/TwitterAuth?username="+username)
     user.userprofile.token = auth['oauth_token']
     user.userprofile.token_secret = auth['oauth_token_secret']
     user.save()

@@ -131,18 +131,18 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = '../../feed/mainpage'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#
-# EMAIL_HOST = 'localhost'
-# EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'piuc.resetpass@gmail.com'
-EMAIL_HOST_PASSWORD = 'PIUCjafoste'
-EMAIL_PORT = 587
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+#EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'piuc.resetpass@gmail.com'
+#EMAIL_HOST_PASSWORD = 'PIUCjafoste'
+#EMAIL_PORT = 587
 
 TOKEN = 'xmHq6NeE2O9VQQ9206IZlX11m'
 SECRET = 'Em2lG4R7Fm3Q1WfNSXTwoPkDBG5TfXh3okCj5Ju7PE30Utbmj0'
